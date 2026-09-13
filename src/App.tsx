@@ -25,7 +25,13 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import CopilotWidget from "./components/CopilotWidget";
 import GovFooter from "./components/GovFooter";
-import { appMode, clearSession, currentSession } from "./lib/api";
+import { appMode, clearSession, currentSession, api, logout } from "./lib/api";
+import { useCase } from "./context/CaseContext";
+import CaseWorkspace from "./pages/CaseWorkspace";
+import CaseRegistry from "./pages/CaseRegistry";
+import EvidenceRecord from "./pages/EvidenceRecord";
+import PublicPortal from "./pages/PublicPortal";
+import { useLocale } from "./context/LocaleContext";
 
 type Role = "investigator" | "senior" | "forensics" | "admin";
 type NavigateFn = (page: string, param?: string) => void;
@@ -34,6 +40,7 @@ const publicPaths = new Set(["/", "/login", "/capabilities", "/how-it-works", "/
 function pageForPath(path: string) {
   if (path === "/") return "landing";
   if (path.startsWith("/cases/") && path.split("/").length === 3) return "case-detail";
+  if (path.startsWith("/cases/")) return path.split("/")[3] || "case-detail";
   if (path.startsWith("/entities/")) return "person";
   if (path.startsWith("/evidence/")) return "evidence";
   if (path.startsWith("/verify/")) return "verify";
@@ -47,32 +54,35 @@ function Protected({ authenticated, children }: { authenticated: boolean; childr
 export default function App() {
   const routerNavigate = useNavigate();
   const location = useLocation();
+  const {caseId,selectCase}=useCase();
+  const {locale}=useLocale();
   const stored = currentSession();
   const [isLoggedIn, setIsLoggedIn] = useState(() => appMode === "showcase" ? localStorage.getItem("decypher.showcase.auth") === "1" : Boolean(stored));
   const [userRole, setUserRole] = useState<Role>((stored?.role as Role) || "investigator");
+  useEffect(()=>{const changed=()=>setIsLoggedIn(Boolean(currentSession()));window.addEventListener("decypher:session",changed);if(appMode==="full"&&stored)api.me().then(user=>{setIsLoggedIn(true);setUserRole(user.role);}).catch(()=>{clearSession();setIsLoggedIn(false);});return()=>window.removeEventListener("decypher:session",changed);},[]);
 
   useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, [location.pathname, location.search]);
 
   const pathFor = (page: string, param?: string) => {
     const routes: Record<string, string> = {
       landing: "/", login: "/login", dashboard: "/dashboard", cases: "/cases",
-      "case-detail": `/cases/${param || "CASE-2026-017"}`, graph: "/graph", map: "/map",
-      timeline: "/timeline", financial: "/financial", evidence: "/evidence", "evidence-detail": `/evidence/${param || "EV-2026-0001"}`, network: "/network",
-      reports: "/reports", demo: "/demo", capabilities: "/capabilities", "how-it-works": "/how-it-works",
+      "case-detail": `/cases/${param || caseId}`, graph: `/cases/${caseId}/graph`, map: `/cases/${caseId}/map`,
+      timeline: `/cases/${caseId}/timeline`, financial: `/cases/${caseId}/financial`, evidence: `/cases/${caseId}/evidence`, "evidence-detail": `/evidence/${param || "EV-2026-0001"}?caseId=${encodeURIComponent(caseId)}`, network: `/cases/${caseId}/network`,
+      reports: `/cases/${caseId}/reports`, demo: "/demo", capabilities: "/capabilities", "how-it-works": "/how-it-works",
       security: "/security", about: "/about", terms: "/terms", privacy: "/privacy",
-      person: `/entities/${param || "PERSON-P001"}`,
+      person: `/entities/${param || "PERSON-P001"}?caseId=${encodeURIComponent(caseId)}`,
       verify: `/verify/${encodeURIComponent(param || "")}`,
     };
     return routes[page] || "/";
   };
 
-  const navigate: NavigateFn = (page, param) => routerNavigate(pathFor(page, param));
+  const navigate: NavigateFn = (page, param) => {if(page==="case-detail"&&param)selectCase(param);routerNavigate(pathFor(page, param));};
   const handleLogin = (role: Role) => {
     setIsLoggedIn(true); setUserRole(role);
     if (appMode === "showcase") localStorage.setItem("decypher.showcase.auth", "1");
     routerNavigate("/dashboard");
   };
-  const handleLogout = () => { clearSession(); localStorage.removeItem("decypher.showcase.auth"); setIsLoggedIn(false); routerNavigate("/"); };
+  const handleLogout = async () => { try{await logout();}finally{clearSession();localStorage.removeItem("decypher.showcase.auth");setIsLoggedIn(false);routerNavigate("/");} };
   const currentPage = useMemo(() => pageForPath(location.pathname), [location.pathname]);
   const showNavbar = location.pathname !== "/login" && !location.pathname.startsWith("/verify/");
   const showFooter = publicPaths.has(location.pathname) && location.pathname !== "/login";
@@ -83,34 +93,23 @@ export default function App() {
       {showNavbar && <CypherNavbar currentPage={currentPage} onNavigate={navigate} isLoggedIn={isLoggedIn} onLogout={handleLogout} userRole={userRole} />}
       <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
         <Routes>
-          <Route path="/" element={<Landing onNavigate={navigate} />} />
+          <Route path="/" element={<PublicPortal onNavigate={navigate} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} onNavigate={navigate} />} />
-          <Route path="/capabilities" element={<Capabilities onNavigate={navigate} />} />
-          <Route path="/how-it-works" element={<HowItWorks onNavigate={navigate} />} />
-          <Route path="/security" element={<Security onNavigate={navigate} />} />
-          <Route path="/about" element={<About onNavigate={navigate} />} />
-          <Route path="/terms" element={<Terms onNavigate={navigate} />} />
-          <Route path="/privacy" element={<Privacy onNavigate={navigate} />} />
+          {["capabilities","how-it-works","security","about","terms","privacy"].map(page=><Route key={page} path={`/${page}`} element={<PublicPortal page={page} onNavigate={navigate}/>}/>)}
           <Route path="/verify/:token" element={<VerifyPage onNavigate={navigate} />} />
-          <Route path="/dashboard" element={guard(<Dashboard onNavigate={navigate} userRole={userRole} />)} />
-          <Route path="/cases" element={guard(<CaseList onNavigate={navigate} />)} />
-          <Route path="/cases/:caseId" element={guard(<CaseRoute onNavigate={navigate} />)} />
-          <Route path="/cases/:caseId/evidence" element={guard(<EvidencePage onNavigate={navigate} />)} />
-          <Route path="/graph" element={guard(<GraphPage onNavigate={navigate} />)} />
-          <Route path="/map" element={guard(<MapPage onNavigate={navigate} />)} />
-          <Route path="/timeline" element={guard(<TimelinePage onNavigate={navigate} />)} />
-          <Route path="/financial" element={guard(<FinancialPage onNavigate={navigate} />)} />
-          <Route path="/evidence" element={guard(<EvidencePage onNavigate={navigate} />)} />
-          <Route path="/evidence/:evidenceId" element={guard(<EvidenceDetail onNavigate={navigate} />)} />
-          <Route path="/entities/:personId" element={guard(<PersonRoute onNavigate={navigate} />)} />
-          <Route path="/network" element={guard(<NetworkPage onNavigate={navigate} />)} />
-          <Route path="/reports" element={guard(<ReportsPage onNavigate={navigate} />)} />
+          <Route path="/dashboard" element={guard(<CaseRegistry onNavigate={navigate} />)} />
+          <Route path="/cases" element={guard(<CaseRegistry onNavigate={navigate} />)} />
+          <Route path="/cases/:caseId" element={guard(<CaseWorkspace mode="case-detail" onNavigate={navigate} />)} />
+          {["graph","map","timeline","financial","evidence","network","reports"].map(mode=><Route key={mode} path={`/cases/:caseId/${mode}`} element={guard(<CaseWorkspace mode={mode} onNavigate={navigate}/>)} />)}
+          {["graph","map","timeline","financial","evidence","network","reports"].map(mode=><Route key={mode} path={`/${mode}`} element={<Navigate to={`/cases/${caseId}/${mode}${location.search}`} replace/>}/>)}
+          <Route path="/evidence/:evidenceId" element={guard(<EvidenceRecord onNavigate={navigate} />)} />
+          <Route path="/entities/:personId" element={guard(<CaseWorkspace mode="entities" onNavigate={navigate} />)} />
           <Route path="/demo" element={guard(<DemoGuide onNavigate={navigate} />)} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
       {showFooter && <GovFooter onNavigate={navigate} />}
-      {isLoggedIn && <CopilotWidget onNavigate={navigate} />}
+      {isLoggedIn && !location.pathname.startsWith("/verify/") && <CopilotWidget key={`${caseId}-${locale}`} onNavigate={navigate} />}
     </div>
   );
 }

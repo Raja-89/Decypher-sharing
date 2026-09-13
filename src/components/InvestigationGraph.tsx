@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useMemo } from "react";
 import { GraphNode, GraphEdge, graphNodes, graphEdges } from "../data/dummy";
 import { entityColor, entityBadge, PALETTE } from "../theme";
+import {useLocale} from "../context/LocaleContext";
 
 // Fixed legend order so a filter change never reshuffles identity.
 const TYPE_ORDER: GraphNode["type"][] = ["person", "org", "phone", "vehicle", "location", "account", "case", "event"];
@@ -23,6 +24,7 @@ interface Props {
   showLegend?: boolean;
   filterType?: string | null;
   compact?: boolean;
+  caption?: string;
 }
 
 export default function InvestigationGraph({
@@ -33,7 +35,9 @@ export default function InvestigationGraph({
   showLegend = true,
   filterType = null,
   compact = false,
+  caption = "Evidence relationship graph",
 }: Props) {
+  const {locale}=useLocale();const L=(en:string,hi:string)=>locale==="hi"?hi:en;
   const [positions, setPositions] = useState<Record<string, { x: number; y: number }>>(() =>
     Object.fromEntries(nodes.map((n) => [n.id, { x: n.x, y: n.y }]))
   );
@@ -61,9 +65,14 @@ export default function InvestigationGraph({
     return TYPE_ORDER.filter((t) => seen.has(t));
   }, [nodes]);
 
-  const getPos = (id: string) => positions[id] || { x: 200, y: 200 };
+  const getPos = (id: string) => positions[id] || nodes.find(n=>n.id===id) || { x: 200, y: 200 };
 
   // Bezier control point
+  const svgPoint = (clientX:number,clientY:number) => {
+    const point=svgRef.current?.createSVGPoint(); const matrix=svgRef.current?.getScreenCTM();
+    if(!point||!matrix)return {x:0,y:0};point.x=clientX;point.y=clientY;
+    return point.matrixTransform(matrix.inverse());
+  };
   const getBezier = (x1: number, y1: number, x2: number, y2: number) => {
     const mx = (x1 + x2) / 2;
     const my = (y1 + y2) / 2;
@@ -75,13 +84,15 @@ export default function InvestigationGraph({
   };
 
   const handleMouseDown = useCallback(
-    (e: React.MouseEvent, nodeId: string) => {
+    (e: React.PointerEvent, nodeId: string) => {
       e.stopPropagation();
+      e.currentTarget.setPointerCapture(e.pointerId);
       const pos = getPos(nodeId);
       const svgRect = svgRef.current?.getBoundingClientRect();
       if (!svgRect) return;
-      const mx = (e.clientX - svgRect.left - pan.x) / scale;
-      const my = (e.clientY - svgRect.top - pan.y) / scale;
+      const point=svgPoint(e.clientX,e.clientY);
+      const mx = (point.x - pan.x) / scale;
+      const my = (point.y - pan.y) / scale;
       setDragging(nodeId);
       setDragOffset({ x: mx - pos.x, y: my - pos.y });
     },
@@ -89,16 +100,19 @@ export default function InvestigationGraph({
   );
 
   const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
+    (e: React.PointerEvent) => {
       if (dragging) {
         const svgRect = svgRef.current?.getBoundingClientRect();
         if (!svgRect) return;
-        const mx = (e.clientX - svgRect.left - pan.x) / scale;
-        const my = (e.clientY - svgRect.top - pan.y) / scale;
+        const point=svgPoint(e.clientX,e.clientY);
+        const mx = (point.x - pan.x) / scale;
+        const my = (point.y - pan.y) / scale;
         setPositions((p) => ({ ...p, [dragging]: { x: mx - dragOffset.x, y: my - dragOffset.y } }));
       } else if (isPanning.current) {
-        const dx = e.clientX - panStart.current.x;
-        const dy = e.clientY - panStart.current.y;
+        const point=svgPoint(e.clientX,e.clientY);
+        const previous=svgPoint(panStart.current.x,panStart.current.y);
+        const dx = point.x - previous.x;
+        const dy = point.y - previous.y;
         setPan((p) => ({ x: p.x + dx, y: p.y + dy }));
         panStart.current = { x: e.clientX, y: e.clientY };
       }
@@ -106,9 +120,10 @@ export default function InvestigationGraph({
     [dragging, dragOffset, pan, scale]
   );
 
-  const handleSvgMouseDown = (e: React.MouseEvent) => {
+  const handleSvgMouseDown = (e: React.PointerEvent) => {
     if (e.target === svgRef.current || (e.target as Element).tagName === "rect") {
       isPanning.current = true;
+      e.currentTarget.setPointerCapture(e.pointerId);
       panStart.current = { x: e.clientX, y: e.clientY };
     }
   };
@@ -139,12 +154,12 @@ export default function InvestigationGraph({
       {/* Legend */}
       {showLegend && !compact && (
         <div className="absolute top-3 left-3 z-10 bg-[var(--color-surface)] border border-[var(--color-border-subtle)] rounded-sm p-2.5 max-w-[240px]">
-          <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1.5">Entity types</div>
+          <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1.5">{L("Entity types","इकाई प्रकार")}</div>
           <div className="flex flex-wrap gap-x-3 gap-y-1">
             {presentTypes.map((type) => (
               <div key={type} className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-sm flex-shrink-0" style={{ background: entityColor(type) }} />
-                <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">{TYPE_LABEL[type] ?? type}</span>
+                <span className="text-[10px] text-[var(--color-text-secondary)] font-medium">{L(TYPE_LABEL[type] ?? type,({person:"व्यक्ति",org:"संगठन",phone:"फ़ोन / संचार",vehicle:"वाहन",location:"स्थान",account:"खाता",case:"केस",event:"घटना"} as Record<string,string>)[type]||type)}</span>
               </div>
             ))}
           </div>
@@ -153,10 +168,10 @@ export default function InvestigationGraph({
 
       {/* Zoom controls */}
       <div className="absolute top-3 right-3 z-10 flex flex-col gap-1.5">
-        <button className={zoomBtn} onClick={() => setScale((s) => Math.min(s * 1.2, 3))} aria-label="Zoom in">
+        <button className={zoomBtn} onClick={() => setScale((s) => Math.min(s * 1.2, 3))} aria-label={L("Zoom in","बड़ा करें")}>
           +
         </button>
-        <button className={zoomBtn} onClick={() => setScale((s) => Math.max(s * 0.8, 0.3))} aria-label="Zoom out">
+        <button className={zoomBtn} onClick={() => setScale((s) => Math.max(s * 0.8, 0.3))} aria-label={L("Zoom out","छोटा करें")}>
           −
         </button>
         <button
@@ -165,8 +180,8 @@ export default function InvestigationGraph({
             setScale(1);
             setPan({ x: 0, y: 0 });
           }}
-          aria-label="Reset view"
-          title="Reset view"
+          aria-label={L("Reset view","दृश्य रीसेट करें")}
+          title={L("Reset view","दृश्य रीसेट करें")}
         >
           1:1
         </button>
@@ -183,12 +198,13 @@ export default function InvestigationGraph({
         ref={svgRef}
         width="100%"
         height="100%"
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onMouseDown={handleSvgMouseDown}
+        viewBox="0 0 800 600"
+        onPointerMove={handleMouseMove}
+        onPointerUp={handleMouseUp}
+        onPointerCancel={handleMouseUp}
+        onPointerDown={handleSvgMouseDown}
         onWheel={handleWheel}
-        style={{ cursor: dragging ? "grabbing" : "grab" }}
+        style={{ cursor: dragging ? "grabbing" : "grab",touchAction:"none" }}
       >
         <defs>
           {/* Background grid: faint institutional hairline, visible on the light base */}
@@ -272,9 +288,13 @@ export default function InvestigationGraph({
             return (
               <g
                 key={node.id}
+                role="button"
+                tabIndex={0}
+                aria-label={`${node.label} (${node.type})`}
+                onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();setSelectedNode(node.id);onNodeClick?.(node);}}}
                 transform={`translate(${pos.x},${pos.y})`}
                 style={{ cursor: "pointer", opacity: isDimmed ? 0.2 : 1, transition: "opacity 0.2s" }}
-                onMouseDown={(e) => handleMouseDown(e, node.id)}
+                onPointerDown={(e) => handleMouseDown(e, node.id)}
                 onMouseEnter={(e) => {
                   setHoveredNode(node.id);
                   const svgRect = svgRef.current?.getBoundingClientRect();
@@ -341,22 +361,8 @@ export default function InvestigationGraph({
           })}
         </g>
 
-        {/* Stats overlay */}
-        {!compact && (
-          <g transform="translate(16, 16)">
-            <rect x="0" y={height - 85} width="240" height="64" rx="2" fill="var(--color-surface)" stroke="var(--color-border-subtle)" strokeWidth="1" />
-            <text x="12" y={height - 63} fill="var(--color-text-primary)" fontSize="9.5" fontWeight="700">
-              CASE-2026-017 / OPERATION NIGHTFALL
-            </text>
-            <text x="12" y={height - 49} fill="var(--color-primary)" fontSize="8.5" fontWeight="600">
-              {visibleNodes.length} entities · {visibleEdges.length} relationships
-            </text>
-            <text x="12" y={height - 35} fill="var(--color-text-muted)" fontSize="8">
-              Drag to pan · Scroll to zoom · Click a node to focus
-            </text>
-          </g>
-        )}
       </svg>
+      {!compact&&<div className="absolute bottom-3 right-3 pointer-events-none max-w-[230px] bg-[var(--color-surface)] border border-[var(--color-border-subtle)] p-2 text-[10px]"><p className="font-semibold break-all">{caption}</p><p>{visibleNodes.length} {L("entities","इकाइयाँ")} · {visibleEdges.length} {L("relationships","संबंध")}</p><p>{L("Drag to pan · Zoom to inspect · Select a node","खींचकर चलाएँ · बड़ा करके देखें · इकाई चुनें")}</p></div>}
     </div>
   );
 }

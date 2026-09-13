@@ -13,6 +13,9 @@ from app.services import sha256_stream
 from app.services import build_report_pdf
 from app.database import SessionLocal
 from app.models import Case
+from app.worker import run_once
+from app.services import graph_service
+from uuid import uuid4
 
 
 def auth_headers(client: TestClient, email="investigator@decypher.example"):
@@ -78,3 +81,70 @@ def test_analysis_and_reports_are_queued_and_qr_is_real():
             for locale in ("en", "hi"):
                 pdf = build_report_pdf(db, db.get(Case, "CASE-2026-017"), locale)
                 assert pdf.startswith(b"%PDF") and len(pdf) > 1000
+                if locale == "hi":
+                    from reportlab.pdfbase import pdfmetrics
+                    # Generate English then Hindi in the same worker process:
+                    # Hindi must not silently reuse the English-only font.
+                    assert pdfmetrics.getFont("CaseReportHi").face.charToGlyph.get(ord("ह"))
+                    assert pdfmetrics.getFont("CaseReportEn").face.charToGlyph.get(ord("A"))
+
+def test_bilingual_pdf_keeps_latin_identity_and_escapes_source_markup():
+    from app.reports import report_text
+    text=report_text("साक्ष्य EV-2026-0001 SHA-256 abcdef0123456789 <source>",True)
+    assert '<font name="CaseReportHi">साक्ष्य</font>' in text
+    assert "EV-2026-0001 SHA-256 abcdef0123456789 &lt;source&gt;" in text
+    assert report_text("<font>source</font>")=="&lt;font&gt;source&lt;/font&gt;"
+    assert report_text("साक्ष्य-समर्थित है;",True)=='<font name="CaseReportHi">साक्ष्य-समर्थित</font> <font name="CaseReportHi">है;</font>'
+
+def test_new_case_isolation_processing_and_report_worker(monkeypatch):
+    monkeypatch.setattr(graph_service,"sync_case",lambda *args,**kwargs:True)
+    with TestClient(app) as client:
+        headers=auth_headers(client,"admin@decypher.example")
+        case=client.post("/api/v1/cases",headers=headers,json={"title":"Isolated case","description":"Synthetic case isolation test"}).json()
+        empty=client.get(f"/api/v1/cases/{case['id']}/snapshot",headers=headers).json()
+        assert not empty["nodes"] and not empty["evidence"]
+        raw=f"transaction_id,timestamp,from_entity,to_account,amount_inr\n{uuid4()},2026-09-10T22:04:00+05:30,Arjun Verma,4821,245000\n".encode()
+        item=client.post("/api/v1/evidence",headers=headers,data={"case_id":case["id"]},files={"file":("money.csv",raw,"text/csv")}).json()
+        assert item["id"].startswith("EV-") and len(item["id"])>30
+        job=client.post(f"/api/v1/evidence/{item['id']}/analyze",headers=headers).json()
+        for _ in range(20):
+            run_once()
+            state=client.get(f"/api/v1/jobs/{job['jobId']}",headers=headers).json()
+            if state["status"]=="succeeded":break
+        assert state["status"]=="succeeded"
+        snap=client.get(f"/api/v1/cases/{case['id']}/snapshot",headers=headers).json()
+        assert snap["edges"] and snap["timeline"] and snap["alerts"]
+        assert all(edge["evidenceIds"]==[item["id"]] for edge in snap["edges"])
+        job=client.post(f"/api/v1/cases/{case['id']}/reports",headers=headers,json={"locale":"hi"}).json()
+        run_once();result=client.get(f"/api/v1/jobs/{job['jobId']}",headers=headers).json()
+        assert result["status"]=="succeeded"
+        assert client.get(result["result"]["downloadUrl"],headers=headers).content.startswith(b"%PDF")
+
+def test_content_validation_and_custody_transitions():
+    with TestClient(app) as client:
+        headers=auth_headers(client,"forensics@decypher.example")
+        bad=client.post("/api/v1/evidence",headers=headers,data={"case_id":"CASE-2026-017"},files={"file":("fake.png",b"not an image","image/png")})
+        assert bad.status_code==415 and bad.json()["error"]["code"]=="invalid_content"
+        result=client.post("/api/v1/evidence/EV-2026-0001/custody",headers=headers,json={"event":"RECEIVED","actor_to":"Reviewer"})
+        assert result.status_code==409
+        transfer={"event":"TRANSFERRED","actor_from":"Investigator Aditi Rao","actor_to":"Reviewer"}
+        assert client.post("/api/v1/evidence/EV-2026-0001/custody",headers=headers,json=transfer).status_code==200
+        assert client.post("/api/v1/evidence/EV-2026-0001/custody",headers=headers,json=transfer).status_code==409
+
+def test_refresh_rotation_logout_and_unknown_verification():
+    with TestClient(app) as client:
+        session=client.post("/api/v1/auth/login",json={"email":"admin@decypher.example","password":"DemoAccess2026!"}).json()
+        rotated=client.post("/api/v1/auth/refresh",json={"refresh_token":session["refresh_token"]})
+        assert rotated.status_code==200
+        assert client.post("/api/v1/auth/refresh",json={"refresh_token":session["refresh_token"]}).status_code==401
+        headers={"Authorization":f"Bearer {rotated.json()['access_token']}"}
+        assert client.post("/api/v1/auth/logout",headers=headers,json={"refresh_token":rotated.json()["refresh_token"]}).status_code==200
+        assert client.get("/api/v1/auth/me",headers=headers).status_code==401
+        assert client.get("/api/v1/verify/not-a-real-token").status_code==404
+
+def test_oversized_body_is_rejected_before_spooling(monkeypatch):
+    from app.config import settings
+    monkeypatch.setattr(settings,"max_upload_bytes",16)
+    with TestClient(app) as client:
+        response=client.post("/api/v1/evidence",content=b"x",headers={"Content-Length":"2000000","Content-Type":"multipart/form-data; boundary=test"})
+        assert response.status_code==413 and response.json()["error"]["code"]=="upload_too_large"

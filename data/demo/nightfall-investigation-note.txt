@@ -2,9 +2,13 @@ FICTIONAL DEMO EVIDENCE - NOT AN OFFICIAL RECORD
 
 Operation Nightfall field note
 Case: CASE-2026-017
+Recorded: 2026-09-11T08:10:00+05:30
 
 Investigator Aditi Rao recorded that Vikram Singh was mentioned in connection
 with vehicle DL01AB1234. The same vehicle reference appears in the fictional
 Operation Northbridge case (CASE-X007). This is an investigative lead only.
 The relationship must be reviewed against EV-2026-0004 and EV-2026-0006.
 
+A separate uncorroborated entry mentions Arjun Verma, grey utility vehicle
+DL03XY4521 and Noida Sector 62 together. This does not establish ownership
+or presence. Independent corroboration is required.

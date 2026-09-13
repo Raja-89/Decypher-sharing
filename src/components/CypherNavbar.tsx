@@ -115,7 +115,7 @@ function UtilityBar() {
                 : "border-[var(--color-border-strong)] text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-hover)]"
             }`}
           >
-            High Contrast
+            {lang==="hi"?"उच्च कंट्रास्ट":"High Contrast"}
           </button>
 
           {/* Language */}

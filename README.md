@@ -29,11 +29,11 @@ Admin reset reseeds the database/graph. It cannot erase blockchain history. For 
 ## Showcase mode
 
 ```sh
-npm install
+pnpm install --frozen-lockfile
 npm run dev
 ```
 
-The default mode is `showcase`. It provides routes, browser history, synthetic media, maps, graph exploration, local SHA-256 hashing and cited story answers. Uploads are browser-only and not persisted. Blockchain actions explicitly require the local secure service; no fake transactions or block confirmations are created. The PDF download is a clearly labeled fictional FIR sample, not a generated current-state investigation report.
+The default mode is `showcase`. It provides routes, browser history, synthetic media, maps, graph exploration, local SHA-256 hashing and cited story answers. Uploads are browser-only and not persisted. Blockchain actions explicitly require the local secure service; no fake transactions or block confirmations are created. English/Hindi HTML previews and full synthetic investigation PDFs are built from the same seeded case snapshots. Operation Northbridge shares only its cited field note; new local cases start empty rather than inheriting the Nightfall graph.
 
 Set `VITE_APP_MODE=full` and `VITE_API_URL=http://localhost:8000/api/v1` when using the backend. Vercel uses `vercel.json` for SPA deep links; use showcase mode unless a reachable secure API is deliberately configured.
 
@@ -55,15 +55,31 @@ npm ci
 npm test
 ```
 
-The current tests cover deterministic hashing/tampering, authentication, case graph/citations, evidence upload and registration role checks; contract tests cover registration, lookup, emitted event and duplicate rejection. They do not substitute for a Compose integration/E2E run.
+Tests cover bounded hashing/tampering, content signatures, authentication rotation/logout, case isolation, scoped citations, custody transitions, worker recovery and bilingual report jobs. Contract tests cover registration, lookup, events, duplicate rejection and modified hashes. Playwright covers protected routes, browser history, Hindi persistence, case selection, citation navigation, QR identity and report downloads at desktop/mobile sizes.
+
+```sh
+pnpm exec playwright install chromium --only-shell
+# Showcase assertions need a separate showcase-mode server:
+npm run test:e2e:showcase
+# Non-destructive integration check against the healthy local Docker demo:
+DECYPHER_INTEGRATION=1 PYTHONPATH=backend .venv/bin/pytest -q backend/tests/test_integration.py -k storage_chain_graph_and_job_pipeline
+npm run test:e2e:full
+docker compose ps
+curl --fail http://localhost:8000/ready
+```
+
+The full browser command includes the judging slice and expanded desktop/mobile control audit. Recorded results and validation boundaries are in [docs/CONTROL_AUDIT.md](docs/CONTROL_AUDIT.md). The live browser suite blocks the demo-reset endpoint; it adds synthetic audit cases/evidence, without deleting existing records. To test an actual reset, obtain explicit approval for an isolated demo before setting `DEMO_RESET_ALLOWED=1`. The local frontend mounts `src` and `public` read-only for source reloads, retaining container-owned dependencies.
+
+`/health` is process liveness; `/ready` returns 503 unless database, storage, Neo4j and the deployed blockchain bridge are reachable. Failed jobs can be retried through `POST /api/v1/jobs/{id}/retry` up to three attempts. Abandoned worker leases are recovered after five minutes. Uploads hash and spool in bounded chunks, then stream to MinIO; analysis may read the accepted artifact into memory under the 100 MB cap. File download/preview streams bytes and refreshes expired sessions.
+
+Build showcase artifacts after changing the seed/analyzer: `npm run demo:build`. The generator uses an isolated temporary database, never the live investigation database. A database-only reset can recover an existing genuine receipt for the same hash/case/evidence identity; it does not fabricate or erase blockchain history.
 
 ## Prototype boundaries
 
 - Deterministic analysis is implemented; paid AI, S3/SQS, OCR, advanced audio/video analysis and sophisticated anomaly algorithms are not complete adapters. Environment placeholders do not imply those integrations are active.
-- English/Hindi locale state and several core screens/answers/reports are implemented; legacy informational and investigation screens still contain English text.
+- Routed UI, validation/loading labels, story summaries, Copilot and report sections use the shared English/Hindi locale. Original source text, identity codes and user-entered content are preserved verbatim rather than machine-translated.
 - Basic network summaries and seeded relationships are not a production intelligence model.
-- Uploads enforce the size/type limit, but currently spool the accepted payload in memory after chunked hashing; production streaming requires a multipart object-storage pipeline.
 - Production MFA, tenant/case-level authorization, encryption key management, incident response and forensic certification are out of scope.
-- Full Docker/MinIO/Neo4j/bridge integration and desktop/mobile E2E verification must be run with Docker Desktop available.
+- Full Docker/PostgreSQL/MinIO/Neo4j integration and the secure full-stack E2E run require Docker Desktop and passed locally on 13 September 2026; see the dated audit for exact results. This does not establish cloud deployment, production security, physical-device or forensic certification.
 
 Do not commit real AWS credentials or paid-provider keys. Revoke/rotate any previously exposed AWS access-key ID before cloud integration.

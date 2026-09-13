@@ -1,0 +1,152 @@
+{
+  "case": {
+    "id": "CASE-X007",
+    "case_number": "DEMO/NORTHBRIDGE/007",
+    "title": "Operation Northbridge",
+    "title_hi": "ऑपरेशन नॉर्थब्रिज",
+    "description": "Fictional related case with a shared field note linking Vikram Singh and vehicle V001. Human review is required.",
+    "description_hi": "विक्रम सिंह और वाहन V001 को साझा नोट से जोड़ने वाला काल्पनिक संबंधित केस। मानव समीक्षा आवश्यक है।",
+    "status": "active",
+    "priority": "medium",
+    "lead_investigator": "Supervisor Prakash Verma",
+    "created_at": "2026-09-12T22:47:18.095690",
+    "updated_at": "2026-09-12T22:47:18.095692"
+  },
+  "evidence": [
+    {
+      "id": "EV-2026-0007",
+      "case_id": "CASE-2026-017",
+      "name": "Investigation note",
+      "description": "Synthetic evidence created only for the Decypher demonstration.",
+      "type": "document",
+      "mime_type": "text/plain",
+      "size": 645,
+      "sha256": "cbf0867620cb3d6f2b8eeee50c9d4c18f6c5b017e04c70c70dbf0311a87c08d3",
+      "status": "analyzed",
+      "verification_token": "nightfall-ev-2026-0007",
+      "created_at": "2026-09-11T03:30:00",
+      "registered_at": null
+    }
+  ],
+  "nodes": [
+    {
+      "id": "CASE-X007",
+      "label": "Operation Northbridge",
+      "labelHi": "ऑपरेशन नॉर्थब्रिज",
+      "type": "CASE",
+      "properties": {
+        "status": "active"
+      },
+      "evidenceIds": [
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "LOCATION-L003",
+      "label": "Noida Sector 62",
+      "labelHi": "नोएडा सेक्टर 62",
+      "type": "LOCATION",
+      "properties": {
+        "lat": 28.627,
+        "lng": 77.3723
+      },
+      "evidenceIds": [
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "PERSON-P002",
+      "label": "Arjun Verma",
+      "labelHi": "अर्जुन वर्मा",
+      "type": "PERSON",
+      "properties": {
+        "role": "associate"
+      },
+      "evidenceIds": [
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "PERSON-P004",
+      "label": "Vikram Singh",
+      "labelHi": "विक्रम सिंह",
+      "type": "PERSON",
+      "properties": {
+        "role": "cross-case bridge"
+      },
+      "evidenceIds": [
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "VEHICLE-V001",
+      "label": "DL01AB1234",
+      "labelHi": "डीएल01एबी1234",
+      "type": "VEHICLE",
+      "properties": {
+        "make": "white compact sedan"
+      },
+      "evidenceIds": [
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "VEHICLE-V002",
+      "label": "DL03XY4521",
+      "labelHi": "डीएल03एक्सवाई4521",
+      "type": "VEHICLE",
+      "properties": {
+        "make": "grey utility vehicle"
+      },
+      "evidenceIds": [
+        "EV-2026-0007"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "REL-X007",
+      "source": "PERSON-P004",
+      "target": "VEHICLE-V001",
+      "type": "MENTIONED_WITH",
+      "confidence": 0.8,
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "timestamp": "2026-09-12T22:47:18+00:00"
+    }
+  ],
+  "timeline": [],
+  "alerts": [],
+  "custody": [
+    {
+      "evidenceId": "EV-2026-0007",
+      "event": "COLLECTED",
+      "from": "",
+      "to": "Investigator Aditi Rao",
+      "location": "Delhi NCR",
+      "notes": "Synthetic demo intake",
+      "timestamp": "2026-09-11T03:30:00+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0007",
+      "event": "HASHED",
+      "from": "",
+      "to": "Decypher",
+      "location": "Secure intake",
+      "notes": "SHA-256 cbf0867620cb3d6f2b8eeee50c9d4c18f6c5b017e04c70c70dbf0311a87c08d3",
+      "timestamp": "2026-09-11T03:30:01+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0007",
+      "event": "ANALYZED",
+      "from": "",
+      "to": "Decypher deterministic analyzer",
+      "location": "",
+      "notes": "Deterministic analysis identified 4 traceable entities.",
+      "timestamp": "2026-09-11T03:30:02+00:00"
+    }
+  ],
+  "anchors": [],
+  "reports": []
+}

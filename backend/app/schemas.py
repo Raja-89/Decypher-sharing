@@ -1,5 +1,6 @@
 from datetime import datetime
 from typing import Any
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
@@ -27,7 +28,7 @@ class TokenPair(BaseModel):
 class CaseCreate(BaseModel):
     title: str = Field(min_length=3, max_length=255)
     description: str = Field(min_length=10)
-    priority: str = "medium"
+    priority: Literal["low","medium","high","critical"] = "medium"
     lead_investigator: str = "Current Investigator"
 
 
@@ -71,14 +72,13 @@ class ReportRequest(BaseModel):
 
 
 class CustodyCreate(BaseModel):
-    event: str
+    event: Literal["TRANSFERRED","RECEIVED","REVIEWED","SEALED","RELEASED"]
     actor_from: str = ""
     actor_to: str = ""
     location: str = ""
-    notes: str = ""
+    notes: str = Field(default="",max_length=2000)
 
 
 class ApiMessage(BaseModel):
     message: str
     data: dict[str, Any] | None = None
-

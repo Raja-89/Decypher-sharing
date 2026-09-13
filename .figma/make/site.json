@@ -1,5 +1,6 @@
 {
-  "description": "Leverage AI to analyze criminal data, uncover hidden networks, and provide actionable insights for law enforcement, enhancing investigative efficiency.",
+  "title": "Decypher by Epoch",
+  "description": "Fictional evidence-intelligence prototype with cryptographic provenance, case-scoped investigations and human review.",
   "robots": {
     "index": false
   },

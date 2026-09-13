@@ -10,6 +10,10 @@ build/
 !.env.example
 .pnpm-store/
 tmp/
+test-results/
+.pytest_cache/
+playwright-report/
+output/
 data/uploads/
 blockchain/artifacts/
 blockchain/cache/

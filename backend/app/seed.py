@@ -1,5 +1,5 @@
 import hashlib
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 from sqlalchemy import delete, select
@@ -9,9 +9,10 @@ from .models import (
     Alert, AuditLog, BlockchainAnchor, Case, CustodyEvent, Entity, Evidence,
     EvidenceAnalysis, EvidenceEntity, ProcessingJob, RefreshToken, Relationship,
     Report, TimelineEvent, User,
+    EvidenceCaseLink,
 )
 from .security import hash_password
-from .services import storage
+from .services import storage,analyze_evidence
 
 
 CASE_ID = "CASE-2026-017"
@@ -66,12 +67,7 @@ def _fixture_bytes(filename: str) -> bytes:
         path = Path("data/demo") / filename
     if path.exists():
         return path.read_bytes()
-    return (
-        "FICTIONAL DEMO EVIDENCE - NOT AN OFFICIAL RECORD\n"
-        "Operation Nightfall: Raj Mehta, Arjun Verma, Neha Kapoor and Vikram Singh. "
-        "Vehicle DL01AB1234 observed between Connaught Place and Gurugram Warehouse. "
-        "Account 4821 appears in a transaction record.\n"
-    ).encode()
+    raise FileNotFoundError(f"Required demo artifact is missing: {filename}")
 
 
 def seed_demo(db: Session) -> None:
@@ -87,6 +83,10 @@ def seed_demo(db: Session) -> None:
             status="active", priority="critical", lead_investigator="Investigator Aditi Rao",
         ))
     db.flush()
+
+    if not db.get(Case,"CASE-X007"):
+        db.add(Case(id="CASE-X007",case_number="DEMO/NORTHBRIDGE/007",title="Operation Northbridge",title_hi="ऑपरेशन नॉर्थब्रिज",description="Fictional related case with a shared field note linking Vikram Singh and vehicle V001. Human review is required.",description_hi="विक्रम सिंह और वाहन V001 को साझा नोट से जोड़ने वाला काल्पनिक संबंधित केस। मानव समीक्षा आवश्यक है।",priority="medium",lead_investigator="Supervisor Prakash Verma"))
+        db.flush()
 
     for entity_id, name, name_hi, entity_type, aliases, properties in ENTITIES:
         if not db.get(Entity, entity_id):
@@ -104,15 +104,23 @@ def seed_demo(db: Session) -> None:
             id=evidence_id, case_id=CASE_ID, name=name, description="Synthetic evidence created only for the Decypher demonstration.",
             type=evidence_type, object_key=key, mime_type=mime, size=len(payload), sha256=digest,
             status="analyzed", registered_by="USR-INV-001", verification_token=f"nightfall-{evidence_id.lower()}",
+            created_at=datetime.fromisoformat("2026-09-11T09:00:00+05:30").astimezone(timezone.utc),
         )
         db.add(item)
-        db.add(CustodyEvent(evidence_id=evidence_id, event="COLLECTED", actor_to="Investigator Aditi Rao", location="Delhi NCR", notes="Synthetic demo intake"))
-        db.add(CustodyEvent(evidence_id=evidence_id, event="HASHED", actor_to="Decypher", location="Secure intake", notes=f"SHA-256 {digest}"))
+        # No ORM relationship is declared for custody, so explicitly persist
+        # the parent before dependent inserts (PostgreSQL enforces the FK).
+        db.flush()
+        db.add(CustodyEvent(evidence_id=evidence_id, event="COLLECTED", actor_to="Investigator Aditi Rao", location="Delhi NCR", notes="Synthetic demo intake",timestamp=item.created_at))
+        db.add(CustodyEvent(evidence_id=evidence_id, event="HASHED", actor_to="Decypher", location="Secure intake", notes=f"SHA-256 {digest}",timestamp=item.created_at+timedelta(seconds=1)))
     db.flush()
 
     for rel_id, source, target, rel_type, confidence, evidence_ids in RELATIONSHIPS:
         if not db.get(Relationship, rel_id):
-            db.add(Relationship(id=rel_id, case_id=CASE_ID, source_id=source, target_id=target, type=rel_type, confidence=confidence, evidence_ids=evidence_ids))
+            db.add(Relationship(id=rel_id, case_id=CASE_ID, source_id=source, target_id=target, type=rel_type, confidence=confidence, evidence_ids=evidence_ids,timestamp=datetime.fromisoformat("2026-09-11T08:10:00+05:30").astimezone(timezone.utc)))
+    if not db.scalar(select(EvidenceCaseLink).where(EvidenceCaseLink.case_id=="CASE-X007",EvidenceCaseLink.evidence_id=="EV-2026-0007")):
+        db.add(EvidenceCaseLink(case_id="CASE-X007",evidence_id="EV-2026-0007"))
+    if not db.get(Relationship,"REL-X007"):
+        db.add(Relationship(id="REL-X007",case_id="CASE-X007",source_id="PERSON-P004",target_id="VEHICLE-V001",type="MENTIONED_WITH",confidence=.8,evidence_ids=["EV-2026-0007"]))
     event_rows = [
         ("EVENT-001", "2026-09-10T20:42:00+00:00", "CALL", "Call between Raj and Arjun", "राज और अर्जुन के बीच कॉल", ["PERSON-P001", "PERSON-P002"], ["EV-2026-0002"], {"name":"Connaught Place","lat":28.6315,"lng":77.2167}, .96),
         ("EVENT-002", "2026-09-10T21:15:00+00:00", "SIGHTING", "Vehicle V001 enters warehouse garage", "वाहन V001 गोदाम पार्किंग में प्रवेश करता है", ["VEHICLE-V001", "LOCATION-L002"], ["EV-2026-0004", "EV-2026-0006"], {"name":"Gurugram Warehouse","lat":28.4595,"lng":77.0266}, .95),
@@ -121,16 +129,23 @@ def seed_demo(db: Session) -> None:
     ]
     for event_id, stamp, kind, title, title_hi, entity_ids, evidence_ids, location, confidence in event_rows:
         if not db.get(TimelineEvent, event_id):
-            db.add(TimelineEvent(id=event_id, case_id=CASE_ID, timestamp=datetime.fromisoformat(stamp), type=kind, title=title, title_hi=title_hi, description=title, entity_ids=entity_ids, evidence_ids=evidence_ids, location=location, confidence=confidence))
+            db.add(TimelineEvent(id=event_id, case_id=CASE_ID, timestamp=datetime.fromisoformat(stamp.replace("+00:00","+05:30")).astimezone(timezone.utc), type=kind, title=title, title_hi=title_hi, description=title, entity_ids=entity_ids, evidence_ids=evidence_ids, location=location, confidence=confidence))
     if not db.get(Alert, "ALERT-001"):
         db.add(Alert(id="ALERT-001", case_id=CASE_ID, title="Cross-case bridge entity", reason="Vikram Singh links Vehicle V001 with fictional CASE-X007 through one source note.", confidence=.86, evidence_ids=["EV-2026-0007"]))
+    db.flush()
+    for evidence_id,filename,*_rest in EVIDENCE_FIXTURES:
+        if not db.scalar(select(EvidenceAnalysis).where(EvidenceAnalysis.evidence_id==evidence_id)):
+            item=db.get(Evidence,evidence_id)
+            analysis=analyze_evidence(db,item,_fixture_bytes(filename))
+            analysis.created_at=item.created_at+timedelta(seconds=2)
+            for custody in db.scalars(select(CustodyEvent).where(CustodyEvent.evidence_id==evidence_id,CustodyEvent.event=="ANALYZED")):
+                custody.timestamp=item.created_at+timedelta(seconds=2)
     db.commit()
 
 
 def reset_demo(db: Session) -> None:
-    for model in [AuditLog, Report, ProcessingJob, BlockchainAnchor, EvidenceAnalysis, EvidenceEntity, CustodyEvent, Alert, TimelineEvent, Relationship, Evidence, Entity, Case, RefreshToken, User]:
+    for model in [AuditLog, Report, ProcessingJob, BlockchainAnchor, EvidenceAnalysis, EvidenceEntity, EvidenceCaseLink, CustodyEvent, Alert, TimelineEvent, Relationship, Evidence, Entity, Case, RefreshToken, User]:
         db.execute(delete(model))
     db.commit()
     storage.delete_prefix("raw/case/")
     seed_demo(db)
-

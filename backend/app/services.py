@@ -76,6 +76,28 @@ class Storage:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(payload)
 
+    def put_file(self, key, stream, size, content_type):
+        stream.seek(0)
+        if self.minio:
+            self.ensure(); self.minio.put_object(settings.minio_bucket,key,stream,size,content_type=content_type)
+        else:
+            import shutil
+            path = self.local_root / key; path.parent.mkdir(parents=True,exist_ok=True)
+            with path.open("wb") as target: shutil.copyfileobj(stream,target,64 * 1024)
+        stream.seek(0)
+
+    def chunks(self,key):
+        response = self.minio.get_object(settings.minio_bucket,key) if self.minio else (self.local_root/key).open("rb")
+        try:
+            while chunk := response.read(64 * 1024): yield chunk
+        finally:
+            response.close()
+            if self.minio: response.release_conn()
+
+    def remove(self,key):
+        if self.minio: self.minio.remove_object(settings.minio_bucket,key)
+        else: (self.local_root/key).unlink(missing_ok=True)
+
     def get(self, key: str) -> bytes:
         if self.minio:
             response = self.minio.get_object(settings.minio_bucket, key)
@@ -104,6 +126,12 @@ storage = Storage()
 
 
 class BlockchainService:
+    def lookup(self,evidence_hash):
+        try:
+            response=httpx.get(f"{settings.blockchain_bridge_url}/evidence/{evidence_hash}",timeout=5)
+            if response.status_code==404: return {}
+            response.raise_for_status(); return response.json()
+        except (httpx.HTTPError,ValueError): return None
     def register(self, evidence: Evidence, registered_by: str) -> dict:
         payload = {
             "evidenceHash": evidence.sha256,
@@ -134,34 +162,30 @@ class GraphService:
     def _driver(self):
         return GraphDatabase.driver(settings.neo4j_uri, auth=(settings.neo4j_user, settings.neo4j_password))
 
-    def sync_case(self, db: Session, case_id: str) -> None:
-        entities = list(db.scalars(select(Entity)))
-        relationships = list(db.scalars(select(Relationship).where(Relationship.case_id == case_id)))
+    def sync_case(self, db: Session, case_id: str, strict=False) -> bool:
+        from .snapshot import snapshot
+        data=snapshot(db,case_id)
+        def write(tx):
+            tx.run("MATCH (n:Entity {caseId: $caseId}) DETACH DELETE n",caseId=case_id).consume()
+            for node in data["nodes"]:
+                # Labels are selected from a closed set, never interpolated input.
+                label={"PERSON":"Person","VEHICLE":"Vehicle","LOCATION":"Location","ACCOUNT":"Account","PHONE":"Phone","CASE":"Investigation"}.get(node["type"],"Other")
+                tx.run(f"CREATE (n:Entity:{label} {{id:$id,caseId:$caseId,name:$name,type:$type,properties:$props,evidenceIds:$evidenceIds}})",id=node["id"],caseId=case_id,name=node["label"],type=node["type"],props=json.dumps(node["properties"]),evidenceIds=node["evidenceIds"]).consume()
+            for edge in data["edges"]:
+                tx.run("MATCH (a:Entity {id:$source,caseId:$caseId}), (b:Entity {id:$target,caseId:$caseId}) CREATE (a)-[r:RELATED {id:$id,type:$type,confidence:$confidence,evidenceIds:$evidenceIds,timestamp:$timestamp}]->(b)",source=edge["source"],target=edge["target"],caseId=case_id,id=edge["id"],type=edge["type"],confidence=edge["confidence"],evidenceIds=edge["evidenceIds"],timestamp=edge["timestamp"]).consume()
         try:
             with self._driver() as driver, driver.session() as session:
-                session.run("MATCH (n {caseId: $caseId}) DETACH DELETE n", caseId=case_id)
-                for entity in entities:
-                    session.run(
-                        "MERGE (n:Entity {id: $id}) SET n.name=$name, n.type=$type, n.caseId=$caseId, n.properties=$props",
-                        id=entity.id, name=entity.canonical_name, type=entity.type, caseId=case_id,
-                        props=json.dumps(entity.properties),
-                    )
-                for rel in relationships:
-                    session.run(
-                        "MATCH (a:Entity {id:$source}), (b:Entity {id:$target}) "
-                        "MERGE (a)-[r:RELATED {id:$id}]->(b) "
-                        "SET r.type=$type, r.confidence=$confidence, r.evidenceIds=$evidenceIds, r.timestamp=$timestamp",
-                        source=rel.source_id, target=rel.target_id, id=rel.id, type=rel.type,
-                        confidence=rel.confidence, evidenceIds=rel.evidence_ids, timestamp=rel.timestamp.isoformat(),
-                    )
-        except Exception:
+                session.execute_write(write)
+            return True
+        except Exception as exc:
             # PostgreSQL remains the source of truth; readiness reports degraded Neo4j separately.
-            return
+            if strict: raise RuntimeError("Neo4j mirror failed; retry analysis when graph service is ready.") from exc
+            return False
 
     def reset(self) -> None:
         try:
             with self._driver() as driver, driver.session() as session:
-                session.run("MATCH (n) DETACH DELETE n")
+                session.run("MATCH (n:Entity) WHERE n.caseId IS NOT NULL DETACH DELETE n")
         except Exception:
             return
 
@@ -183,7 +207,8 @@ DEMO_ENTITY_RULES = [
 
 
 def analyze_evidence(db: Session, evidence: Evidence, raw: bytes) -> EvidenceAnalysis:
-    text = raw.decode("utf-8", errors="ignore")[:100_000]
+    from .analysis import extract, bind, entity as resolve_entity
+    text,metadata,findings = extract(db,evidence,raw)
     matched = []
     for entity_id, name, entity_type, aliases in DEMO_ENTITY_RULES:
         terms = [name, *aliases]
@@ -200,22 +225,28 @@ def analyze_evidence(db: Session, evidence: Evidence, raw: bytes) -> EvidenceAna
     phone_numbers = sorted(set(re.findall(r"(?:\+91[- ]?)?[6-9]\d{9}", text)))
     for index, phone in enumerate(phone_numbers):
         normalized = re.sub(r"\D", "", phone)[-10:]
-        entity_id = f"PHONE-{normalized}"
-        if not db.get(Entity, entity_id):
-            db.add(Entity(id=entity_id, canonical_name=f"+91 {normalized}", type="PHONE", aliases=[phone], properties={}))
+        resolved = resolve_entity(db,f"+91 {normalized}","PHONE"); entity_id=resolved.id
+        bind(db,evidence,resolved,phone,.98)
         matched.append({"id": entity_id, "name": f"+91 {normalized}", "type": "PHONE", "confidence": 0.98})
 
+    db.flush()
+    # Structured and curated-media extraction also creates bindings; include
+    # them in the result instead of incorrectly reporting zero entities.
+    for binding,node in db.execute(select(EvidenceEntity,Entity).join(Entity,Entity.id==EvidenceEntity.entity_id).where(EvidenceEntity.evidence_id==evidence.id).order_by(Entity.id)):
+        if not any(entry["id"]==node.id for entry in matched):
+            matched.append({"id":node.id,"name":node.canonical_name,"type":node.type,"confidence":binding.confidence})
+    matched=list({entry["id"]:entry for entry in matched}.values())
     summary = f"Deterministic analysis identified {len(matched)} traceable entities."
     if not matched:
         summary = "No supported entities were detected; no investigative claim was generated."
     analysis = EvidenceAnalysis(
         evidence_id=evidence.id, provider="deterministic", summary=summary,
-        confidence=0.94 if matched else 0.0, result={"entities": matched, "sourceEvidenceId": evidence.id},
+        confidence=0.94 if matched or findings else 0.0, result={"entities": matched,"metadata":metadata,"findings":findings,"sourceEvidenceId": evidence.id},
     )
     evidence.status = "analyzed"
     db.add(analysis)
     db.add(CustodyEvent(evidence_id=evidence.id, event="ANALYZED", actor_to="Decypher deterministic analyzer", notes=summary))
-    db.commit()
+    db.flush()
     return analysis
 
 
@@ -228,10 +259,13 @@ def qr_png(evidence: Evidence) -> bytes:
 
 
 def copilot_answer(db: Session, case_id: str, question: str, locale: str) -> dict:
-    entities = list(db.scalars(select(Entity)))
+    from .snapshot import snapshot
+    data=snapshot(db,case_id)
+    ids={n["id"] for n in data["nodes"]}
+    entities = list(db.scalars(select(Entity).where(Entity.id.in_(ids))))
     relationships = list(db.scalars(select(Relationship).where(Relationship.case_id == case_id)))
     lower = question.lower()
-    chosen = next((e for e in entities if e.canonical_name.lower() in lower or e.id.lower() in lower), None)
+    chosen = next((e for e in entities if e.canonical_name.lower() in lower or e.id.lower() in lower or (e.canonical_name_hi and e.canonical_name_hi in question)), None)
     if not chosen and ("important" in lower or "महत्व" in question):
         degree = {e.id: 0 for e in entities}
         for rel in relationships:
@@ -239,17 +273,24 @@ def copilot_answer(db: Session, case_id: str, question: str, locale: str) -> dic
             degree[rel.target_id] = degree.get(rel.target_id, 0) + 1
         chosen = max(entities, key=lambda e: degree.get(e.id, 0), default=None)
     related = [r for r in relationships if chosen and chosen.id in (r.source_id, r.target_id)]
-    citations = sorted({ev for rel in related for ev in rel.evidence_ids})
+    valid={e["id"] for e in data["evidence"]}
+    citations = sorted({ev for rel in related for ev in rel.evidence_ids}&valid)
+    if not chosen:
+        related=relationships[:3];citations=sorted({ev for rel in related for ev in rel.evidence_ids}&valid)
     if locale == "hi":
-        answer = f"{chosen.canonical_name if chosen else 'चयनित इकाई'} से {len(related)} प्रमाण-समर्थित संबंध जुड़े हैं। यह एक जाँच संकेत है, अंतिम निष्कर्ष नहीं।"
+        answer = f"{chosen.canonical_name_hi or chosen.canonical_name if chosen else data['case']['title_hi'] or data['case']['title']} से {len(related)} प्रमाण-समर्थित संबंध जुड़े हैं। यह एक जाँच संकेत है, अंतिम निष्कर्ष नहीं।"
         reasoning = "उत्तर केवल केस ग्राफ और सूचीबद्ध स्रोत साक्ष्य से तैयार किया गया है।"
     else:
         answer = f"{chosen.canonical_name if chosen else 'The selected entity'} has {len(related)} evidence-backed relationships. This is an investigative lead, not a conclusion of guilt."
         reasoning = "The answer was derived only from the case graph and the cited source evidence."
-    return {"answer": answer, "reasoning": reasoning, "confidence": 0.91 if citations else 0.45, "citations": citations}
+    return {"answer": answer, "reasoning": reasoning, "confidence": 0.91 if citations else 0.0, "citations": citations}
 
 
 def build_report_pdf(db: Session, case: Case, locale: str) -> bytes:
+    from .reports import pdf_report
+    return pdf_report(db,case,locale)
+
+def _legacy_report_pdf(db: Session, case: Case, locale: str) -> bytes:
     evidence = list(db.scalars(select(Evidence).where(Evidence.case_id == case.id)))
     events = list(db.scalars(select(TimelineEvent).where(TimelineEvent.case_id == case.id).order_by(TimelineEvent.timestamp)))
     relationships = list(db.scalars(select(Relationship).where(Relationship.case_id == case.id)))

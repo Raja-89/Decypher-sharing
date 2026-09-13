@@ -32,7 +32,6 @@ services:
     image: neo4j:5-community
     environment:
       NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:-ige_dev_password}
-      NEO4J_PLUGINS: '["apoc", "graph-data-science"]'
     ports: ["7474:7474", "7687:7687"]
     volumes: ["neo4j_data:/data"]
     healthcheck:
@@ -65,14 +64,12 @@ services:
   hardhat:
     image: node:22-alpine
     working_dir: /chain
-    command: sh -c "npm install && npm run node"
-    volumes: ["./blockchain:/chain"]
+    command: sh -c "npm ci && npm run node"
+    volumes: ["./blockchain:/chain", "hardhat_modules:/chain/node_modules"]
     ports: ["8545:8545"]
     healthcheck:
-      test:
-        - CMD-SHELL
-        - >-
-          wget -qO- --post-data='{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}' --header='Content-Type: application/json' http://localhost:8545 >/dev/null || exit 1
+      test: ["CMD", "node", "scripts/healthcheck.js"]
+      start_period: 60s
       interval: 5s
       timeout: 3s
       retries: 30
@@ -80,22 +77,27 @@ services:
   blockchain-deploy:
     image: node:22-alpine
     working_dir: /chain
-    command: sh -c "npm install && npm run compile && npm run deploy"
+    command: sh -c "npm ci && npm run compile && npm run deploy"
     environment:
       BLOCKCHAIN_RPC_URL: http://hardhat:8545
-    volumes: ["./blockchain:/chain"]
+    volumes: ["./blockchain:/chain", "deploy_modules:/chain/node_modules"]
     depends_on:
       hardhat: { condition: service_healthy }
 
   blockchain-bridge:
     image: node:22-alpine
     working_dir: /chain
-    command: sh -c "npm install && npm run bridge"
+    command: sh -c "npm ci && npm run bridge"
     environment:
       BLOCKCHAIN_RPC_URL: http://hardhat:8545
       CONTRACT_DEPLOYMENT_PATH: ./deployment/local.json
-    volumes: ["./blockchain:/chain"]
+    volumes: ["./blockchain:/chain", "bridge_modules:/chain/node_modules"]
     expose: ["8787"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:8787/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
     depends_on:
       blockchain-deploy: { condition: service_completed_successfully }
 
@@ -116,7 +118,7 @@ services:
       neo4j: { condition: service_healthy }
       minio: { condition: service_healthy }
       minio-init: { condition: service_completed_successfully }
-      blockchain-bridge: { condition: service_started }
+      blockchain-bridge: { condition: service_healthy }
 
   worker:
     build:
@@ -137,6 +139,15 @@ services:
       VITE_APP_MODE: full
       VITE_API_URL: http://localhost:8000/api/v1
     ports: ["8443:8443"]
+    # This is the local judging/development service. Keep dependencies in the
+    # image, but load audited source changes without another image download.
+    volumes: ["./src:/app/src:ro", "./public:/app/public:ro"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8443/login').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      start_period: 20s
+      interval: 5s
+      timeout: 3s
+      retries: 30
     depends_on:
       backend: { condition: service_healthy }
 
@@ -144,3 +155,6 @@ volumes:
   postgres_data:
   neo4j_data:
   minio_data:
+  hardhat_modules:
+  deploy_modules:
+  bridge_modules:

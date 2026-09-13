@@ -5,6 +5,7 @@ import { useLocale } from "../context/LocaleContext";
 
 export default function DemoGuide({ onNavigate }: { onNavigate:(page:string,param?:string)=>void }) {
   const { locale } = useLocale(); const [message, setMessage] = useState(""); const [busy, setBusy] = useState(false);
+  const L=(en:string,hi:string)=>locale==="hi"?hi:en;
   const steps = [
     ["Open Operation Nightfall", "ऑपरेशन नाइटफॉल खोलें", "case-detail", "CASE-2026-017"],
     ["Inspect and upload evidence", "साक्ष्य देखें और अपलोड करें", "evidence"],
@@ -16,9 +17,9 @@ export default function DemoGuide({ onNavigate }: { onNavigate:(page:string,para
     ["Generate the investigation report", "जाँच रिपोर्ट बनाएँ", "reports"],
   ];
   async function reset() {
-    if (!window.confirm("Reset all demo cases, evidence and analysis? This does not erase the immutable local blockchain.")) return;
+    if (!window.confirm(L("Reset all demo cases, evidence and analysis? This does not erase the immutable local blockchain.","सभी डेमो केस, साक्ष्य और विश्लेषण रीसेट करें? अपरिवर्तनीय ब्लॉकचेन इतिहास बना रहेगा।"))) return;
     setBusy(true);
-    try { await api.resetDemo(); setMessage("Demo database reset. Restart the ephemeral Hardhat stack for a completely fresh blockchain."); }
+    try { await api.resetDemo(); setMessage(L("Demo database reset. Restart the ephemeral Hardhat stack for a completely fresh blockchain.","डेमो डेटाबेस रीसेट हुआ। नए ब्लॉकचेन के लिए अस्थायी Hardhat सेवाएँ पुनः बनाएँ।")); }
     catch (e) { setMessage(e instanceof Error ? e.message : "Reset failed."); }
     finally { setBusy(false); }
   }

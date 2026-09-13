@@ -39,13 +39,19 @@ export function currentSession() {
   try { return raw ? JSON.parse(raw) : null; } catch { return null; }
 }
 
-async function request<T>(path: string, init: RequestInit = {}, authenticated = true): Promise<T> {
-  if (appMode !== "full") throw new Error("This secure operation requires the local full-stack demo.");
+export async function authorizedFetch(url: string, init: RequestInit = {}, authenticated = true) {
   const headers = new Headers(init.headers);
   if (authenticated && authToken()) headers.set("Authorization", `Bearer ${authToken()}`);
   if (init.body && !(init.body instanceof FormData)) headers.set("Content-Type", "application/json");
-  const response = await fetch(`${apiBase}${path}`, { ...init, headers });
+  let response = await fetch(url, { ...init, headers });
+  if (response.status === 401 && authenticated && localStorage.getItem(REFRESH_KEY)) {
+    try {
+      await refreshSession(); headers.set("Authorization",`Bearer ${authToken()}`);
+      response = await fetch(url,{...init,headers});
+    } catch { clearSession(); window.dispatchEvent(new Event("decypher:session")); }
+  }
   if (!response.ok) {
+    if(response.status===401&&authenticated){clearSession();window.dispatchEvent(new Event("decypher:session"));}
     let message = `Request failed (${response.status})`;
     try {
       const body = await response.json();
@@ -53,7 +59,26 @@ async function request<T>(path: string, init: RequestInit = {}, authenticated = 
     } catch { /* keep fallback */ }
     throw new Error(typeof message === "string" ? message : JSON.stringify(message));
   }
-  return response.json() as Promise<T>;
+  return response;
+}
+async function request<T>(path: string, init: RequestInit = {}, authenticated = true): Promise<T> {
+  if (appMode !== "full") throw new Error("This secure operation requires the local full-stack demo.");
+  return (await authorizedFetch(`${apiBase}${path}`,init,authenticated)).json() as Promise<T>;
+}
+
+let refreshFlight: Promise<void> | null = null;
+export async function refreshSession() {
+  if (!refreshFlight) refreshFlight = (async () => {
+    const response = await fetch(`${apiBase}/auth/refresh`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({refresh_token:localStorage.getItem(REFRESH_KEY)})});
+    if (!response.ok) throw new Error("Session expired. Sign in again.");
+    const session=await response.json();localStorage.setItem(ACCESS_KEY,session.access_token);localStorage.setItem(REFRESH_KEY,session.refresh_token);localStorage.setItem("decypher.user",JSON.stringify(session.user));
+  })().finally(()=>{refreshFlight=null;});
+  return refreshFlight;
+}
+
+export async function logout() {
+  try { if(appMode==="full" && authToken()) await request("/auth/logout",{method:"POST",body:JSON.stringify({refresh_token:localStorage.getItem(REFRESH_KEY)})}); }
+  finally {clearSession();window.dispatchEvent(new Event("decypher:session"));}
 }
 
 export async function login(email: string, password: string) {
@@ -65,6 +90,11 @@ export async function login(email: string, password: string) {
 }
 
 export const api = {
+  me: () => request<any>("/auth/me"),
+  snapshot: (caseId:string) => request<any>(`/cases/${caseId}/snapshot`),
+  reportPreview: (caseId:string,locale:string) => request<{html:string}>(`/cases/${caseId}/report-preview?locale=${locale}`),
+  listReports: (caseId:string) => request<any[]>(`/cases/${caseId}/reports`),
+  custody: (id:string,body:Record<string,string>) => request<any>(`/evidence/${id}/custody`,{method:"POST",body:JSON.stringify(body)}),
   resetDemo: () => request<any>("/admin/reset-demo", { method:"POST" }),
   listCases: () => request<any[]>("/cases"),
   createCase: (body: { title:string; description:string; priority:string; lead_investigator?:string }) => request<any>("/cases", { method:"POST", body:JSON.stringify(body) }),

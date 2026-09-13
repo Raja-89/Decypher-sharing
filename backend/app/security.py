@@ -6,10 +6,11 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pwdlib import PasswordHash
 from sqlalchemy.orm import Session
+from sqlalchemy import select
 
 from .config import settings
 from .database import get_db
-from .models import User
+from .models import User,AuditLog
 
 
 password_hash = PasswordHash.recommended()
@@ -46,6 +47,8 @@ def current_user(credentials: HTTPAuthorizationCredentials | None = Depends(bear
     if not credentials:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail={"code": "not_authenticated", "message": "Sign in is required."})
     payload = decode_token(credentials.credentials)
+    if db.scalar(select(AuditLog.id).where(AuditLog.action=="ACCESS_REVOKED",AuditLog.target==payload["jti"])):
+        raise HTTPException(401,detail={"code":"revoked_access","message":"This session was signed out."})
     user = db.get(User, payload["sub"])
     if not user or not user.is_active:
         raise HTTPException(status_code=401, detail={"code": "inactive_user", "message": "User is unavailable."})
@@ -58,4 +61,3 @@ def require_roles(*roles: str):
             raise HTTPException(status_code=403, detail={"code": "forbidden", "message": "Your role cannot perform this action."})
         return user
     return dependency
-

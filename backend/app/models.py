@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from typing import Any
 
-from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, JSON, String, Text
+from sqlalchemy import Boolean, DateTime, Float, ForeignKey, Integer, JSON, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .database import Base
@@ -73,6 +73,13 @@ class CustodyEvent(Base):
     location: Mapped[str] = mapped_column(String(255), default="")
     notes: Mapped[str] = mapped_column(Text, default="")
     timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+class EvidenceCaseLink(Base):
+    __tablename__="evidence_case_links"
+    __table_args__=(UniqueConstraint("evidence_id","case_id"),)
+    id: Mapped[int]=mapped_column(Integer,primary_key=True,autoincrement=True)
+    evidence_id: Mapped[str]=mapped_column(ForeignKey("evidence.id"),index=True)
+    case_id: Mapped[str]=mapped_column(ForeignKey("cases.id"),index=True)
 
 
 class EvidenceAnalysis(Base):
@@ -175,6 +182,7 @@ class ProcessingJob(Base):
     progress: Mapped[int] = mapped_column(Integer, default=0)
     result: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
     error: Mapped[str] = mapped_column(Text, default="")
+    attempts: Mapped[int] = mapped_column(Integer, default=0)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now, onupdate=now)
 
@@ -187,4 +195,3 @@ class AuditLog(Base):
     action: Mapped[str] = mapped_column(String(60), index=True)
     target: Mapped[str] = mapped_column(String(100))
     metadata_json: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
-

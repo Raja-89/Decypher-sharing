@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup, Tooltip, Circle, Polyline } fro
 import L from "leaflet";
 import { mapLocations } from "../data/dummy";
 import { PALETTE } from "../theme";
+import {useLocale} from "../context/LocaleContext";
 
 // Fix default marker icons
 delete (L.Icon.Default.prototype as unknown as Record<string, unknown>)._getIconUrl;
@@ -47,10 +48,12 @@ const CONNECTIONS: { from: [number, number]; to: [number, number]; color: string
 interface Props {
   height?: number;
   showConnections?: boolean;
-  locations?: typeof mapLocations;
+  locations?: Array<(typeof mapLocations)[number]&{evidenceIds?:string[]}>;
+  onEvidenceClick?: (id:string)=>void;
 }
 
-export default function LeafletMap({ height = 440, showConnections = true, locations = mapLocations }: Props) {
+export default function LeafletMap({ height = 440, showConnections = true, locations = mapLocations,onEvidenceClick }: Props) {
+  const {locale}=useLocale();const L=(en:string,hi:string)=>locale==="hi"?hi:en;
   const center: [number, number] = [28.58, 77.20]; // Operation Nightfall, Delhi NCR
   const indiaBounds: L.LatLngBoundsExpression = [
     [6.5, 68.0],
@@ -84,28 +87,28 @@ export default function LeafletMap({ height = 440, showConnections = true, locat
   return (
     <div className="overflow-hidden border border-[var(--color-border-strong)] relative" style={{ height }}>
       {/* Stat overlay (derived from data) */}
-      <div className="absolute top-3 right-3 z-[400] pointer-events-none">
-        <div className="px-3.5 py-2 bg-[var(--color-surface)] border border-[var(--color-border-strong)] rounded-sm flex items-center gap-3">
+      <div className="absolute top-3 right-3 z-[400] pointer-events-none max-w-[calc(100%_-_60px)]">
+        <div className="px-3.5 py-2 bg-[var(--color-surface)] border border-[var(--color-border-strong)] rounded-sm flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[var(--color-primary)]" />
-            <span className="text-[11px] font-semibold text-[var(--color-text-primary)]">{stats.total} entities tracked</span>
+            <span className="text-[11px] font-semibold text-[var(--color-text-primary)]">{stats.total} {L("locations","स्थान")}</span>
           </div>
           <span className="text-[var(--color-border-strong)]">|</span>
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[var(--color-alert-critical)]" />
-            <span className="text-[11px] font-semibold text-[var(--color-alert-critical)]">{stats.alerts} active alerts</span>
+            <span className="text-[11px] font-semibold text-[var(--color-alert-critical)]">{stats.alerts} {L("active alerts","सक्रिय संकेत")}</span>
           </div>
           <span className="text-[var(--color-border-strong)]">|</span>
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[var(--color-accent)]" />
-            <span className="text-[11px] font-semibold text-[var(--color-text-secondary)]">{stats.primary} key nodes</span>
+            <span className="text-[11px] font-semibold text-[var(--color-text-secondary)]">{stats.primary} {L("key locations","मुख्य स्थान")}</span>
           </div>
         </div>
       </div>
 
       {/* Legend + filters */}
       <div className="absolute bottom-3 left-3 z-[400] bg-[var(--color-surface)] border border-[var(--color-border-subtle)] rounded-sm p-2.5 max-w-[210px]">
-        <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1.5">Map layers</div>
+        <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)] mb-1.5">{L("Map layers","मानचित्र परतें")}</div>
         <div className="flex flex-col gap-1 mb-2">
           {presentTypes.map((t) => {
             const on = activeTypes.has(t);
@@ -118,19 +121,19 @@ export default function LeafletMap({ height = 440, showConnections = true, locat
                 style={{ opacity: on ? 1 : 0.45 }}
               >
                 <span className="w-2.5 h-2.5 rounded-full flex-shrink-0 border border-[var(--color-surface)]" style={{ background: MARKER_COLORS[t], outline: "1px solid rgba(20,24,31,0.25)" }} />
-                <span className="text-[11px] text-[var(--color-text-secondary)] font-medium">{MARKER_LABEL[t]}</span>
+                <span className="text-[11px] text-[var(--color-text-secondary)] font-medium">{L(MARKER_LABEL[t],({primary:"मुख्य स्थान",secondary:"अन्य स्थान",peripheral:"परिधीय स्थान",alert:"सक्रिय संकेत"} as Record<string,string>)[t])}</span>
               </button>
             );
           })}
         </div>
         <div className="border-t border-[var(--color-border-subtle)] pt-1.5 flex flex-col gap-1">
-          <button onClick={() => setShowConn((v) => !v)} aria-pressed={showConn} className="flex items-center gap-2 text-left px-1 py-0.5 rounded-sm hover:bg-[var(--color-surface-hover)]" style={{ opacity: showConn ? 1 : 0.45 }}>
+          <button disabled={!showConnections} title={!showConnections?L("No evidence-backed route geometry is available for this case.","इस केस में साक्ष्य-समर्थित मार्ग उपलब्ध नहीं है।"):undefined} onClick={() => setShowConn((v) => !v)} aria-pressed={showConn} className="flex items-center gap-2 text-left px-1 py-0.5 rounded-sm hover:bg-[var(--color-surface-hover)]" style={{ opacity: showConn ? 1 : 0.45 }}>
             <span className="w-2.5 h-0.5 flex-shrink-0" style={{ background: PALETTE.accent }} />
-            <span className="text-[11px] text-[var(--color-text-secondary)] font-medium">Connections</span>
+            <span className="text-[11px] text-[var(--color-text-secondary)] font-medium">{L("Connections","मार्ग संबंध")}</span>
           </button>
-          <button onClick={() => setShowFences((v) => !v)} aria-pressed={showFences} className="flex items-center gap-2 text-left px-1 py-0.5 rounded-sm hover:bg-[var(--color-surface-hover)]" style={{ opacity: showFences ? 1 : 0.45 }}>
+          <button title={L("45 km orientation circles, not evidence-derived geofences.","45 किमी संदर्भ वृत्त, साक्ष्य-आधारित सीमाएँ नहीं।")} onClick={() => setShowFences((v) => !v)} aria-pressed={showFences} className="flex items-center gap-2 text-left px-1 py-0.5 rounded-sm hover:bg-[var(--color-surface-hover)]" style={{ opacity: showFences ? 1 : 0.45 }}>
             <span className="w-2.5 h-2.5 rounded-full flex-shrink-0 border border-dashed" style={{ borderColor: PALETTE.primary }} />
-            <span className="text-[11px] text-[var(--color-text-secondary)] font-medium">Geofences</span>
+            <span className="text-[11px] text-[var(--color-text-secondary)] font-medium">{L("Orientation circles","संदर्भ वृत्त")}</span>
           </button>
         </div>
       </div>
@@ -147,11 +150,13 @@ export default function LeafletMap({ height = 440, showConnections = true, locat
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-          eventHandlers={{ tileerror: () => setTileError(true), load: () => setTileError(false) }}
+          // Leaflet fires `load` even when every tile failed. Keep the failure
+          // notice for this mounted view; refresh/case change retries cleanly.
+          eventHandlers={{ tileerror: () => setTileError(true) }}
         />
 
         {/* Connection lines */}
-        {showConn &&
+        {showConnections && showConn &&
           CONNECTIONS.map((c, i) => (
             <Polyline key={i} positions={[c.from, c.to]} pathOptions={{ color: c.color, weight: c.weight, opacity: c.opacity, dashArray: c.dash }} />
           ))}
@@ -170,7 +175,8 @@ export default function LeafletMap({ height = 440, showConnections = true, locat
               <div style={{ minWidth: 160, fontFamily: "var(--font-sans)", padding: "4px" }}>
                 <div style={{ fontWeight: 700, color: "var(--color-text-primary)", marginBottom: 4, fontSize: 13 }}>{loc.name}</div>
                 <div style={{ fontSize: 11, color: "var(--color-text-muted)", marginBottom: 6, fontFamily: "var(--font-mono)" }}>{loc.id}</div>
-                <div style={{ fontSize: 12, color: "var(--color-text-secondary)" }}>{loc.description}</div>
+                <div style={{ fontSize: 12, color: "var(--color-text-secondary)",whiteSpace:"pre-wrap",maxHeight:160,overflowY:"auto" }}>{loc.description}</div>
+                {onEvidenceClick&&<div className="flex flex-wrap gap-1 mt-2">{loc.evidenceIds?.map(id=><button key={id} className="gov-chip text-[10px]" onClick={()=>onEvidenceClick(id)}>{id}</button>)}</div>}
                 <div style={{ marginTop: 8, fontSize: 11, color: MARKER_COLORS[loc.type], fontWeight: 600 }}>Entity: {loc.entity}</div>
               </div>
             </Popup>
@@ -190,7 +196,7 @@ export default function LeafletMap({ height = 440, showConnections = true, locat
               />
             ))}
       </MapContainer>
-      {tileError && <div className="absolute top-3 left-1/2 -translate-x-1/2 z-[500] bg-[var(--color-surface)] border border-[var(--color-alert-medium)] px-3 py-2 text-[11px] text-[var(--color-text-secondary)]">Map tiles are unavailable. Seeded location evidence remains available in the location list.</div>}
+      {tileError && <div role="status" className="absolute top-3 left-1/2 -translate-x-1/2 z-[500] bg-[var(--color-surface)] border border-[var(--color-alert-medium)] px-3 py-2 text-[11px] text-[var(--color-text-secondary)]">{L("Map tiles are unavailable. Location evidence remains available in the location list.","मानचित्र टाइल उपलब्ध नहीं हैं। स्थान साक्ष्य सूची में उपलब्ध हैं।")}</div>}
     </div>
   );
 }

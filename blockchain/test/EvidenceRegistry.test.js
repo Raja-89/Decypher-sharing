@@ -13,6 +13,17 @@ describe("EvidenceRegistry", function () {
     assert.equal(await registry.isEvidenceRegistered(hash), true);
     const record = await registry.getEvidence(hash);
     assert.equal(record.evidenceId, "EV-001");
+    assert.equal(record.evidenceHash,hash);
+    assert.equal(record.caseId,"CASE-001");
+    assert.equal(event.args.evidenceHash,hash);
     await assert.rejects(registry.registerEvidence(hash, "CASE-001", "EV-002", "USR-001"), /Evidence hash already registered/);
+  });
+  it("never finds a modified or unknown hash",async function(){
+    const registry=await ethers.deployContract("EvidenceRegistry");
+    const original=ethers.sha256(ethers.toUtf8Bytes("original"));
+    const modified=ethers.sha256(ethers.toUtf8Bytes("modified"));
+    await (await registry.registerEvidence(original,"CASE-A","EV-A","USR-A")).wait();
+    assert.equal(await registry.isEvidenceRegistered(modified),false);
+    await assert.rejects(registry.getEvidence(modified),/Evidence not registered/);
   });
 });

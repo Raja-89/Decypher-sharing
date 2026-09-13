@@ -1,8 +1,17 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, existsSync } from "node:fs";
 import hre from "hardhat";
 
 const { ethers } = hre;
 
+const deploymentPath = "deployment/local.json";
+if (existsSync(deploymentPath)) {
+  const previous = JSON.parse(readFileSync(deploymentPath, "utf8"));
+  const expected = (await hre.artifacts.readArtifact("EvidenceRegistry")).deployedBytecode;
+  if ((await ethers.provider.getCode(previous.address)) === expected) {
+    console.log(`EvidenceRegistry reused at ${previous.address}`);
+    process.exit(0);
+  }
+}
 const registry = await ethers.deployContract("EvidenceRegistry");
 await registry.waitForDeployment();
 const address = await registry.getAddress();

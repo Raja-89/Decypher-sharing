@@ -1,0 +1,1154 @@
+{
+  "case": {
+    "id": "CASE-2026-017",
+    "case_number": "DL-NCR/2026/017",
+    "title": "Operation Nightfall",
+    "title_hi": "ऑपरेशन नाइटफॉल",
+    "description": "A fictional evidence-intelligence demonstration connecting communications, a vehicle sighting, a financial trail and a cross-case bridge across Delhi NCR.",
+    "description_hi": "दिल्ली एनसीआर में संचार, वाहन की पहचान, वित्तीय लेन-देन और दूसरे केस से संबंध जोड़ने वाला काल्पनिक साक्ष्य-खुफिया प्रदर्शन।",
+    "status": "active",
+    "priority": "critical",
+    "lead_investigator": "Investigator Aditi Rao",
+    "created_at": "2026-09-12T22:47:18.090681",
+    "updated_at": "2026-09-12T22:47:18.090685"
+  },
+  "evidence": [
+    {
+      "id": "EV-2026-0001",
+      "case_id": "CASE-2026-017",
+      "name": "FIR and initial field report",
+      "description": "Synthetic evidence created only for the Decypher demonstration.",
+      "type": "document",
+      "mime_type": "application/pdf",
+      "size": 62959,
+      "sha256": "6ad6450325f7c8d67072787255717eaf4cc530d7fa7be3a4e737b3d9458b9f3d",
+      "status": "analyzed",
+      "verification_token": "nightfall-ev-2026-0001",
+      "created_at": "2026-09-11T03:30:00",
+      "registered_at": null
+    },
+    {
+      "id": "EV-2026-0002",
+      "case_id": "CASE-2026-017",
+      "name": "Call detail records",
+      "description": "Synthetic evidence created only for the Decypher demonstration.",
+      "type": "data",
+      "mime_type": "text/csv",
+      "size": 472,
+      "sha256": "01168b14d29cb7eedb9b9ab0cd7223f1254f68815fbcb957c7b7568f13e9945f",
+      "status": "analyzed",
+      "verification_token": "nightfall-ev-2026-0002",
+      "created_at": "2026-09-11T03:30:00",
+      "registered_at": null
+    },
+    {
+      "id": "EV-2026-0003",
+      "case_id": "CASE-2026-017",
+      "name": "Financial transaction export",
+      "description": "Synthetic evidence created only for the Decypher demonstration.",
+      "type": "data",
+      "mime_type": "text/csv",
+      "size": 296,
+      "sha256": "8c57082db6d932134dbb7c6bb3aae40dcea0b311d90950ec8be998a2760df6b3",
+      "status": "analyzed",
+      "verification_token": "nightfall-ev-2026-0003",
+      "created_at": "2026-09-11T03:30:00",
+      "registered_at": null
+    },
+    {
+      "id": "EV-2026-0004",
+      "case_id": "CASE-2026-017",
+      "name": "Synthetic CCTV still",
+      "description": "Synthetic evidence created only for the Decypher demonstration.",
+      "type": "image",
+      "mime_type": "image/png",
+      "size": 1986662,
+      "sha256": "fb4290ba38a41e397403455fd58b6635653e8130fdec4ba82fb132b4654ada5a",
+      "status": "analyzed",
+      "verification_token": "nightfall-ev-2026-0004",
+      "created_at": "2026-09-11T03:30:00",
+      "registered_at": null
+    },
+    {
+      "id": "EV-2026-0005",
+      "case_id": "CASE-2026-017",
+      "name": "Synthetic dispatch audio",
+      "description": "Synthetic evidence created only for the Decypher demonstration.",
+      "type": "audio",
+      "mime_type": "audio/wav",
+      "size": 529278,
+      "sha256": "798640ad5744c2a244371a5c074b4a102dd329be3e2d8dc6704f3b29057765de",
+      "status": "analyzed",
+      "verification_token": "nightfall-ev-2026-0005",
+      "created_at": "2026-09-11T03:30:00",
+      "registered_at": null
+    },
+    {
+      "id": "EV-2026-0006",
+      "case_id": "CASE-2026-017",
+      "name": "Synthetic CCTV clip",
+      "description": "Synthetic evidence created only for the Decypher demonstration.",
+      "type": "video",
+      "mime_type": "video/mp4",
+      "size": 139119,
+      "sha256": "dd2c5bf0463c3c24912f8b61bb0519826c03cc048a68e303ba6c1e46f50768e5",
+      "status": "analyzed",
+      "verification_token": "nightfall-ev-2026-0006",
+      "created_at": "2026-09-11T03:30:00",
+      "registered_at": null
+    },
+    {
+      "id": "EV-2026-0007",
+      "case_id": "CASE-2026-017",
+      "name": "Investigation note",
+      "description": "Synthetic evidence created only for the Decypher demonstration.",
+      "type": "document",
+      "mime_type": "text/plain",
+      "size": 645,
+      "sha256": "cbf0867620cb3d6f2b8eeee50c9d4c18f6c5b017e04c70c70dbf0311a87c08d3",
+      "status": "analyzed",
+      "verification_token": "nightfall-ev-2026-0007",
+      "created_at": "2026-09-11T03:30:00",
+      "registered_at": null
+    }
+  ],
+  "nodes": [
+    {
+      "id": "ACCOUNT-A001",
+      "label": "A/C ending 4821",
+      "labelHi": "खाता अंतिम अंक 4821",
+      "type": "ACCOUNT",
+      "properties": {
+        "bank": "Fictional Cooperative Bank"
+      },
+      "evidenceIds": [
+        "EV-2026-0001",
+        "EV-2026-0003"
+      ]
+    },
+    {
+      "id": "CASE-X007",
+      "label": "Operation Northbridge",
+      "labelHi": "ऑपरेशन नॉर्थब्रिज",
+      "type": "CASE",
+      "properties": {
+        "status": "active"
+      },
+      "evidenceIds": [
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "LOCATION-L001",
+      "label": "Connaught Place",
+      "labelHi": "कनॉट प्लेस",
+      "type": "LOCATION",
+      "properties": {
+        "lat": 28.6315,
+        "lng": 77.2167
+      },
+      "evidenceIds": [
+        "EV-2026-0001",
+        "EV-2026-0002"
+      ]
+    },
+    {
+      "id": "LOCATION-L002",
+      "label": "Gurugram Warehouse",
+      "labelHi": "गुरुग्राम गोदाम",
+      "type": "LOCATION",
+      "properties": {
+        "lat": 28.4595,
+        "lng": 77.0266
+      },
+      "evidenceIds": [
+        "EV-2026-0001",
+        "EV-2026-0002",
+        "EV-2026-0004",
+        "EV-2026-0005",
+        "EV-2026-0006"
+      ]
+    },
+    {
+      "id": "LOCATION-L003",
+      "label": "Noida Sector 62",
+      "labelHi": "नोएडा सेक्टर 62",
+      "type": "LOCATION",
+      "properties": {
+        "lat": 28.627,
+        "lng": 77.3723
+      },
+      "evidenceIds": [
+        "EV-2026-0002",
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "PERSON-P001",
+      "label": "Raj Mehta",
+      "labelHi": "राज मेहता",
+      "type": "PERSON",
+      "properties": {
+        "role": "person of interest"
+      },
+      "evidenceIds": [
+        "EV-2026-0001",
+        "EV-2026-0002",
+        "EV-2026-0004",
+        "EV-2026-0006"
+      ]
+    },
+    {
+      "id": "PERSON-P002",
+      "label": "Arjun Verma",
+      "labelHi": "अर्जुन वर्मा",
+      "type": "PERSON",
+      "properties": {
+        "role": "associate"
+      },
+      "evidenceIds": [
+        "EV-2026-0001",
+        "EV-2026-0002",
+        "EV-2026-0003",
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "PERSON-P003",
+      "label": "Neha Kapoor",
+      "labelHi": "नेहा कपूर",
+      "type": "PERSON",
+      "properties": {
+        "role": "account holder"
+      },
+      "evidenceIds": [
+        "EV-2026-0003"
+      ]
+    },
+    {
+      "id": "PERSON-P004",
+      "label": "Vikram Singh",
+      "labelHi": "विक्रम सिंह",
+      "type": "PERSON",
+      "properties": {
+        "role": "cross-case bridge"
+      },
+      "evidenceIds": [
+        "EV-2026-0002",
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "PHONE-940689bb68275e051635",
+      "label": "+91 9810001202",
+      "labelHi": "",
+      "type": "PHONE",
+      "properties": {},
+      "evidenceIds": [
+        "EV-2026-0002"
+      ]
+    },
+    {
+      "id": "PHONE-cfa7a99258247fb31d13",
+      "label": "+91 9810001404",
+      "labelHi": "",
+      "type": "PHONE",
+      "properties": {},
+      "evidenceIds": [
+        "EV-2026-0002"
+      ]
+    },
+    {
+      "id": "PHONE-e57906317e107027c2ca",
+      "label": "+91 9810001101",
+      "labelHi": "",
+      "type": "PHONE",
+      "properties": {},
+      "evidenceIds": [
+        "EV-2026-0002"
+      ]
+    },
+    {
+      "id": "VEHICLE-V001",
+      "label": "DL01AB1234",
+      "labelHi": "डीएल01एबी1234",
+      "type": "VEHICLE",
+      "properties": {
+        "make": "white compact sedan"
+      },
+      "evidenceIds": [
+        "EV-2026-0001",
+        "EV-2026-0004",
+        "EV-2026-0005",
+        "EV-2026-0006",
+        "EV-2026-0007"
+      ]
+    },
+    {
+      "id": "VEHICLE-V002",
+      "label": "DL03XY4521",
+      "labelHi": "डीएल03एक्सवाई4521",
+      "type": "VEHICLE",
+      "properties": {
+        "make": "grey utility vehicle"
+      },
+      "evidenceIds": [
+        "EV-2026-0007"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "REL-001",
+      "source": "PERSON-P001",
+      "target": "PERSON-P002",
+      "type": "CALLED",
+      "confidence": 0.96,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-002",
+      "source": "PERSON-P001",
+      "target": "VEHICLE-V001",
+      "type": "ASSOCIATED_WITH",
+      "confidence": 0.92,
+      "evidenceIds": [
+        "EV-2026-0004",
+        "EV-2026-0006"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-003",
+      "source": "VEHICLE-V001",
+      "target": "LOCATION-L002",
+      "type": "LOCATED_AT",
+      "confidence": 0.95,
+      "evidenceIds": [
+        "EV-2026-0004",
+        "EV-2026-0006"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-004",
+      "source": "PERSON-P002",
+      "target": "ACCOUNT-A001",
+      "type": "PAID",
+      "confidence": 0.91,
+      "evidenceIds": [
+        "EV-2026-0003"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-005",
+      "source": "PERSON-P003",
+      "target": "ACCOUNT-A001",
+      "type": "OWNS",
+      "confidence": 0.98,
+      "evidenceIds": [
+        "EV-2026-0003"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-006",
+      "source": "PERSON-P004",
+      "target": "VEHICLE-V001",
+      "type": "ASSOCIATED_WITH",
+      "confidence": 0.86,
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-007",
+      "source": "PERSON-P004",
+      "target": "CASE-X007",
+      "type": "MENTIONED_IN",
+      "confidence": 0.89,
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-008",
+      "source": "PERSON-P001",
+      "target": "LOCATION-L001",
+      "type": "LOCATED_AT",
+      "confidence": 0.88,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-55c8eefc5586067beff9",
+      "source": "PHONE-e57906317e107027c2ca",
+      "target": "PHONE-940689bb68275e051635",
+      "type": "CALLED",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:12:00+00:00"
+    },
+    {
+      "id": "REL-c199bac6e7551ebfdb11",
+      "source": "PERSON-P001",
+      "target": "PHONE-e57906317e107027c2ca",
+      "type": "USES_PHONE",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:12:00+00:00"
+    },
+    {
+      "id": "REL-f9b1c933f19456876e36",
+      "source": "PERSON-P002",
+      "target": "PHONE-940689bb68275e051635",
+      "type": "USES_PHONE",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:12:00+00:00"
+    },
+    {
+      "id": "REL-9f2fbc325aefe89aa223",
+      "source": "PERSON-P001",
+      "target": "PERSON-P002",
+      "type": "CALLED",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:12:00+00:00"
+    },
+    {
+      "id": "REL-0196bcba8a0747e0fc06",
+      "source": "PHONE-e57906317e107027c2ca",
+      "target": "LOCATION-L001",
+      "type": "RECORDED_AT",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:12:00+00:00"
+    },
+    {
+      "id": "REL-14a63af614884789fbb4",
+      "source": "PHONE-940689bb68275e051635",
+      "target": "PHONE-e57906317e107027c2ca",
+      "type": "CALLED",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:33:00+00:00"
+    },
+    {
+      "id": "REL-5addfaf376d458a04b16",
+      "source": "PERSON-P002",
+      "target": "PHONE-940689bb68275e051635",
+      "type": "USES_PHONE",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:33:00+00:00"
+    },
+    {
+      "id": "REL-321023d7c3fcaa32d3bc",
+      "source": "PERSON-P001",
+      "target": "PHONE-e57906317e107027c2ca",
+      "type": "USES_PHONE",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:33:00+00:00"
+    },
+    {
+      "id": "REL-94bf59fb113dc92766a4",
+      "source": "PERSON-P002",
+      "target": "PERSON-P001",
+      "type": "CALLED",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:33:00+00:00"
+    },
+    {
+      "id": "REL-a1109f4434b2de51ada4",
+      "source": "PHONE-940689bb68275e051635",
+      "target": "LOCATION-L002",
+      "type": "RECORDED_AT",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T15:33:00+00:00"
+    },
+    {
+      "id": "REL-ae19df2e516579ce34f4",
+      "source": "PHONE-940689bb68275e051635",
+      "target": "PHONE-cfa7a99258247fb31d13",
+      "type": "CALLED",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T16:18:00+00:00"
+    },
+    {
+      "id": "REL-f1bdd96b9cec3093267e",
+      "source": "PERSON-P002",
+      "target": "PHONE-940689bb68275e051635",
+      "type": "USES_PHONE",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T16:18:00+00:00"
+    },
+    {
+      "id": "REL-3906d05ff82215c1759d",
+      "source": "PERSON-P004",
+      "target": "PHONE-cfa7a99258247fb31d13",
+      "type": "USES_PHONE",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T16:18:00+00:00"
+    },
+    {
+      "id": "REL-8e434066aca8b7a2cd4e",
+      "source": "PERSON-P002",
+      "target": "PERSON-P004",
+      "type": "CALLED",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T16:18:00+00:00"
+    },
+    {
+      "id": "REL-295feae42dd74841b34f",
+      "source": "PHONE-940689bb68275e051635",
+      "target": "LOCATION-L003",
+      "type": "RECORDED_AT",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "timestamp": "2026-09-10T16:18:00+00:00"
+    },
+    {
+      "id": "REL-600cf1556fea9b8d46b1",
+      "source": "PERSON-P002",
+      "target": "ACCOUNT-A001",
+      "type": "TRANSFERRED_TO",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0003"
+      ],
+      "timestamp": "2026-09-10T16:34:00+00:00"
+    },
+    {
+      "id": "REL-9f0f3ed3672c3e12d7bd",
+      "source": "PERSON-P003",
+      "target": "ACCOUNT-A001",
+      "type": "TRANSFERRED_TO",
+      "confidence": 0.94,
+      "evidenceIds": [
+        "EV-2026-0003"
+      ],
+      "timestamp": "2026-09-11T02:02:00+00:00"
+    },
+    {
+      "id": "REL-5d9546f3a5a6f867971e",
+      "source": "VEHICLE-V001",
+      "target": "LOCATION-L002",
+      "type": "CAPTIONED_AT",
+      "confidence": 0.85,
+      "evidenceIds": [
+        "EV-2026-0004"
+      ],
+      "timestamp": "2026-09-10T15:45:00+00:00"
+    },
+    {
+      "id": "REL-4aa8ffba2ff5c3e8da6a",
+      "source": "VEHICLE-V001",
+      "target": "LOCATION-L002",
+      "type": "CAPTIONED_AT",
+      "confidence": 0.85,
+      "evidenceIds": [
+        "EV-2026-0005"
+      ],
+      "timestamp": "2026-09-10T15:45:00+00:00"
+    },
+    {
+      "id": "REL-e1d5e64804cbc7293550",
+      "source": "VEHICLE-V001",
+      "target": "LOCATION-L002",
+      "type": "CAPTIONED_AT",
+      "confidence": 0.85,
+      "evidenceIds": [
+        "EV-2026-0006"
+      ],
+      "timestamp": "2026-09-10T15:45:00+00:00"
+    },
+    {
+      "id": "REL-f9b1fe0340772d327993",
+      "source": "PERSON-P004",
+      "target": "VEHICLE-V001",
+      "type": "MENTIONED_WITH",
+      "confidence": 0.8,
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-70550d58414236a3defb",
+      "source": "PERSON-P004",
+      "target": "CASE-X007",
+      "type": "MENTIONED_IN",
+      "confidence": 0.8,
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-710011cfb129082a0ac3",
+      "source": "PERSON-P002",
+      "target": "VEHICLE-V002",
+      "type": "MENTIONED_WITH",
+      "confidence": 0.65,
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    },
+    {
+      "id": "REL-09bf111754833778c527",
+      "source": "VEHICLE-V002",
+      "target": "LOCATION-L003",
+      "type": "MENTIONED_WITH",
+      "confidence": 0.65,
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "timestamp": "2026-09-11T02:40:00+00:00"
+    }
+  ],
+  "timeline": [
+    {
+      "id": "EVENT-001",
+      "timestamp": "2026-09-10T15:12:00+00:00",
+      "type": "CALL",
+      "title": "Call between Raj and Arjun",
+      "titleHi": "राज और अर्जुन के बीच कॉल",
+      "description": "Call between Raj and Arjun",
+      "entityIds": [
+        "PERSON-P001",
+        "PERSON-P002"
+      ],
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "location": {
+        "name": "Connaught Place",
+        "lat": 28.6315,
+        "lng": 77.2167
+      },
+      "confidence": 0.96
+    },
+    {
+      "id": "EVENT-c0a343310f51754bf5af",
+      "timestamp": "2026-09-10T15:12:00+00:00",
+      "type": "CALL",
+      "title": "+919810001101 → +919810001202",
+      "titleHi": "",
+      "description": "+919810001101 → +919810001202",
+      "entityIds": [
+        "PERSON-P001",
+        "PERSON-P002",
+        "PHONE-e57906317e107027c2ca",
+        "PHONE-940689bb68275e051635"
+      ],
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "location": {
+        "name": "Connaught Place",
+        "lat": 28.6315,
+        "lng": 77.2167
+      },
+      "confidence": 0.94
+    },
+    {
+      "id": "EVENT-5eb7422744db240b8051",
+      "timestamp": "2026-09-10T15:33:00+00:00",
+      "type": "CALL",
+      "title": "+919810001202 → +919810001101",
+      "titleHi": "",
+      "description": "+919810001202 → +919810001101",
+      "entityIds": [
+        "PERSON-P002",
+        "PERSON-P001",
+        "PHONE-940689bb68275e051635",
+        "PHONE-e57906317e107027c2ca"
+      ],
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "location": {
+        "name": "Gurugram",
+        "lat": 28.4595,
+        "lng": 77.0266
+      },
+      "confidence": 0.94
+    },
+    {
+      "id": "EVENT-002",
+      "timestamp": "2026-09-10T15:45:00+00:00",
+      "type": "SIGHTING",
+      "title": "Vehicle V001 enters warehouse garage",
+      "titleHi": "वाहन V001 गोदाम पार्किंग में प्रवेश करता है",
+      "description": "Vehicle V001 enters warehouse garage",
+      "entityIds": [
+        "VEHICLE-V001",
+        "LOCATION-L002"
+      ],
+      "evidenceIds": [
+        "EV-2026-0004",
+        "EV-2026-0006"
+      ],
+      "location": {
+        "name": "Gurugram Warehouse",
+        "lat": 28.4595,
+        "lng": 77.0266
+      },
+      "confidence": 0.95
+    },
+    {
+      "id": "EVENT-141c6d6615f754339f5a",
+      "timestamp": "2026-09-10T15:45:00+00:00",
+      "type": "SIGHTING",
+      "title": "Synthetic caption: vehicle at Gurugram warehouse",
+      "titleHi": "",
+      "description": "Synthetic caption: vehicle at Gurugram warehouse",
+      "entityIds": [
+        "VEHICLE-V001",
+        "LOCATION-L002"
+      ],
+      "evidenceIds": [
+        "EV-2026-0004"
+      ],
+      "location": {
+        "name": "Gurugram Warehouse",
+        "lat": 28.4595,
+        "lng": 77.0266
+      },
+      "confidence": 0.85
+    },
+    {
+      "id": "EVENT-dcc8791993067ebc6082",
+      "timestamp": "2026-09-10T15:45:00+00:00",
+      "type": "SIGHTING",
+      "title": "Synthetic caption: vehicle at Gurugram warehouse",
+      "titleHi": "",
+      "description": "Synthetic caption: vehicle at Gurugram warehouse",
+      "entityIds": [
+        "VEHICLE-V001",
+        "LOCATION-L002"
+      ],
+      "evidenceIds": [
+        "EV-2026-0005"
+      ],
+      "location": {
+        "name": "Gurugram Warehouse",
+        "lat": 28.4595,
+        "lng": 77.0266
+      },
+      "confidence": 0.85
+    },
+    {
+      "id": "EVENT-5ca0fae4a4c29aa0b6ba",
+      "timestamp": "2026-09-10T15:45:00+00:00",
+      "type": "SIGHTING",
+      "title": "Synthetic caption: vehicle at Gurugram warehouse",
+      "titleHi": "",
+      "description": "Synthetic caption: vehicle at Gurugram warehouse",
+      "entityIds": [
+        "VEHICLE-V001",
+        "LOCATION-L002"
+      ],
+      "evidenceIds": [
+        "EV-2026-0006"
+      ],
+      "location": {
+        "name": "Gurugram Warehouse",
+        "lat": 28.4595,
+        "lng": 77.0266
+      },
+      "confidence": 0.85
+    },
+    {
+      "id": "EVENT-4d6feb8c6314263aca01",
+      "timestamp": "2026-09-10T16:18:00+00:00",
+      "type": "CALL",
+      "title": "+919810001202 → +919810001404",
+      "titleHi": "",
+      "description": "+919810001202 → +919810001404",
+      "entityIds": [
+        "PERSON-P002",
+        "PERSON-P004",
+        "PHONE-940689bb68275e051635",
+        "PHONE-cfa7a99258247fb31d13"
+      ],
+      "evidenceIds": [
+        "EV-2026-0002"
+      ],
+      "location": {
+        "name": "Noida Sector 62",
+        "lat": 28.627,
+        "lng": 77.3723
+      },
+      "confidence": 0.94
+    },
+    {
+      "id": "EVENT-003",
+      "timestamp": "2026-09-10T16:34:00+00:00",
+      "type": "TRANSACTION",
+      "title": "Transfer to account ending 4821",
+      "titleHi": "खाता 4821 में धन हस्तांतरण",
+      "description": "Transfer to account ending 4821",
+      "entityIds": [
+        "PERSON-P002",
+        "PERSON-P003",
+        "ACCOUNT-A001"
+      ],
+      "evidenceIds": [
+        "EV-2026-0003"
+      ],
+      "location": {
+        "name": "Noida Sector 62",
+        "lat": 28.627,
+        "lng": 77.3723
+      },
+      "confidence": 0.91
+    },
+    {
+      "id": "EVENT-2bc580339597ea04143d",
+      "timestamp": "2026-09-10T16:34:00+00:00",
+      "type": "TRANSACTION",
+      "title": "Arjun Verma → 4821: INR 245,000",
+      "titleHi": "",
+      "description": "Arjun Verma → 4821: INR 245,000",
+      "entityIds": [
+        "PERSON-P002",
+        "ACCOUNT-A001"
+      ],
+      "evidenceIds": [
+        "EV-2026-0003"
+      ],
+      "location": {},
+      "confidence": 0.94
+    },
+    {
+      "id": "EVENT-533f59fcdef1b0436497",
+      "timestamp": "2026-09-11T02:02:00+00:00",
+      "type": "TRANSACTION",
+      "title": "Neha Kapoor → 4821: INR 48,000",
+      "titleHi": "",
+      "description": "Neha Kapoor → 4821: INR 48,000",
+      "entityIds": [
+        "PERSON-P003",
+        "ACCOUNT-A001"
+      ],
+      "evidenceIds": [
+        "EV-2026-0003"
+      ],
+      "location": {},
+      "confidence": 0.94
+    },
+    {
+      "id": "EVENT-004",
+      "timestamp": "2026-09-11T02:40:00+00:00",
+      "type": "CROSS_CASE",
+      "title": "Vikram linked to V001 and CASE-X007",
+      "titleHi": "विक्रम का V001 और CASE-X007 से संबंध",
+      "description": "Vikram linked to V001 and CASE-X007",
+      "entityIds": [
+        "PERSON-P004",
+        "VEHICLE-V001",
+        "CASE-X007"
+      ],
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "location": {
+        "name": "Gurugram Warehouse",
+        "lat": 28.4595,
+        "lng": 77.0266
+      },
+      "confidence": 0.86
+    },
+    {
+      "id": "EVENT-1feedb6f478bf1285870",
+      "timestamp": "2026-09-11T02:40:00+00:00",
+      "type": "CROSS_CASE",
+      "title": "Source note connects Vikram, vehicle and Northbridge",
+      "titleHi": "",
+      "description": "Source note connects Vikram, vehicle and Northbridge",
+      "entityIds": [
+        "PERSON-P004",
+        "VEHICLE-V001",
+        "CASE-X007"
+      ],
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "location": {},
+      "confidence": 0.8
+    }
+  ],
+  "alerts": [
+    {
+      "id": "ALERT-001",
+      "title": "Cross-case bridge entity",
+      "reason": "Vikram Singh links Vehicle V001 with fictional CASE-X007 through one source note.",
+      "confidence": 0.86,
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "ALERT-9421d435e75d17a783a1",
+      "title": "Large transfer: manual review",
+      "reason": "INR 245,000 meets the synthetic demo threshold of INR 200,000; not a regulatory or guilt determination.",
+      "confidence": 1.0,
+      "evidenceIds": [
+        "EV-2026-0003"
+      ],
+      "status": "open"
+    },
+    {
+      "id": "ALERT-1feedb6f478bf1285870",
+      "title": "Cross-case mention: review required",
+      "reason": "A source note mentions Vikram, vehicle and Northbridge together; corroboration is required.",
+      "confidence": 0.8,
+      "evidenceIds": [
+        "EV-2026-0007"
+      ],
+      "status": "open"
+    }
+  ],
+  "custody": [
+    {
+      "evidenceId": "EV-2026-0001",
+      "event": "COLLECTED",
+      "from": "",
+      "to": "Investigator Aditi Rao",
+      "location": "Delhi NCR",
+      "notes": "Synthetic demo intake",
+      "timestamp": "2026-09-11T03:30:00+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0002",
+      "event": "COLLECTED",
+      "from": "",
+      "to": "Investigator Aditi Rao",
+      "location": "Delhi NCR",
+      "notes": "Synthetic demo intake",
+      "timestamp": "2026-09-11T03:30:00+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0003",
+      "event": "COLLECTED",
+      "from": "",
+      "to": "Investigator Aditi Rao",
+      "location": "Delhi NCR",
+      "notes": "Synthetic demo intake",
+      "timestamp": "2026-09-11T03:30:00+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0004",
+      "event": "COLLECTED",
+      "from": "",
+      "to": "Investigator Aditi Rao",
+      "location": "Delhi NCR",
+      "notes": "Synthetic demo intake",
+      "timestamp": "2026-09-11T03:30:00+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0005",
+      "event": "COLLECTED",
+      "from": "",
+      "to": "Investigator Aditi Rao",
+      "location": "Delhi NCR",
+      "notes": "Synthetic demo intake",
+      "timestamp": "2026-09-11T03:30:00+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0006",
+      "event": "COLLECTED",
+      "from": "",
+      "to": "Investigator Aditi Rao",
+      "location": "Delhi NCR",
+      "notes": "Synthetic demo intake",
+      "timestamp": "2026-09-11T03:30:00+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0007",
+      "event": "COLLECTED",
+      "from": "",
+      "to": "Investigator Aditi Rao",
+      "location": "Delhi NCR",
+      "notes": "Synthetic demo intake",
+      "timestamp": "2026-09-11T03:30:00+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0001",
+      "event": "HASHED",
+      "from": "",
+      "to": "Decypher",
+      "location": "Secure intake",
+      "notes": "SHA-256 6ad6450325f7c8d67072787255717eaf4cc530d7fa7be3a4e737b3d9458b9f3d",
+      "timestamp": "2026-09-11T03:30:01+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0002",
+      "event": "HASHED",
+      "from": "",
+      "to": "Decypher",
+      "location": "Secure intake",
+      "notes": "SHA-256 01168b14d29cb7eedb9b9ab0cd7223f1254f68815fbcb957c7b7568f13e9945f",
+      "timestamp": "2026-09-11T03:30:01+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0003",
+      "event": "HASHED",
+      "from": "",
+      "to": "Decypher",
+      "location": "Secure intake",
+      "notes": "SHA-256 8c57082db6d932134dbb7c6bb3aae40dcea0b311d90950ec8be998a2760df6b3",
+      "timestamp": "2026-09-11T03:30:01+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0004",
+      "event": "HASHED",
+      "from": "",
+      "to": "Decypher",
+      "location": "Secure intake",
+      "notes": "SHA-256 fb4290ba38a41e397403455fd58b6635653e8130fdec4ba82fb132b4654ada5a",
+      "timestamp": "2026-09-11T03:30:01+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0005",
+      "event": "HASHED",
+      "from": "",
+      "to": "Decypher",
+      "location": "Secure intake",
+      "notes": "SHA-256 798640ad5744c2a244371a5c074b4a102dd329be3e2d8dc6704f3b29057765de",
+      "timestamp": "2026-09-11T03:30:01+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0006",
+      "event": "HASHED",
+      "from": "",
+      "to": "Decypher",
+      "location": "Secure intake",
+      "notes": "SHA-256 dd2c5bf0463c3c24912f8b61bb0519826c03cc048a68e303ba6c1e46f50768e5",
+      "timestamp": "2026-09-11T03:30:01+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0007",
+      "event": "HASHED",
+      "from": "",
+      "to": "Decypher",
+      "location": "Secure intake",
+      "notes": "SHA-256 cbf0867620cb3d6f2b8eeee50c9d4c18f6c5b017e04c70c70dbf0311a87c08d3",
+      "timestamp": "2026-09-11T03:30:01+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0001",
+      "event": "ANALYZED",
+      "from": "",
+      "to": "Decypher deterministic analyzer",
+      "location": "",
+      "notes": "Deterministic analysis identified 6 traceable entities.",
+      "timestamp": "2026-09-11T03:30:02+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0002",
+      "event": "ANALYZED",
+      "from": "",
+      "to": "Decypher deterministic analyzer",
+      "location": "",
+      "notes": "Deterministic analysis identified 8 traceable entities.",
+      "timestamp": "2026-09-11T03:30:02+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0003",
+      "event": "ANALYZED",
+      "from": "",
+      "to": "Decypher deterministic analyzer",
+      "location": "",
+      "notes": "Deterministic analysis identified 3 traceable entities.",
+      "timestamp": "2026-09-11T03:30:02+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0004",
+      "event": "ANALYZED",
+      "from": "",
+      "to": "Decypher deterministic analyzer",
+      "location": "",
+      "notes": "No supported entities were detected; no investigative claim was generated.",
+      "timestamp": "2026-09-11T03:30:02+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0005",
+      "event": "ANALYZED",
+      "from": "",
+      "to": "Decypher deterministic analyzer",
+      "location": "",
+      "notes": "No supported entities were detected; no investigative claim was generated.",
+      "timestamp": "2026-09-11T03:30:02+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0006",
+      "event": "ANALYZED",
+      "from": "",
+      "to": "Decypher deterministic analyzer",
+      "location": "",
+      "notes": "No supported entities were detected; no investigative claim was generated.",
+      "timestamp": "2026-09-11T03:30:02+00:00"
+    },
+    {
+      "evidenceId": "EV-2026-0007",
+      "event": "ANALYZED",
+      "from": "",
+      "to": "Decypher deterministic analyzer",
+      "location": "",
+      "notes": "Deterministic analysis identified 4 traceable entities.",
+      "timestamp": "2026-09-11T03:30:02+00:00"
+    }
+  ],
+  "anchors": [],
+  "reports": []
+}
