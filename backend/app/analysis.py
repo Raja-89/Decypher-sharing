@@ -24,7 +24,9 @@ def stable_id(prefix,*parts):
 
 def entity(db,name,kind):
     normalized = " ".join(name.strip().split())
-    result = next((e for e in db.scalars(select(Entity)) if e.type == kind and normalized.casefold() in [e.canonical_name.casefold(),*(a.casefold() for a in e.aliases)]),None)
+    result=db.scalar(select(Entity).where(Entity.type==kind,Entity.canonical_name==normalized))
+    if not result:
+        result = next((e for e in db.scalars(select(Entity).where(Entity.type==kind)) if normalized.casefold() in [e.canonical_name.casefold(),*(a.casefold() for a in e.aliases)]),None)
     if not result:
         result = Entity(id=stable_id(kind,normalized.casefold()),canonical_name=normalized,type=kind,aliases=[],properties={})
         db.add(result); db.flush()
@@ -46,6 +48,11 @@ def event(db,item,key,stamp,kind,title,nodes,location=None,confidence=.94):
     event_id = stable_id("EVENT",item.id,key)
     if not db.get(TimelineEvent,event_id):
         loc = {"name":location,"lat":LOCATIONS[location][0],"lng":LOCATIONS[location][1]} if location in LOCATIONS else {}
+        if location and not loc:
+            place=db.scalar(select(Entity).where(Entity.type=="LOCATION",Entity.canonical_name==location))
+            props=place.properties if place else {}
+            if all(isinstance(props.get(k),(int,float)) and math.isfinite(props[k]) for k in ("lat","lng")) and -90<=props["lat"]<=90 and -180<=props["lng"]<=180:
+                loc={"name":location,"lat":props["lat"],"lng":props["lng"]}
         db.add(TimelineEvent(id=event_id,case_id=item.case_id,timestamp=stamp,type=kind,title=title,description=title,entity_ids=[n.id for n in nodes],evidence_ids=[item.id],location=loc,confidence=confidence)); db.flush()
 
 def text_content(item,raw):
@@ -70,8 +77,37 @@ def extract(db,item,raw):
     for row in rows:
         excerpt = json.dumps(row,ensure_ascii=False)
         try:
-            if {"caller","receiver","start_time"} <= row.keys():
-                stamp = datetime.fromisoformat(row["start_time"])
+            if {"canonical_name","entity_type","properties_json","source_note"} <= row.keys():
+                if not row["source_note"].startswith("Explicitly authored fictional source inventory"):
+                    raise ValueError("Inventory schema requires explicit fictional-source provenance.")
+                if row["entity_type"] not in {"PERSON","PHONE","VEHICLE","ACCOUNT","LOCATION","ORG","CASE"}:
+                    raise ValueError("Unsupported inventory entity type.")
+                props=json.loads(row["properties_json"])
+                if not isinstance(props,dict) or props.get("synthetic") is not True:
+                    raise ValueError("Only explicitly synthetic source properties are supported.")
+                node=entity(db,row["canonical_name"],row["entity_type"])
+                roles=sorted(set(node.properties.get("source_roles",[])) | {str(role) for role in (node.properties.get("role"),props.get("role")) if role})
+                node.properties={**props,**node.properties,**({"source_roles":roles} if roles else {})}
+                if row.get("label_hi"):node.canonical_name_hi=row["label_hi"]
+                bind(db,item,node,excerpt,.8)
+                if node.type=="LOCATION" and all(isinstance(props.get(k),(int,float)) and math.isfinite(props[k]) for k in ("lat","lng")):
+                    if not (-90<=props["lat"]<=90 and -180<=props["lng"]<=180):raise ValueError("Invalid source coordinates.")
+                findings.append({"text":"Explicit synthetic inventory record, not inferred recognition","textHi":"स्पष्ट काल्पनिक स्रोत सूची, पहचान मॉडल नहीं।","evidenceIds":[item.id]})
+            elif {"source_entity","source_type","target_entity","target_type","relationship","confidence","source_note","timestamp"} <= row.keys():
+                kinds={"PERSON","PHONE","VEHICLE","ACCOUNT","LOCATION","ORG","CASE"}
+                permitted={"SOURCE_ASSIGNED_PHONE","SOURCE_LISTED_ROLE","CAPTIONED_AT","WITNESS_MENTION","ALTERNATIVE_ACCOUNT","SOURCE_MENTIONS_CONTACT","SOURCE_LISTED_ACCOUNT","REVIEW_SHARED_REFERENCE","SOURCE_LISTED_DEPOT","SOURCE_DISPATCHED_FOR","STATEMENT_MENTIONS"}
+                if row["source_type"] not in kinds or row["target_type"] not in kinds or row["relationship"] not in permitted:raise ValueError("Unsupported source observation.")
+                stamp=datetime.fromisoformat(row["timestamp"].replace("Z","+00:00"));confidence=float(row["confidence"])
+                if stamp.tzinfo is None or not math.isfinite(confidence) or not 0<=confidence<=1:raise ValueError("Invalid source timestamp/confidence.")
+                left=entity(db,row["source_entity"],row["source_type"]);right=entity(db,row["target_entity"],row["target_type"])
+                relation(db,item,left,right,row["relationship"],stamp,excerpt,confidence)
+                event(db,item,row.get("record_id",excerpt),stamp,"SOURCE_OBSERVATION",row["source_note"],[left,right],row.get("location"),confidence)
+                if row["relationship"] in {"WITNESS_MENTION","ALTERNATIVE_ACCOUNT","REVIEW_SHARED_REFERENCE","SOURCE_MENTIONS_CONTACT"}:
+                    key=stable_id("ALERT",item.id,row.get("record_id",excerpt))
+                    if not db.get(Alert,key):db.add(Alert(id=key,case_id=item.case_id,title="Source discrepancy or bridge: review required",reason=row["source_note"],confidence=confidence,evidence_ids=[item.id]))
+                findings.append({"text":row["source_note"],"textHi":"काल्पनिक स्रोत बयान; मूल साक्ष्य और वैकल्पिक स्पष्टीकरण की समीक्षा करें।","evidenceIds":[item.id]})
+            elif {"caller","receiver","start_time"} <= row.keys():
+                stamp = datetime.fromisoformat(row["start_time"].replace("Z", "+00:00"))
                 if stamp.tzinfo is None: raise ValueError("CSV timestamp requires a timezone.")
                 phones = [entity(db,"+91 " + re.sub(r"\D","",row[k])[-10:],"PHONE") for k in ("caller","receiver")]
                 relation(db,item,*phones,"CALLED",stamp,excerpt)
@@ -83,12 +119,12 @@ def extract(db,item,raw):
                         relation(db,item,person,phone,"USES_PHONE",stamp,excerpt)
                 if len(people)==2: relation(db,item,*people,"CALLED",stamp,excerpt)
                 location = row.get("tower_location")
-                if location in LOCATIONS:
+                if location in LOCATIONS or db.scalar(select(Entity.id).where(Entity.type=="LOCATION",Entity.canonical_name==location)):
                     node = entity(db,location,"LOCATION"); relation(db,item,phones[0],node,"RECORDED_AT",stamp,excerpt)
                 event(db,item,row.get("record_id",excerpt),stamp,"CALL",f"{row['caller']} → {row['receiver']}",[*people,*phones],location)
                 findings.append({"text":"Call-detail record with timestamp and tower location","textHi":"समय और टावर स्थान सहित कॉल रिकॉर्ड","evidenceIds":[item.id]})
             elif {"timestamp","from_entity","to_account","amount_inr"} <= row.keys():
-                stamp = datetime.fromisoformat(row["timestamp"])
+                stamp = datetime.fromisoformat(row["timestamp"].replace("Z", "+00:00"))
                 if stamp.tzinfo is None: raise ValueError("CSV timestamp requires a timezone.")
                 amount = float(row["amount_inr"])
                 if not math.isfinite(amount) or amount < 0: raise ValueError("Transaction amount must be finite and non-negative.")

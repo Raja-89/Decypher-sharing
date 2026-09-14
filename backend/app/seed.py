@@ -148,4 +148,5 @@ def reset_demo(db: Session) -> None:
         db.execute(delete(model))
     db.commit()
     storage.delete_prefix("raw/case/")
+    storage.delete_prefix("exports/")
     seed_demo(db)

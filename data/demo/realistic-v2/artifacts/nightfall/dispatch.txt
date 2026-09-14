@@ -1,0 +1,13 @@
+SYNTHETIC EVIDENCE - NOT AN OFFICIAL RECORD
+Operation Nightfall - Source Review
+Case: CASE-SYN-d19a0c50df-NIGHTFALL
+Source: DISPATCH
+Recorded: 2026-08-21T03:30:00.000Z
+Authored dispatch transcript
+
+Synthetic transcript, not machine transcription.
+2026-08-09T14:30:00.000Z Dispatcher: Please reconcile the receiving count at Connaught Place.
+2026-08-09T14:31:00.000Z Reviewer: One time reference differs; keep both source accounts.
+2026-08-09T14:32:00.000Z Dispatcher: Do not identify an occupant from the staged scene alone.
+
+हिंदी सारांश: यह काल्पनिक स्रोत रिकॉर्ड है। विरोधी बयान, समय और वैकल्पिक स्पष्टीकरण की समीक्षा आवश्यक है।

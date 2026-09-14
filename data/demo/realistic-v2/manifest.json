@@ -1,0 +1,3475 @@
+{
+  "formatVersion": 1,
+  "fictional": true,
+  "profile": "realistic-v2",
+  "seed": 20260915,
+  "cases": [
+    {
+      "id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "case_number": "SYN-RICH/20260915/NIGHTFALL",
+      "title": "Operation Nightfall - Source Review",
+      "title_hi": "ऑपरेशन नाइटफॉल - स्रोत समीक्षा",
+      "description": "A fictional distributor reports that three consignments marked for Noida were dispatched to a Gurugram holding yard. Warehouse logs and ordinary supplier payments are interleaved with a disputed after-hours pickup. Current uncertainty: The dispatch clerk recalls a white van at 20:15. The visitor ledger records a grey utility vehicle at 20:32; the clerk could not read its plate. Next review: Preserve the original visitor ledger and obtain a second independent account before identifying an occupant. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "critical",
+      "status": "active",
+      "lead_investigator": "Investigator Aditi Rao",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "category": "Consignment diversion",
+      "cast": [
+        "Raj Mehta",
+        "Arjun Verma",
+        "Neha Kapoor",
+        "Vikram Singh",
+        "Maya Sethi"
+      ],
+      "bridge": "Parth Mehra",
+      "places": [
+        "Connaught Place",
+        "Karol Bagh",
+        "Lajpat Nagar"
+      ],
+      "vehicles": [
+        "SYN-VEH-001",
+        "SYN-VEH-011"
+      ],
+      "organization": "SYN nightfall Services",
+      "openQuestions": [
+        "The dispatch clerk recalls a white van at 20:15. The visitor ledger records a grey utility vehicle at 20:32; the clerk could not read its plate.",
+        "Preserve the original visitor ledger and obtain a second independent account before identifying an occupant."
+      ]
+    },
+    {
+      "id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "case_number": "SYN-RICH/20260915/NORTHBRIDGE",
+      "title": "Operation Northbridge - Source Review",
+      "title_hi": "ऑपरेशन नॉर्थब्रिज - स्रोत समीक्षा",
+      "description": "A fictional courier audit finds two delivery receipts bearing the same reference but different arrival times. The inquiry tests whether this reflects a routine reprint, delayed synchronization or a substituted delivery. Current uncertainty: The recipient remembers an early delivery. A gate supervisor describes a later vehicle arrival but did not inspect the parcel. Next review: Compare source clocks and receipt revision history; the shared contact with Nightfall is only a review lead. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "high",
+      "status": "active",
+      "lead_investigator": "Supervisor Prakash Verma",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "category": "Duplicate dispatch documents",
+      "cast": [
+        "Priya Nair",
+        "Dev Rao",
+        "Zoya Khan",
+        "Aarav Bedi",
+        "Isha Malhotra"
+      ],
+      "bridge": "Vikram Singh",
+      "places": [
+        "Gurugram Warehouse",
+        "Okhla Industrial Area",
+        "Saket"
+      ],
+      "vehicles": [
+        "SYN-VEH-002",
+        "SYN-VEH-012"
+      ],
+      "organization": "SYN northbridge Services",
+      "openQuestions": [
+        "The recipient remembers an early delivery. A gate supervisor describes a later vehicle arrival but did not inspect the parcel.",
+        "Compare source clocks and receipt revision history; the shared contact with Nightfall is only a review lead."
+      ]
+    },
+    {
+      "id": "CASE-SYN-d19a0c50df-COPPER",
+      "case_number": "SYN-RICH/20260915/COPPER",
+      "title": "Operation Copper Ledger - Source Review",
+      "title_hi": "ऑपरेशन कॉपर लेजर - स्रोत समीक्षा",
+      "description": "A fictional procurement team reports unmatched credit notes against copper-component invoices. Several large payments coincide with quarter-end settlement, so an amount threshold alone cannot determine improper activity. Current uncertainty: The accounts assistant says the batch included two legitimate refunds. A purchasing note lists only one supporting credit reference. Next review: Request refund authorizations and reconcile invoice totals before interpreting the payment pattern. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "medium",
+      "status": "active",
+      "lead_investigator": "Forensic Analyst Sana Khan",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "category": "Supplier reconciliation",
+      "cast": [
+        "Kunal Sethi",
+        "Sana Qureshi",
+        "Kabir Anand",
+        "Rohan Das",
+        "Meera Joshi"
+      ],
+      "bridge": "Aarav Bedi",
+      "places": [
+        "Noida Sector 62",
+        "Faridabad Sector 15",
+        "Delhi Cantonment"
+      ],
+      "vehicles": [
+        "SYN-VEH-003",
+        "SYN-VEH-013"
+      ],
+      "organization": "SYN copper Services",
+      "openQuestions": [
+        "The accounts assistant says the batch included two legitimate refunds. A purchasing note lists only one supporting credit reference.",
+        "Request refund authorizations and reconcile invoice totals before interpreting the payment pattern."
+      ]
+    },
+    {
+      "id": "CASE-SYN-d19a0c50df-RIVER",
+      "case_number": "SYN-RICH/20260915/RIVER",
+      "title": "Operation River Signal - Source Review",
+      "title_hi": "ऑपरेशन रिवर सिग्नल - स्रोत समीक्षा",
+      "description": "A fictional service contractor cannot reconcile equipment movements between Dwarka and Faridabad. Communications include routine maintenance calls and a concentrated exchange before a depot handover. Current uncertainty: A technician recalls returning the equipment on Monday. The receiving log was entered Tuesday and may record intake rather than occurrence. Next review: Separate handover occurrence time from data-entry time and review the equipment serial inventory. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "low",
+      "status": "active",
+      "lead_investigator": "Investigator Aditi Rao",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "category": "Missing equipment movements",
+      "cast": [
+        "Tara Bhatia",
+        "Nikhil Arora",
+        "Sameer Shah",
+        "Anika Bose",
+        "Farhan Ali"
+      ],
+      "bridge": "Rohan Das",
+      "places": [
+        "Dwarka Sector 21",
+        "Ghaziabad Depot",
+        "Rohini Sector 18"
+      ],
+      "vehicles": [
+        "SYN-VEH-004",
+        "SYN-VEH-014"
+      ],
+      "organization": "SYN river Services",
+      "openQuestions": [
+        "A technician recalls returning the equipment on Monday. The receiving log was entered Tuesday and may record intake rather than occurrence.",
+        "Separate handover occurrence time from data-entry time and review the equipment serial inventory."
+      ]
+    },
+    {
+      "id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "case_number": "SYN-RICH/20260915/ORCHARD",
+      "title": "Operation Orchard Route - Source Review",
+      "title_hi": "ऑपरेशन ऑर्चर्ड रूट - स्रोत समीक्षा",
+      "description": "A fictional cold-chain operator investigates repeated route exceptions around Ghaziabad. Most stops have valid service notes; two unsigned exceptions require corroboration from dispatch records. Current uncertainty: The driver reports a road closure. The route planner says an alternative stop was authorized verbally but has no signed approval. Next review: Check the original dispatch instructions; location proximity is not proof of vehicle presence. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "critical",
+      "status": "active",
+      "lead_investigator": "Supervisor Prakash Verma",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "category": "Route exception review",
+      "cast": [
+        "Riya Menon",
+        "Dhruv Saini",
+        "Leela Rao",
+        "Aditya Sen",
+        "Simran Gill"
+      ],
+      "bridge": "Anika Bose",
+      "places": [
+        "Nehru Place",
+        "Greater Noida Logistics Park",
+        "Manesar Distribution Yard"
+      ],
+      "vehicles": [
+        "SYN-VEH-005",
+        "SYN-VEH-015"
+      ],
+      "organization": "SYN orchard Services",
+      "openQuestions": [
+        "The driver reports a road closure. The route planner says an alternative stop was authorized verbally but has no signed approval.",
+        "Check the original dispatch instructions; location proximity is not proof of vehicle presence."
+      ]
+    },
+    {
+      "id": "CASE-SYN-d19a0c50df-MIRROR",
+      "case_number": "SYN-RICH/20260915/MIRROR",
+      "title": "Operation Mirror Exchange - Source Review",
+      "title_hi": "ऑपरेशन मिरर एक्सचेंज - स्रोत समीक्षा",
+      "description": "A fictional finance review finds a beneficiary reference reused across two vendors. Matching labels may reflect shared invoicing software rather than common ownership, and account codes remain explicitly synthetic. Current uncertainty: The vendor representative describes a shared payment desk. The internal register lists separate authorized representatives. Next review: Validate the relationship through source contracts; do not equate a reused reference with control or guilt. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "high",
+      "status": "active",
+      "lead_investigator": "Forensic Analyst Sana Khan",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "category": "Reused beneficiary references",
+      "cast": [
+        "Varun Nanda",
+        "Ayesha Mir",
+        "Harsh Jain",
+        "Naina Roy",
+        "Yusuf Khan"
+      ],
+      "bridge": "Aditya Sen",
+      "places": [
+        "Karol Bagh",
+        "Lajpat Nagar",
+        "Connaught Place"
+      ],
+      "vehicles": [
+        "SYN-VEH-006",
+        "SYN-VEH-011"
+      ],
+      "organization": "SYN mirror Services",
+      "openQuestions": [
+        "The vendor representative describes a shared payment desk. The internal register lists separate authorized representatives.",
+        "Validate the relationship through source contracts; do not equate a reused reference with control or guilt."
+      ]
+    },
+    {
+      "id": "CASE-SYN-d19a0c50df-HARBOR",
+      "case_number": "SYN-RICH/20260915/HARBOR",
+      "title": "Operation Harbor Receipt - Source Review",
+      "title_hi": "ऑपरेशन हार्बर रिसीट - स्रोत समीक्षा",
+      "description": "A fictional returns center has six packages entered twice after a scanner outage. The inquiry examines a plausible synchronization explanation alongside an unresolved outbound movement. Current uncertainty: A floor supervisor recalls a scanner restart. A temporary worker saw a pickup but cannot identify which carton was loaded. Next review: Compare raw scan identifiers with the manually signed return sheets. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "medium",
+      "status": "pending",
+      "lead_investigator": "Investigator Aditi Rao",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "category": "Return inventory review",
+      "cast": [
+        "Kavya Iyer",
+        "Manav Kapoor",
+        "Rehan Malik",
+        "Pooja Sood",
+        "Vihaan Sethi"
+      ],
+      "bridge": "Naina Roy",
+      "places": [
+        "Okhla Industrial Area",
+        "Saket",
+        "Gurugram Warehouse"
+      ],
+      "vehicles": [
+        "SYN-VEH-007",
+        "SYN-VEH-012"
+      ],
+      "organization": "SYN harbor Services",
+      "openQuestions": [
+        "A floor supervisor recalls a scanner restart. A temporary worker saw a pickup but cannot identify which carton was loaded.",
+        "Compare raw scan identifiers with the manually signed return sheets."
+      ]
+    },
+    {
+      "id": "CASE-SYN-d19a0c50df-LANTERN",
+      "case_number": "SYN-RICH/20260915/LANTERN",
+      "title": "Operation Lantern Access - Source Review",
+      "title_hi": "ऑपरेशन लैंटर्न एक्सेस - स्रोत समीक्षा",
+      "description": "A fictional facilities team reviews after-hours access near a maintenance window. Shared shifts and copied logs complicate attribution; access authorization and physical presence are separate claims. Current uncertainty: A guard recalls an authorized contractor. The maintenance roster lists a replacement technician whose sign-in was incomplete. Next review: Obtain the roster revision and preserve original access exports without inferring identity from proximity. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "low",
+      "status": "active",
+      "lead_investigator": "Supervisor Prakash Verma",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "category": "Access-card discrepancy",
+      "cast": [
+        "Saira Ahmed",
+        "Akash Dutta",
+        "Disha Verma",
+        "Omar Siddiq",
+        "Sneha Pandey"
+      ],
+      "bridge": "Pooja Sood",
+      "places": [
+        "Faridabad Sector 15",
+        "Delhi Cantonment",
+        "Noida Sector 62"
+      ],
+      "vehicles": [
+        "SYN-VEH-008",
+        "SYN-VEH-013"
+      ],
+      "organization": "SYN lantern Services",
+      "openQuestions": [
+        "A guard recalls an authorized contractor. The maintenance roster lists a replacement technician whose sign-in was incomplete.",
+        "Obtain the roster revision and preserve original access exports without inferring identity from proximity."
+      ]
+    },
+    {
+      "id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "case_number": "SYN-RICH/20260915/SUMMIT",
+      "title": "Operation Summit Voucher - Source Review",
+      "title_hi": "ऑपरेशन समिट वाउचर - स्रोत समीक्षा",
+      "description": "A fictional accounts team finds vouchers missing supporting travel notes. Several routine reimbursements provide negative controls, while a small subset has conflicting dates needing review. Current uncertainty: An employee says a trip was rescheduled. The approval message shows the original date and does not document the revision. Next review: Compare itinerary changes and authorization messages before classifying the expense. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "critical",
+      "status": "closed",
+      "lead_investigator": "Forensic Analyst Sana Khan",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "category": "Expense supporting records",
+      "cast": [
+        "Anirudh Bansal",
+        "Fatima Noor",
+        "Gautam Puri",
+        "Ira Saxena",
+        "Jatin Grover"
+      ],
+      "bridge": "Omar Siddiq",
+      "places": [
+        "Ghaziabad Depot",
+        "Rohini Sector 18",
+        "Dwarka Sector 21"
+      ],
+      "vehicles": [
+        "SYN-VEH-009",
+        "SYN-VEH-014"
+      ],
+      "organization": "SYN summit Services",
+      "openQuestions": [
+        "An employee says a trip was rescheduled. The approval message shows the original date and does not document the revision.",
+        "Compare itinerary changes and authorization messages before classifying the expense."
+      ]
+    },
+    {
+      "id": "CASE-SYN-d19a0c50df-EMBER",
+      "case_number": "SYN-RICH/20260915/EMBER",
+      "title": "Operation Ember Transfer - Source Review",
+      "title_hi": "ऑपरेशन एम्बर ट्रांसफर - स्रोत समीक्षा",
+      "description": "A fictional parts depot reports a mismatch between a stock-transfer sheet and receiving count. Partial deliveries and unit-conversion differences are plausible alternatives to diversion. Current uncertainty: The dispatch team counted sealed boxes. The recipient recorded individual units and noted one damaged seal without identifying an occupant. Next review: Reconcile units and packaging, preserve the receiving sheet and seek independent seal observations. All records are fictional.",
+      "description_hi": "यह पूरी तरह काल्पनिक जाँच है। स्रोत समय, वैकल्पिक स्पष्टीकरण और विरोधी बयान अलग-अलग दर्ज हैं। कोई निष्कर्ष दोष सिद्ध नहीं करता।",
+      "priority": "high",
+      "status": "active",
+      "lead_investigator": "Investigator Aditi Rao",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "category": "Stock transfer reconciliation",
+      "cast": [
+        "Lavanya Shah",
+        "Mohit Yadav",
+        "Nadia Rizvi",
+        "Parth Mehra",
+        "Sonal Gupta"
+      ],
+      "bridge": "Ira Saxena",
+      "places": [
+        "Greater Noida Logistics Park",
+        "Manesar Distribution Yard",
+        "Nehru Place"
+      ],
+      "vehicles": [
+        "SYN-VEH-010",
+        "SYN-VEH-015"
+      ],
+      "organization": "SYN ember Services",
+      "openQuestions": [
+        "The dispatch team counted sealed boxes. The recipient recorded individual units and noted one damaged seal without identifying an occupant.",
+        "Reconcile units and packaging, preserve the receiving sheet and seek independent seal observations."
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-cdr-1.csv",
+      "path": "artifacts/nightfall/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "02e8e3f2260e9996357531e66a5ab35058edc48e1444f7631277d125baf43b51",
+      "size": 37565,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-cdr-2.csv",
+      "path": "artifacts/nightfall/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "0c6344bf9cdb970e4fc330dc05d567e487b5937a60a1435ff3c84d929c64c2bd",
+      "size": 37792,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-cdr-3.csv",
+      "path": "artifacts/nightfall/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "d6ba1e25af72a28080bda0865ce68405c3c8c346db46e3620221c8b6ca3f3262",
+      "size": 37793,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-fin-1.csv",
+      "path": "artifacts/nightfall/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "ab1a5a34dfcfe236218eaef0a637a9bd784e6a1122bf9d632008dfe0f314747c",
+      "size": 8174,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-fin-2.csv",
+      "path": "artifacts/nightfall/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "3512641ea83f04fe02ba46db870142e4e6127c6b4581ca948fbefb77a334f50d",
+      "size": 8143,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-fin-3.csv",
+      "path": "artifacts/nightfall/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "d80ee67ca7721152b0433b35140cbd5b81facb7b338c53c31909eecf30f6d60e",
+      "size": 8172,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-inventory.csv",
+      "path": "artifacts/nightfall/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "3966ef3c9c020602a2fcdb941f9d42f792eee7770612e2319922abdbc25c0d6a",
+      "size": 4714,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-observations.csv",
+      "path": "artifacts/nightfall/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "099e03f990e7b7f2b34737ee1ca704820aef08f15c20c9c35073bf596b8c2649",
+      "size": 4785,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-intake.txt",
+      "path": "artifacts/nightfall/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "ff5b23875558616ed64bac0e1546f8ea621da62995d6a5eae97867e08005b454",
+      "size": 844,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-witness-a.txt",
+      "path": "artifacts/nightfall/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "627146816fc22048fb0b429cf8de90f12ebfb918c26c6e304a9d324302f52950",
+      "size": 812,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-witness-b.txt",
+      "path": "artifacts/nightfall/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "2b81cc8370c8778d07f83fdb3d99dc488def25c4abc7aaa5be0af759d727ef66",
+      "size": 702,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-lab.txt",
+      "path": "artifacts/nightfall/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "ef4ac750c8cd6f35da57ad472763d182bdec2dc8bcdcade8357cfe3cfffdf402",
+      "size": 857,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-custody.txt",
+      "path": "artifacts/nightfall/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "6a3003d517639b84ada601ee9fe09d8d5c7f86d0c1b59ba91caa4210c5a846bb",
+      "size": 767,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-bridge.txt",
+      "path": "artifacts/nightfall/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "e01f4da2e6ba2179a8e50c78b6bb2e1a7e0e962fb789345aa9c79900ae54d3d9",
+      "size": 869,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-dispatch.txt",
+      "path": "artifacts/nightfall/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "42e40ca758976d92f0cfe3dfe4457a970a6ef24af1ea47b83fb9d8b1f624261c",
+      "size": 806,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-scene-a.png",
+      "path": "artifacts/nightfall/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Nightfall - Source Review",
+        "vehicle": "SYN-VEH-001",
+        "location": "Connaught Place",
+        "timestamp": "2026-08-09T14:30:00.000Z"
+      },
+      "sha256": "55d5b1d290b6907ea5831c0956a2896d2006c44e12842224bc77c243699e2fee",
+      "size": 21557,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-scene-b.png",
+      "path": "artifacts/nightfall/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Nightfall - Source Review",
+        "vehicle": "SYN-VEH-011",
+        "location": "Karol Bagh",
+        "timestamp": "2026-08-09T14:47:00.000Z"
+      },
+      "sha256": "f6a3d04594af4368974ab01a3b31d239f3cd3cae3b166c1f3a7cb2f7686ec34b",
+      "size": 20683,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-audio.wav",
+      "path": "artifacts/nightfall/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 350,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-NIGHTFALL-DISPATCH"
+      },
+      "sha256": "08fb87c455dbd3dcdff3e0b8795dada724418c0545b1ef97dd3b4fae4373f976",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-cctv.mp4",
+      "path": "artifacts/nightfall/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation Nightfall - Source Review",
+        "vehicle": "SYN-VEH-001",
+        "location": "Connaught Place",
+        "timestamp": "2026-08-09T14:30:00.000Z"
+      },
+      "sha256": "79bb80221b4374da49ab94aa7b929cad7bd7b8d5f5a5f085f14b0a57815f8c5f",
+      "size": 17053,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NIGHTFALL-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "name": "nightfall-dossier.pdf",
+      "path": "artifacts/nightfall/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-21T03:30:00.000Z",
+      "description": "Fictional Consignment diversion: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation Nightfall - Source Review",
+        "summary": "A fictional distributor reports that three consignments marked for Noida were dispatched to a Gurugram holding yard. Warehouse logs and ordinary supplier payments are interleaved with a disputed after-hours pickup.",
+        "conflict": "The dispatch clerk recalls a white van at 20:15. The visitor ledger records a grey utility vehicle at 20:32; the clerk could not read its plate.",
+        "nextStep": "Preserve the original visitor ledger and obtain a second independent account before identifying an occupant.",
+        "caseId": "CASE-SYN-d19a0c50df-NIGHTFALL",
+        "lead": "Investigator Aditi Rao",
+        "recorded": "2026-08-21T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-NIGHTFALL-INTAKE",
+          "EV-SYN-d19a0c50df-NIGHTFALL-WITNESS-A",
+          "EV-SYN-d19a0c50df-NIGHTFALL-WITNESS-B",
+          "EV-SYN-d19a0c50df-NIGHTFALL-OBS"
+        ]
+      },
+      "sha256": "4d0da25e57213d801f4065f9113b7b739ea9b791e1ccc5ebcf92eab834378899",
+      "size": 64689,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-cdr-1.csv",
+      "path": "artifacts/northbridge/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "79980aab12eea7371e407bb98ef2d927c9f1d202d424c5d77649a24c29dbb082",
+      "size": 38285,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-cdr-2.csv",
+      "path": "artifacts/northbridge/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "c1ecbd168ff787db1021e56a3106eed3d60427b4ced1ded598a64c0f8b6d6223",
+      "size": 38501,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-cdr-3.csv",
+      "path": "artifacts/northbridge/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "d7fddf8859e01cc23cb5ebccfbcc9f98bd3afb32b729ea1c1888f8896cfcad2f",
+      "size": 38526,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-fin-1.csv",
+      "path": "artifacts/northbridge/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "414443e220135b84f212e822c949f076c156093187ccc10cf17b89a91895d0e6",
+      "size": 8343,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-fin-2.csv",
+      "path": "artifacts/northbridge/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "760c7f5603aa1a66f55cd25f8d27a4934d7b12eb50ba2b98f232b42ad871f999",
+      "size": 8307,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-fin-3.csv",
+      "path": "artifacts/northbridge/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "109e132b795fd7b7d32dc29e29195d724cdefe242d622b4734b73b5820a32ae0",
+      "size": 8342,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-inventory.csv",
+      "path": "artifacts/northbridge/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "0f77b6e1821ece37e414c68e417753fd7525cf46d1c04871d200ca1322553e70",
+      "size": 4729,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-observations.csv",
+      "path": "artifacts/northbridge/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "7c782a9e5430692342f77307621e8b3066954110c5184f4d6b2ba306f303fbeb",
+      "size": 4881,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-intake.txt",
+      "path": "artifacts/northbridge/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "1fed40b599b3bde0a1e36c58f1e1dd0d4f73552ab09ca35af31beb5e931dece8",
+      "size": 854,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-witness-a.txt",
+      "path": "artifacts/northbridge/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "25a28b3a4b53203e9d0afdb836ee4c6d23fe2da9089b2abfb01df0bd84cb81b0",
+      "size": 796,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-witness-b.txt",
+      "path": "artifacts/northbridge/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "ab7a6cadb097489fa7486a50910993ebed6a78ac4bd87e7bcd2ed03c83f34c07",
+      "size": 709,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-lab.txt",
+      "path": "artifacts/northbridge/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "decc0f2fe688c87acbba5e9456a5757e41333b2f44f2e8d686110aacd5b7d281",
+      "size": 861,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-custody.txt",
+      "path": "artifacts/northbridge/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "60604bc91c99b75d572efcacc8403946d834e23d3022a0d8bd9c41de32c89275",
+      "size": 773,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-bridge.txt",
+      "path": "artifacts/northbridge/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "d8d2043b0cc65c1e8955a9bf12c919e3851ea2aee6112421039a06300c065050",
+      "size": 879,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-dispatch.txt",
+      "path": "artifacts/northbridge/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "aad81d9586061de886b76087054283aa315dd476614f3c99f5edbddf90ac11a3",
+      "size": 813,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-scene-a.png",
+      "path": "artifacts/northbridge/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Northbridge - Source Review",
+        "vehicle": "SYN-VEH-002",
+        "location": "Gurugram Warehouse",
+        "timestamp": "2026-08-10T14:30:00.000Z"
+      },
+      "sha256": "a19a79c738808026a8f573c31106512075ee113d0f43799042765fbf33d34cab",
+      "size": 22298,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-scene-b.png",
+      "path": "artifacts/northbridge/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Northbridge - Source Review",
+        "vehicle": "SYN-VEH-012",
+        "location": "Okhla Industrial Area",
+        "timestamp": "2026-08-10T14:47:00.000Z"
+      },
+      "sha256": "38e83241130bc800a2c085e34a344eefbf77331ede655877f3cf1544d8803c7b",
+      "size": 21953,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-audio.wav",
+      "path": "artifacts/northbridge/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 377,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-NORTHBRIDGE-DISPATCH"
+      },
+      "sha256": "3fef09173be5004b2f129068f53b1b425fbddbed11ef71c86d8bdea7e92baf84",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-cctv.mp4",
+      "path": "artifacts/northbridge/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation Northbridge - Source Review",
+        "vehicle": "SYN-VEH-002",
+        "location": "Gurugram Warehouse",
+        "timestamp": "2026-08-10T14:30:00.000Z"
+      },
+      "sha256": "e8371211da0546ce3137f639781f57d8cfca77de8526b064f58a958288af7331",
+      "size": 17649,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-NORTHBRIDGE-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "name": "northbridge-dossier.pdf",
+      "path": "artifacts/northbridge/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-22T03:30:00.000Z",
+      "description": "Fictional Duplicate dispatch documents: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation Northbridge - Source Review",
+        "summary": "A fictional courier audit finds two delivery receipts bearing the same reference but different arrival times. The inquiry tests whether this reflects a routine reprint, delayed synchronization or a substituted delivery.",
+        "conflict": "The recipient remembers an early delivery. A gate supervisor describes a later vehicle arrival but did not inspect the parcel.",
+        "nextStep": "Compare source clocks and receipt revision history; the shared contact with Nightfall is only a review lead.",
+        "caseId": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+        "lead": "Supervisor Prakash Verma",
+        "recorded": "2026-08-22T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-NORTHBRIDGE-INTAKE",
+          "EV-SYN-d19a0c50df-NORTHBRIDGE-WITNESS-A",
+          "EV-SYN-d19a0c50df-NORTHBRIDGE-WITNESS-B",
+          "EV-SYN-d19a0c50df-NORTHBRIDGE-OBS"
+        ]
+      },
+      "sha256": "1cffcd5b00b7417cc68a8146de835b35161e58b75f4b5b7bcb8469175102aa4a",
+      "size": 64663,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-cdr-1.csv",
+      "path": "artifacts/copper/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "9787045de291131dd85939e6cc989b430422d213ec86a12a4557d59c2fc91fa0",
+      "size": 37779,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-cdr-2.csv",
+      "path": "artifacts/copper/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "d8f7fb1555b7998ae0303cd11f2d23d73c89e44d1a5e7089cbd062832feb4179",
+      "size": 38019,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-cdr-3.csv",
+      "path": "artifacts/copper/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "925bb8eee59677c0def4168488faf25818b9a3fa65fcf49b307e5379b78f005b",
+      "size": 38013,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-fin-1.csv",
+      "path": "artifacts/copper/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "75f86e6882466ee87bf1535abd8e8eda94c1ca77b15a899d67c739fafdc41e71",
+      "size": 7923,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-fin-2.csv",
+      "path": "artifacts/copper/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "177e7c60bf43f62128b4aa4db644fb03f124db8fc584cd99ce492220f4ead9c2",
+      "size": 7907,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-fin-3.csv",
+      "path": "artifacts/copper/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "96bb966100aa60e762da5b56d8e331eec9eefb054efe5f931561e316632b19e0",
+      "size": 7921,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-inventory.csv",
+      "path": "artifacts/copper/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "1d85886f9a8cc72b5bd2508db7f077d66bd0e36465e26afdfc14c3aaf63ace15",
+      "size": 4724,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-observations.csv",
+      "path": "artifacts/copper/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "fb7499cb95c3c12655374ff027bf3126289b7358f625633fb2cb8951bc623b11",
+      "size": 4801,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-intake.txt",
+      "path": "artifacts/copper/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "57dd07b2a3b59a5f921a65f3aa8be22a958945d9feeceea3aa16a18e83668192",
+      "size": 853,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-witness-a.txt",
+      "path": "artifacts/copper/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "47c691174476809762de59d86433da47966b96da896c1cd7be63d9a483205aa4",
+      "size": 798,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-witness-b.txt",
+      "path": "artifacts/copper/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "0635b9a72e001ad12e9af454b056c2e28ed5769ad3e24f5ed5e0f1ce064073ee",
+      "size": 704,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-lab.txt",
+      "path": "artifacts/copper/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "1796f093c2a8a97e3ebdb2aab4bfec9e32931a947fe2a4082c79d6910e6861bb",
+      "size": 849,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-custody.txt",
+      "path": "artifacts/copper/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "ba939977e6dbec88567e3b7ab60e69559b710bdaaf1a3cf36d4f187c6e941716",
+      "size": 772,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-bridge.txt",
+      "path": "artifacts/copper/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "bfea6e3ae9744bd40bb3e4f619f4a939c45c3a23acb454684ec98bd16ee48e52",
+      "size": 854,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-dispatch.txt",
+      "path": "artifacts/copper/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "9ce22bfc8a618d1e98b4b9131cb4d4361fe9610c8cd0edf55ba64a342da158c3",
+      "size": 807,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-scene-a.png",
+      "path": "artifacts/copper/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Copper Ledger - Source Review",
+        "vehicle": "SYN-VEH-003",
+        "location": "Noida Sector 62",
+        "timestamp": "2026-08-11T14:30:00.000Z"
+      },
+      "sha256": "0f21b7c805e2006e1d5324133fde127ea1bd4961ab3f81368d7e17fedb3d5051",
+      "size": 22036,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-scene-b.png",
+      "path": "artifacts/copper/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Copper Ledger - Source Review",
+        "vehicle": "SYN-VEH-013",
+        "location": "Faridabad Sector 15",
+        "timestamp": "2026-08-11T14:47:00.000Z"
+      },
+      "sha256": "bcd7a29994c52ebcb85de8aa4681fd2d605a51f7917d472786a31d9cc0467b46",
+      "size": 21895,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-audio.wav",
+      "path": "artifacts/copper/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 404,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-COPPER-DISPATCH"
+      },
+      "sha256": "3c9c7d324905f1088ae5b9e8e971d0cc4804d4f30137ab5a99b468998a883acd",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-cctv.mp4",
+      "path": "artifacts/copper/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation Copper Ledger - Source Review",
+        "vehicle": "SYN-VEH-003",
+        "location": "Noida Sector 62",
+        "timestamp": "2026-08-11T14:30:00.000Z"
+      },
+      "sha256": "d0de3de63b2689593871c9f2176c6837868bf01130448868e722b869d46bf6e2",
+      "size": 17643,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-COPPER-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "name": "copper-dossier.pdf",
+      "path": "artifacts/copper/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-23T03:30:00.000Z",
+      "description": "Fictional Supplier reconciliation: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation Copper Ledger - Source Review",
+        "summary": "A fictional procurement team reports unmatched credit notes against copper-component invoices. Several large payments coincide with quarter-end settlement, so an amount threshold alone cannot determine improper activity.",
+        "conflict": "The accounts assistant says the batch included two legitimate refunds. A purchasing note lists only one supporting credit reference.",
+        "nextStep": "Request refund authorizations and reconcile invoice totals before interpreting the payment pattern.",
+        "caseId": "CASE-SYN-d19a0c50df-COPPER",
+        "lead": "Forensic Analyst Sana Khan",
+        "recorded": "2026-08-23T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-COPPER-INTAKE",
+          "EV-SYN-d19a0c50df-COPPER-WITNESS-A",
+          "EV-SYN-d19a0c50df-COPPER-WITNESS-B",
+          "EV-SYN-d19a0c50df-COPPER-OBS"
+        ]
+      },
+      "sha256": "cadae521520c7473b33c8c197aa3fd47b41b144d2d56bc69474839f148cffdac",
+      "size": 64666,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-cdr-1.csv",
+      "path": "artifacts/river/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "44903f03d307ffe6f39a68956c7dd635c64a9a766980f75b4e304dc236063e53",
+      "size": 37445,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-cdr-2.csv",
+      "path": "artifacts/river/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "894269d9aa7f9bd5e4939757f7076087774c381d04005cb9c55fca7b7a204adf",
+      "size": 37684,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-cdr-3.csv",
+      "path": "artifacts/river/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "6d77b36672155465c457c9f518e0873642bd85375346a0badf301fb947af1bb2",
+      "size": 37673,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-fin-1.csv",
+      "path": "artifacts/river/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "dca4b6dbc974c8deb3e967a86d0a4f7dbd7324ba2a6f5250e3c51b1747310044",
+      "size": 7803,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-fin-2.csv",
+      "path": "artifacts/river/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "05b1d2ce30264d98f4b897ffa74db13ecf0fd877abf3cbca10eb6c2cf8e28414",
+      "size": 7778,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-fin-3.csv",
+      "path": "artifacts/river/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "766132df58758495298cc835da12a81119eaa9f9a575216588658b6797d93bc0",
+      "size": 7800,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-inventory.csv",
+      "path": "artifacts/river/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "ae9fd5f4901f3024fe450d641866ae0ad0f17cbb6904449d3b44bb6c2ba09b65",
+      "size": 4711,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-observations.csv",
+      "path": "artifacts/river/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "9ce553f078bafb266a9168fb9fc4853763cca71d526149580f0a94c76a3082db",
+      "size": 4748,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-intake.txt",
+      "path": "artifacts/river/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "b4735d5b1d426d21780cd24383bd15b8eeedc83ec132a0e63d76eb9df90ffb8a",
+      "size": 830,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-witness-a.txt",
+      "path": "artifacts/river/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "463388a1f7a73254068b2f2ee662e24de95f67c33c12da77835e3b607297157e",
+      "size": 804,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-witness-b.txt",
+      "path": "artifacts/river/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "a6cfdf5478a20c7195399661eb0e7523bfcaf711b94b59c73da47e00e3d412b8",
+      "size": 701,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-lab.txt",
+      "path": "artifacts/river/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "ad26fc82ccc244c237e7034602b94837c2cbac3e538c72d4375692fce0725289",
+      "size": 845,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-custody.txt",
+      "path": "artifacts/river/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "6f7dd24c00c218c8d20913f4365c9fcf4bded296e376eca9fb142a542acf24e7",
+      "size": 766,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-bridge.txt",
+      "path": "artifacts/river/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "bbd8624a87190b4aedcc8917fe0c163e0963c3659639a45f89870954c7553072",
+      "size": 843,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-dispatch.txt",
+      "path": "artifacts/river/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "5082a126fcd2bc9638e477eda7c001fe4ca5db7750238c86de72ef7af49dacdf",
+      "size": 806,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-scene-a.png",
+      "path": "artifacts/river/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation River Signal - Source Review",
+        "vehicle": "SYN-VEH-004",
+        "location": "Dwarka Sector 21",
+        "timestamp": "2026-08-12T14:30:00.000Z"
+      },
+      "sha256": "62d29a48c42e5623cc1cd54bd6f287ba6e99de1cf82848096741ed5ad12a5e9e",
+      "size": 21558,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-scene-b.png",
+      "path": "artifacts/river/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation River Signal - Source Review",
+        "vehicle": "SYN-VEH-014",
+        "location": "Ghaziabad Depot",
+        "timestamp": "2026-08-12T14:47:00.000Z"
+      },
+      "sha256": "1c23c86b716b1d9fa92130e57fb99dde96a570adb35702b1206f334aa816bf00",
+      "size": 21355,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-audio.wav",
+      "path": "artifacts/river/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 431,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-RIVER-DISPATCH"
+      },
+      "sha256": "58d84293ce46b5f59f8792bce00ff92d934197b7516520ed134412d784f6b1c0",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-cctv.mp4",
+      "path": "artifacts/river/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation River Signal - Source Review",
+        "vehicle": "SYN-VEH-004",
+        "location": "Dwarka Sector 21",
+        "timestamp": "2026-08-12T14:30:00.000Z"
+      },
+      "sha256": "caa082cd017c9480c16dcb4f5b0a956c17855712704c971d599e4bd0efe55a6a",
+      "size": 17288,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-RIVER-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "name": "river-dossier.pdf",
+      "path": "artifacts/river/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-24T03:30:00.000Z",
+      "description": "Fictional Missing equipment movements: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation River Signal - Source Review",
+        "summary": "A fictional service contractor cannot reconcile equipment movements between Dwarka and Faridabad. Communications include routine maintenance calls and a concentrated exchange before a depot handover.",
+        "conflict": "A technician recalls returning the equipment on Monday. The receiving log was entered Tuesday and may record intake rather than occurrence.",
+        "nextStep": "Separate handover occurrence time from data-entry time and review the equipment serial inventory.",
+        "caseId": "CASE-SYN-d19a0c50df-RIVER",
+        "lead": "Investigator Aditi Rao",
+        "recorded": "2026-08-24T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-RIVER-INTAKE",
+          "EV-SYN-d19a0c50df-RIVER-WITNESS-A",
+          "EV-SYN-d19a0c50df-RIVER-WITNESS-B",
+          "EV-SYN-d19a0c50df-RIVER-OBS"
+        ]
+      },
+      "sha256": "98c70fc51e8a1f0ad3e781d3fceb5b8965283cb34c53405ec8d99452e8091aef",
+      "size": 64641,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-cdr-1.csv",
+      "path": "artifacts/orchard/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "e5b1fdffb3843b38e4e88554594212428ca0e665a97f976989c5e37aac53df21",
+      "size": 38723,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-cdr-2.csv",
+      "path": "artifacts/orchard/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "509dba17a33393393bb23934a84df100ca5202f4574270da73004737e2cb7a62",
+      "size": 38971,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-cdr-3.csv",
+      "path": "artifacts/orchard/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "afbc3c5704fb40bf2597158ec502d7606868cc0b963b04ff1a114b6aa99239aa",
+      "size": 38956,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-fin-1.csv",
+      "path": "artifacts/orchard/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "029cc3a612ad0ee500efd2f19a7a095f0e89d0aede35d089f6baf5e2d6214534",
+      "size": 7953,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-fin-2.csv",
+      "path": "artifacts/orchard/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "803166f5acfbf1a78837e501d00bfe233e69f2cf5a93d11b51c6cb819df4869c",
+      "size": 7932,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-fin-3.csv",
+      "path": "artifacts/orchard/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "7bb76b5c6ab024bcfca03510d703f9868a61671152a960dd5f1fc9f6116b6127",
+      "size": 7961,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-inventory.csv",
+      "path": "artifacts/orchard/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "0297c1a431de0eba4552d306179d61ea5f45f2fceb444b1a66bfcb89a16c3e92",
+      "size": 4731,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-observations.csv",
+      "path": "artifacts/orchard/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "3d2912145f20608349911f1c3cb6463848dcd6bc56e90e68f24d6d683af32c54",
+      "size": 4920,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-intake.txt",
+      "path": "artifacts/orchard/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "b62e336e9dffb4eb57f1047a4edb70db2101ae7f2abe31368cd4073e10dd77d6",
+      "size": 827,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-witness-a.txt",
+      "path": "artifacts/orchard/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "5e2fa0af5f82ed4193b6cc4f0036b468597d0f718c4b93114a0ebaaec95df415",
+      "size": 797,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-witness-b.txt",
+      "path": "artifacts/orchard/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "2b14a93823f358fbd652b18db276c750fa25ec21e27a6c7d218a31d68dd1fd8d",
+      "size": 705,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-lab.txt",
+      "path": "artifacts/orchard/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "c1fefd03aaf69b2d73c04c6c2251f284d1887415e77141a6c728a92b723a22ce",
+      "size": 845,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-custody.txt",
+      "path": "artifacts/orchard/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "7233beab7b2fe06d51708776d60aff313f8a808dc0dacb853dcbbe724c149d29",
+      "size": 771,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-bridge.txt",
+      "path": "artifacts/orchard/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "6ab32a553c8dadbb34dd6a18c027bf69c7fb43e0d09a48b5f996fe38b3ca97b2",
+      "size": 848,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-dispatch.txt",
+      "path": "artifacts/orchard/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "752e01ed775be66bfeb5ab67d0154db9bddf84cee9c71d74f6d75dcdb1f33cb8",
+      "size": 804,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-scene-a.png",
+      "path": "artifacts/orchard/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Orchard Route - Source Review",
+        "vehicle": "SYN-VEH-005",
+        "location": "Nehru Place",
+        "timestamp": "2026-08-13T14:30:00.000Z"
+      },
+      "sha256": "8275fdde67587e2c5bd1f3beb8b88501fe1ff0008b345bc57a6d18cb184b7d98",
+      "size": 20256,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-scene-b.png",
+      "path": "artifacts/orchard/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Orchard Route - Source Review",
+        "vehicle": "SYN-VEH-015",
+        "location": "Greater Noida Logistics Park",
+        "timestamp": "2026-08-13T14:47:00.000Z"
+      },
+      "sha256": "7f1039ef49732e350849966ba2805bdb92fb8a7d9a4409cd822a552cdc01be9d",
+      "size": 22411,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-audio.wav",
+      "path": "artifacts/orchard/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 458,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-ORCHARD-DISPATCH"
+      },
+      "sha256": "51dc186c3ccebf2df95156bf4911d2ff3029a83231be780eafafe63b3a510d6f",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-cctv.mp4",
+      "path": "artifacts/orchard/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation Orchard Route - Source Review",
+        "vehicle": "SYN-VEH-005",
+        "location": "Nehru Place",
+        "timestamp": "2026-08-13T14:30:00.000Z"
+      },
+      "sha256": "c6fe5d8617f939981c53dcab7b1334e6e63f2bc54e6bcc386ef20ab3ddc1fa6d",
+      "size": 17049,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-ORCHARD-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "name": "orchard-dossier.pdf",
+      "path": "artifacts/orchard/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-25T03:30:00.000Z",
+      "description": "Fictional Route exception review: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation Orchard Route - Source Review",
+        "summary": "A fictional cold-chain operator investigates repeated route exceptions around Ghaziabad. Most stops have valid service notes; two unsigned exceptions require corroboration from dispatch records.",
+        "conflict": "The driver reports a road closure. The route planner says an alternative stop was authorized verbally but has no signed approval.",
+        "nextStep": "Check the original dispatch instructions; location proximity is not proof of vehicle presence.",
+        "caseId": "CASE-SYN-d19a0c50df-ORCHARD",
+        "lead": "Supervisor Prakash Verma",
+        "recorded": "2026-08-25T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-ORCHARD-INTAKE",
+          "EV-SYN-d19a0c50df-ORCHARD-WITNESS-A",
+          "EV-SYN-d19a0c50df-ORCHARD-WITNESS-B",
+          "EV-SYN-d19a0c50df-ORCHARD-OBS"
+        ]
+      },
+      "sha256": "636cbf9006fa38356fd757a6a281d819c86eedc9ada7d8582d41e4f0ec3add43",
+      "size": 64653,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-cdr-1.csv",
+      "path": "artifacts/mirror/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "649cfb73de0879ba7aea1265406de8511b13720ad960d9c52c84124ce9d53894",
+      "size": 37070,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-cdr-2.csv",
+      "path": "artifacts/mirror/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "18d723942ef0891f87e523b316e9f3c8aaa9735a1cb33e581c59cedd5cf385fe",
+      "size": 37293,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-cdr-3.csv",
+      "path": "artifacts/mirror/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "0d36509ff502ff4c3d943c2ad79ac54eac729e3076e853ec7e990a158ae8eb16",
+      "size": 37280,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-fin-1.csv",
+      "path": "artifacts/mirror/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "bb578ef4dec7a06259ccc4c2ebe8a677da1c08d7e284141f313ea03c692e4bfd",
+      "size": 7870,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-fin-2.csv",
+      "path": "artifacts/mirror/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "96047671e1bb1d95886928fa3cd35781ab716b3cfee4cbad6e0d49ba3fbd47cc",
+      "size": 7840,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-fin-3.csv",
+      "path": "artifacts/mirror/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "8947c8c4f39babafe97f7579d55ce2bfee2da3f78c0e944fa066a7aaa347d8f2",
+      "size": 7864,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-inventory.csv",
+      "path": "artifacts/mirror/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "426ae0b98daaf22d63a341e9e1eaf32abc43bf7204d052b12824ce6f017e122e",
+      "size": 4703,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-observations.csv",
+      "path": "artifacts/mirror/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "48dafb8d63a5f791f6b37bdc721e251b0a02cd28558e5f8f1c10c679e05d5461",
+      "size": 4637,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-intake.txt",
+      "path": "artifacts/mirror/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "e75e2fc283b6ac160482056410a7d2e49e0499a73cb8903008731ff42fbf15a2",
+      "size": 849,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-witness-a.txt",
+      "path": "artifacts/mirror/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "05f05dfe1bf3eaab5c1da2303b5571ffde25485ed1fd964630d055b3444b2559",
+      "size": 791,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-witness-b.txt",
+      "path": "artifacts/mirror/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "8a3d29009120b39f87babd79dd0ad99e3241916990ca47defb32b1908a99f951",
+      "size": 705,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-lab.txt",
+      "path": "artifacts/mirror/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "ab7fbe084b6abc19142f5ee4000920740d87a9e94bede86ccc5b1c628abf8b74",
+      "size": 859,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-custody.txt",
+      "path": "artifacts/mirror/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "638268ef1a5dcf1f6a03144f5b9ee682ec6f69cdeefc93caca560ac2aa1f1610",
+      "size": 774,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-bridge.txt",
+      "path": "artifacts/mirror/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "9a3f5c89a63453b0df404fad200f9f9b4bdcf2ec0b19ef39a9d204e0a25703da",
+      "size": 862,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-dispatch.txt",
+      "path": "artifacts/mirror/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "62c4feedad8ddcae5cd40f333cedaa13de41ccf1aa94b577474fd7f2e14d4bcb",
+      "size": 804,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-scene-a.png",
+      "path": "artifacts/mirror/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Mirror Exchange - Source Review",
+        "vehicle": "SYN-VEH-006",
+        "location": "Karol Bagh",
+        "timestamp": "2026-08-14T14:30:00.000Z"
+      },
+      "sha256": "5846c5edfab22c001381812bb296e6fc234d911cfc6f9ac9e93c5ba7377289ed",
+      "size": 21073,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-scene-b.png",
+      "path": "artifacts/mirror/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Mirror Exchange - Source Review",
+        "vehicle": "SYN-VEH-011",
+        "location": "Lajpat Nagar",
+        "timestamp": "2026-08-14T14:47:00.000Z"
+      },
+      "sha256": "5718219faccb49fa2d71f114ac365d7324ee9d3ade9a69ad1b01471f885c643c",
+      "size": 20507,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-audio.wav",
+      "path": "artifacts/mirror/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 485,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-MIRROR-DISPATCH"
+      },
+      "sha256": "331a672cfeae37e32097671c4b37f6235fc2316dc6bb787810203c591220d770",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-cctv.mp4",
+      "path": "artifacts/mirror/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation Mirror Exchange - Source Review",
+        "vehicle": "SYN-VEH-006",
+        "location": "Karol Bagh",
+        "timestamp": "2026-08-14T14:30:00.000Z"
+      },
+      "sha256": "3a652a51f817d3d3c3c9956ca0ab6cb2c6ca0bd3d0e409b5fb07fcd96179ebfd",
+      "size": 17160,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-MIRROR-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "name": "mirror-dossier.pdf",
+      "path": "artifacts/mirror/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-26T03:30:00.000Z",
+      "description": "Fictional Reused beneficiary references: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation Mirror Exchange - Source Review",
+        "summary": "A fictional finance review finds a beneficiary reference reused across two vendors. Matching labels may reflect shared invoicing software rather than common ownership, and account codes remain explicitly synthetic.",
+        "conflict": "The vendor representative describes a shared payment desk. The internal register lists separate authorized representatives.",
+        "nextStep": "Validate the relationship through source contracts; do not equate a reused reference with control or guilt.",
+        "caseId": "CASE-SYN-d19a0c50df-MIRROR",
+        "lead": "Forensic Analyst Sana Khan",
+        "recorded": "2026-08-26T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-MIRROR-INTAKE",
+          "EV-SYN-d19a0c50df-MIRROR-WITNESS-A",
+          "EV-SYN-d19a0c50df-MIRROR-WITNESS-B",
+          "EV-SYN-d19a0c50df-MIRROR-OBS"
+        ]
+      },
+      "sha256": "81134f270c0e6d3d1260ea8c2e42546c8d525ba913aa5d64dcd7c074b443fbbc",
+      "size": 64642,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-cdr-1.csv",
+      "path": "artifacts/harbor/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "b7fddddc30303f042e765c5da05d43225b379f30925a7e3619c5c544167f2255",
+      "size": 37456,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-cdr-2.csv",
+      "path": "artifacts/harbor/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "7515f6149692cb8e8c13e6a114c933396564ac84d07db5171d17b6d51d3844c3",
+      "size": 37670,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-cdr-3.csv",
+      "path": "artifacts/harbor/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "2d149755338892071d289e4335a90b6bd4a35290d14c3de05b2bf06bb0e84715",
+      "size": 37677,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-fin-1.csv",
+      "path": "artifacts/harbor/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "4e1ceb66c7c19816d5935f597e274becb5683738d91641c5347fdcc748a79ada",
+      "size": 7904,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-fin-2.csv",
+      "path": "artifacts/harbor/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "3d4caa70afe960521ca783ca3732ca413c6ce77763b717d4b26285bca1c1cb2e",
+      "size": 7883,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-fin-3.csv",
+      "path": "artifacts/harbor/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "71d9b8584f3a6db76459b7af9749154ea1a2d8a838622a3a6a4e466073161dec",
+      "size": 7909,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-inventory.csv",
+      "path": "artifacts/harbor/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "99ce7c6aed15f7da721e9440a072a7026f6fe9e48131dba0f86fc3c0063bb736",
+      "size": 4714,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-observations.csv",
+      "path": "artifacts/harbor/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "11558c431b50f3cfc8ee0573bc7f8f3f8191c17726171bfe6aaa19a23a0a562a",
+      "size": 4707,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-intake.txt",
+      "path": "artifacts/harbor/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "b2a5eccf79d7b939b34faf1a63128d8fc07d8f3cd1d8befef4f056a559e89448",
+      "size": 818,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-witness-a.txt",
+      "path": "artifacts/harbor/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "ec4d4f85ed3835770f1317a7e467fa761aceb48843c3bd688931ff36d391dcc2",
+      "size": 790,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-witness-b.txt",
+      "path": "artifacts/harbor/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "8603d5edac554751b9c79f93b68fbc51114b13ac9a479c852c95f06ebd1b5fa0",
+      "size": 706,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-lab.txt",
+      "path": "artifacts/harbor/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "ef67b803d47f4931edd79fc39ce07b32be41d38e6a9c23f1db91ae0955edbd01",
+      "size": 819,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-custody.txt",
+      "path": "artifacts/harbor/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "63adad4990308194b3bf79841d31ab329819462f07a3cb11461d6b6261f82032",
+      "size": 769,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-bridge.txt",
+      "path": "artifacts/harbor/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "1326a0a1d0a11f0582f141a20f0257b928128a556b3490abe1d217bdf66a3788",
+      "size": 822,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-dispatch.txt",
+      "path": "artifacts/harbor/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "c80448fb21fc3fdf34d0a83587e13441141a5ccf7bb5fb6e3f2dd76f4183ff4a",
+      "size": 814,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-scene-a.png",
+      "path": "artifacts/harbor/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Harbor Receipt - Source Review",
+        "vehicle": "SYN-VEH-007",
+        "location": "Okhla Industrial Area",
+        "timestamp": "2026-08-15T14:30:00.000Z"
+      },
+      "sha256": "f85014326f24b20776a9775862eb103a7da5568a77d568ab4533c00e7ee0daa8",
+      "size": 21658,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-scene-b.png",
+      "path": "artifacts/harbor/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Harbor Receipt - Source Review",
+        "vehicle": "SYN-VEH-012",
+        "location": "Saket",
+        "timestamp": "2026-08-15T14:47:00.000Z"
+      },
+      "sha256": "3b2b045dd0a01fededfd8d38504fe68d4fe287e889cf1ae81cc806a13baf3888",
+      "size": 20153,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-audio.wav",
+      "path": "artifacts/harbor/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 512,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-HARBOR-DISPATCH"
+      },
+      "sha256": "cad38ff2d2a709f999106a1cdc9451014831089a47716eff45857d8a06f8e62c",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-cctv.mp4",
+      "path": "artifacts/harbor/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation Harbor Receipt - Source Review",
+        "vehicle": "SYN-VEH-007",
+        "location": "Okhla Industrial Area",
+        "timestamp": "2026-08-15T14:30:00.000Z"
+      },
+      "sha256": "bc27de470bd89ad57769ebecba35d36a0f5a1b17ca3f449a1eccf979c6db3851",
+      "size": 17691,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-HARBOR-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "name": "harbor-dossier.pdf",
+      "path": "artifacts/harbor/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-27T03:30:00.000Z",
+      "description": "Fictional Return inventory review: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation Harbor Receipt - Source Review",
+        "summary": "A fictional returns center has six packages entered twice after a scanner outage. The inquiry examines a plausible synchronization explanation alongside an unresolved outbound movement.",
+        "conflict": "A floor supervisor recalls a scanner restart. A temporary worker saw a pickup but cannot identify which carton was loaded.",
+        "nextStep": "Compare raw scan identifiers with the manually signed return sheets.",
+        "caseId": "CASE-SYN-d19a0c50df-HARBOR",
+        "lead": "Investigator Aditi Rao",
+        "recorded": "2026-08-27T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-HARBOR-INTAKE",
+          "EV-SYN-d19a0c50df-HARBOR-WITNESS-A",
+          "EV-SYN-d19a0c50df-HARBOR-WITNESS-B",
+          "EV-SYN-d19a0c50df-HARBOR-OBS"
+        ]
+      },
+      "sha256": "3a7fd7ebcc45eae6cc84195659448145e1d750c6125f5bc3540ebeeaf57edda0",
+      "size": 64619,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-cdr-1.csv",
+      "path": "artifacts/lantern/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "cee49072a317da7be2570dc2e884108491ed141e09d89114ebcdeaee76bb1567",
+      "size": 37961,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-cdr-2.csv",
+      "path": "artifacts/lantern/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "a870c9d9abf294d7b862ddadaefe2128307d2737266a9603f1c0356c0f19abbd",
+      "size": 38178,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-cdr-3.csv",
+      "path": "artifacts/lantern/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "8f15239ce7e8d6e1473b581ae7a09cc78c1539a2c0219599936412c577483d51",
+      "size": 38178,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-fin-1.csv",
+      "path": "artifacts/lantern/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "ae36249d525e75fc27a2e0c2753518fbeca247058d6b54b4d1dd04a6b0923106",
+      "size": 8010,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-fin-2.csv",
+      "path": "artifacts/lantern/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "6f2d18df5b2386a54cbda552e9290fc4fd6094c8e1c4f9f96e210bd068d8125c",
+      "size": 7987,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-fin-3.csv",
+      "path": "artifacts/lantern/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "c63db0da1e097532a4683301a589211213f69ed70d34abfd2b402213b44c8602",
+      "size": 8015,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-inventory.csv",
+      "path": "artifacts/lantern/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "7870a74a7912da4778d3da33c0c9a35e1235641657fd90f2d654556bf0f1863b",
+      "size": 4724,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-observations.csv",
+      "path": "artifacts/lantern/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "6d48602ce968ee972afb2b9530f2a2fcea39c908c389981d6df18657df58767d",
+      "size": 4820,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-intake.txt",
+      "path": "artifacts/lantern/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "e205076a6d2417753c72b24c6dd881f909f561fbba54780a752eba2f1f14cff1",
+      "size": 834,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-witness-a.txt",
+      "path": "artifacts/lantern/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "080a0d578f0440ede470622a641c3ea6a9c8421cac6fbf7ef03a2b066567e80a",
+      "size": 795,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-witness-b.txt",
+      "path": "artifacts/lantern/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "045733e95553ba2486304f6fe437bbd37a45484828fdd136261158c1936f6a2c",
+      "size": 707,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-lab.txt",
+      "path": "artifacts/lantern/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "7641df6b3924d5529322913f74fb451af0b65fefe484c03ba7f5c948274fee29",
+      "size": 858,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-custody.txt",
+      "path": "artifacts/lantern/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "2f488bb5137950fa83c7cf07585ba50d895088b588bac5287bed9df416574df8",
+      "size": 772,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-bridge.txt",
+      "path": "artifacts/lantern/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "4b289c71a9b8d8663b33ff95a560dfcb36bf705663e736b5236b7b386bd57669",
+      "size": 864,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-dispatch.txt",
+      "path": "artifacts/lantern/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "536e1623a1250ece8cbf91be032fde431c37d43e6c7d4af4dbc198a5a835ee56",
+      "size": 813,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-scene-a.png",
+      "path": "artifacts/lantern/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Lantern Access - Source Review",
+        "vehicle": "SYN-VEH-008",
+        "location": "Faridabad Sector 15",
+        "timestamp": "2026-08-16T14:30:00.000Z"
+      },
+      "sha256": "ef6c8ad5b0b225f82005090c22bbd713e4905e69d634fb46abbb934b66bab6dc",
+      "size": 21764,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-scene-b.png",
+      "path": "artifacts/lantern/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Lantern Access - Source Review",
+        "vehicle": "SYN-VEH-013",
+        "location": "Delhi Cantonment",
+        "timestamp": "2026-08-16T14:47:00.000Z"
+      },
+      "sha256": "247aee3c58622a3b029c8f0e596574d94463d11659a2f4fc56cefa8cf6fbed46",
+      "size": 21184,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-audio.wav",
+      "path": "artifacts/lantern/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 539,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-LANTERN-DISPATCH"
+      },
+      "sha256": "94b9f13d53e687138b2d80fc4e144c6c7c833b473b291e8f4f53c69889f8db4c",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-cctv.mp4",
+      "path": "artifacts/lantern/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation Lantern Access - Source Review",
+        "vehicle": "SYN-VEH-008",
+        "location": "Faridabad Sector 15",
+        "timestamp": "2026-08-16T14:30:00.000Z"
+      },
+      "sha256": "2c78e21bd51d43c8745aecb0db5947058b1d29a90de7a50ae57c00e30a895bef",
+      "size": 17718,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-LANTERN-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "name": "lantern-dossier.pdf",
+      "path": "artifacts/lantern/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-28T03:30:00.000Z",
+      "description": "Fictional Access-card discrepancy: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation Lantern Access - Source Review",
+        "summary": "A fictional facilities team reviews after-hours access near a maintenance window. Shared shifts and copied logs complicate attribution; access authorization and physical presence are separate claims.",
+        "conflict": "A guard recalls an authorized contractor. The maintenance roster lists a replacement technician whose sign-in was incomplete.",
+        "nextStep": "Obtain the roster revision and preserve original access exports without inferring identity from proximity.",
+        "caseId": "CASE-SYN-d19a0c50df-LANTERN",
+        "lead": "Supervisor Prakash Verma",
+        "recorded": "2026-08-28T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-LANTERN-INTAKE",
+          "EV-SYN-d19a0c50df-LANTERN-WITNESS-A",
+          "EV-SYN-d19a0c50df-LANTERN-WITNESS-B",
+          "EV-SYN-d19a0c50df-LANTERN-OBS"
+        ]
+      },
+      "sha256": "3b55018c65e90db39877b170fec40fb46f4fc6054e0710a1f316572d56ee3d0d",
+      "size": 64656,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-cdr-1.csv",
+      "path": "artifacts/summit/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "a16323512ac7fabf3fd5f13265378180c17919e399fc60c380ed6ab3242df349",
+      "size": 37617,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-cdr-2.csv",
+      "path": "artifacts/summit/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "17e0fbac72ef40a5f8360f1bada7555b093f3a900da5cc76046d078b340f72bd",
+      "size": 37846,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-cdr-3.csv",
+      "path": "artifacts/summit/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "37611f94eee5724009fe6ce99186b43ecad7aba3826274939522bcde7130ee09",
+      "size": 37846,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-fin-1.csv",
+      "path": "artifacts/summit/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "8e7568c3af5ec1c71011392e0f559cdf37f0c44ab90af73a45a00fb18b9607d9",
+      "size": 7942,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-fin-2.csv",
+      "path": "artifacts/summit/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "ed26178fe4f90a3c399828af4226d5a226ad8451c9161b14baddc17fd4b78254",
+      "size": 7922,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-fin-3.csv",
+      "path": "artifacts/summit/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "1f94c8fe93335f99ae42d0f7baadc320da3b1df07f09380ec04863e8270df83d",
+      "size": 7949,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-inventory.csv",
+      "path": "artifacts/summit/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "ce2738e5750bbdfce9246a1339d1229b6ef3bad458f2142eed3645bdc75aaf90",
+      "size": 4721,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-observations.csv",
+      "path": "artifacts/summit/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "63902586d8b6ccf18716cee0e58ca191f98f00ffd8f291f9050bad13de68af30",
+      "size": 4767,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-intake.txt",
+      "path": "artifacts/summit/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "519854d97fef82fb79f1585d39188a4b681a219b9e02b9322bd7ee31bef269a3",
+      "size": 827,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-witness-a.txt",
+      "path": "artifacts/summit/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "01191c369d10df9aab49b1cb79aea5372824719d995711c0d8497370e5aa8937",
+      "size": 789,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-witness-b.txt",
+      "path": "artifacts/summit/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "85e13ea41b42772da71e51e7226f9cb3351423205ffae523dedde1e7da3ab600",
+      "size": 706,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-lab.txt",
+      "path": "artifacts/summit/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "110413474fcddef08ead591b153db28b11512c73c05fb4d8f6279cc82482ea45",
+      "size": 835,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-custody.txt",
+      "path": "artifacts/summit/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "b06d97d378166cac05fd1b62adc3ccac9db1e25e1a260e771650819e4ec9c4a5",
+      "size": 773,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-bridge.txt",
+      "path": "artifacts/summit/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "6716a4eee97e9de157cc1a62ba71a6a2689fc36d8130a1f8464898e85f0f8f15",
+      "size": 840,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-dispatch.txt",
+      "path": "artifacts/summit/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "2098ed00fe154be40f8ccd081ea33fdbff752abd1877ce243273810cb3515f2a",
+      "size": 808,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-scene-a.png",
+      "path": "artifacts/summit/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Summit Voucher - Source Review",
+        "vehicle": "SYN-VEH-009",
+        "location": "Ghaziabad Depot",
+        "timestamp": "2026-08-17T14:30:00.000Z"
+      },
+      "sha256": "1d95aa506e973de3cb3e2a713746dedefc3bd6c4fb68467f05f01b8d6d7b9bc7",
+      "size": 21864,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-scene-b.png",
+      "path": "artifacts/summit/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Summit Voucher - Source Review",
+        "vehicle": "SYN-VEH-014",
+        "location": "Rohini Sector 18",
+        "timestamp": "2026-08-17T14:47:00.000Z"
+      },
+      "sha256": "311ac7c48be3dea8e0d9bd9648ea07f572be1425bd231018e7a706065cfc8615",
+      "size": 21413,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-audio.wav",
+      "path": "artifacts/summit/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 566,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-SUMMIT-DISPATCH"
+      },
+      "sha256": "bda13e72d173b8d45dea4e3704c12af837c8c7b5a379419a729f147f0f25b3bd",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-cctv.mp4",
+      "path": "artifacts/summit/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation Summit Voucher - Source Review",
+        "vehicle": "SYN-VEH-009",
+        "location": "Ghaziabad Depot",
+        "timestamp": "2026-08-17T14:30:00.000Z"
+      },
+      "sha256": "3db1f309eeb237e68057694778b1a666617c906905c588050289e19c01947e19",
+      "size": 17431,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-SUMMIT-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "name": "summit-dossier.pdf",
+      "path": "artifacts/summit/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-29T03:30:00.000Z",
+      "description": "Fictional Expense supporting records: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation Summit Voucher - Source Review",
+        "summary": "A fictional accounts team finds vouchers missing supporting travel notes. Several routine reimbursements provide negative controls, while a small subset has conflicting dates needing review.",
+        "conflict": "An employee says a trip was rescheduled. The approval message shows the original date and does not document the revision.",
+        "nextStep": "Compare itinerary changes and authorization messages before classifying the expense.",
+        "caseId": "CASE-SYN-d19a0c50df-SUMMIT",
+        "lead": "Forensic Analyst Sana Khan",
+        "recorded": "2026-08-29T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-SUMMIT-INTAKE",
+          "EV-SYN-d19a0c50df-SUMMIT-WITNESS-A",
+          "EV-SYN-d19a0c50df-SUMMIT-WITNESS-B",
+          "EV-SYN-d19a0c50df-SUMMIT-OBS"
+        ]
+      },
+      "sha256": "3b53aaec6cb0a11e734dac8a6ad67eaec6b2755b46126cadcb7ca31f920bac62",
+      "size": 64633,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-CDR-1",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-cdr-1.csv",
+      "path": "artifacts/ember/cdr-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: cdr 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "38a5bd0c4dc44b4be4433eb195800aa5a44619f69aa779ff4f14872c3364895a",
+      "size": 38399,
+      "rowCount": 166
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-CDR-2",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-cdr-2.csv",
+      "path": "artifacts/ember/cdr-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: cdr 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "b4f3ac3e1dc0ea0ab01f121fe3ea05446b1984caf6943bb98d5ac5619db30ef2",
+      "size": 38619,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-CDR-3",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-cdr-3.csv",
+      "path": "artifacts/ember/cdr-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: cdr 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "call",
+      "sha256": "594bf446f2da128d092eb6ee520a51f525d486f4cb95fea80aa614574f666329",
+      "size": 38627,
+      "rowCount": 167
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-FIN-1",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-fin-1.csv",
+      "path": "artifacts/ember/fin-1.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: fin 1. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "46717ce31bf7a1974a83853f22550148c16507d890b6b746a0674f7bbb8ff7f0",
+      "size": 7829,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-FIN-2",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-fin-2.csv",
+      "path": "artifacts/ember/fin-2.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: fin 2. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "f48262e331c0b2bb3f1d3781d8c25d1506fd789af7d49afef618d88d38f3cc8a",
+      "size": 7799,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-FIN-3",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-fin-3.csv",
+      "path": "artifacts/ember/fin-3.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: fin 3. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "transfer",
+      "sha256": "3dae5f70d95730479bd71ae1a9f5509aed9961d56c98e2ba1504c9ea5850b6e0",
+      "size": 7819,
+      "rowCount": 50
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-INVENTORY",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-inventory.csv",
+      "path": "artifacts/ember/inventory.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: inventory. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "entity",
+      "sha256": "e09d063e3cc92fdf5271cc2a8a09bf19975b86a468c125e99dfe345608627616",
+      "size": 4731,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-OBS",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-observations.csv",
+      "path": "artifacts/ember/observations.csv",
+      "mime_type": "text/csv",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: observations. Source statements are reviewable claims, not findings of guilt.",
+      "recordKind": "observation",
+      "sha256": "68be2204ff76255941f29a60b26f7a8a533a6114f7877713323cd1bc84ec9c8d",
+      "size": 4933,
+      "rowCount": 20
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-INTAKE",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-intake.txt",
+      "path": "artifacts/ember/intake.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: intake. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "8952f84a3c477c538f2edda0dac726e0440b4572f1b29b77c0394447e2ce3123",
+      "size": 820,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-WITNESS-A",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-witness-a.txt",
+      "path": "artifacts/ember/witness-a.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: witness a. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "e891073e5039de2b0b2a5198a6e9c42d1a01c6fac1a0dd3d80e6330e150d2d39",
+      "size": 807,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-WITNESS-B",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-witness-b.txt",
+      "path": "artifacts/ember/witness-b.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: witness b. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "8d95349b97998ef7cfeefc12ed213de4ba58f76630e146a7eccee3968c77a792",
+      "size": 704,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-LAB",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-lab.txt",
+      "path": "artifacts/ember/lab.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: lab. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "b822d8bf3358a4185c007aa35f5f07f1f8381387ed4eae29d2657007e4399714",
+      "size": 849,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-CUSTODY",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-custody.txt",
+      "path": "artifacts/ember/custody.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: custody. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "e6d5dea9cf4f0e691805a5a3de90ed8424435937301b71aa3c300365a1920789",
+      "size": 769,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-bridge.txt",
+      "path": "artifacts/ember/bridge.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: bridge. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "03dc6281617d840051fa8e945de4a7f90b7ef5bd6c6203883f1624aa625a5411",
+      "size": 849,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-DISPATCH",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-dispatch.txt",
+      "path": "artifacts/ember/dispatch.txt",
+      "mime_type": "text/plain",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: dispatch. Source statements are reviewable claims, not findings of guilt.",
+      "sha256": "53c7164055c16430934f56fe75dcc0a88aee7ac388117fa9986912fc8265512c",
+      "size": 820,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-SCENE-A",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-scene-a.png",
+      "path": "artifacts/ember/scene-a.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: scene a. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Ember Transfer - Source Review",
+        "vehicle": "SYN-VEH-010",
+        "location": "Greater Noida Logistics Park",
+        "timestamp": "2026-08-18T14:30:00.000Z"
+      },
+      "sha256": "bdc2ac50e25ee29772dea27b662d2c9bbd2a2f48a8a3c95d2a09c64934ac7399",
+      "size": 22303,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-SCENE-B",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-scene-b.png",
+      "path": "artifacts/ember/scene-b.png",
+      "mime_type": "image/png",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: scene b. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "scene",
+        "caseTitle": "Operation Ember Transfer - Source Review",
+        "vehicle": "SYN-VEH-015",
+        "location": "Manesar Distribution Yard",
+        "timestamp": "2026-08-18T14:47:00.000Z"
+      },
+      "sha256": "39d9c5b0ca81d74c3e63d6297089f40fb30000ba5e5e0ee4492dcdba39f282d4",
+      "size": 22139,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-AUDIO",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-audio.wav",
+      "path": "artifacts/ember/audio.wav",
+      "mime_type": "audio/wav",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: audio. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "audio",
+        "frequency": 593,
+        "transcriptEvidence": "EV-SYN-d19a0c50df-EMBER-DISPATCH"
+      },
+      "sha256": "a650fbdd597c34393f4cf0f8ab6b8d210dbb4233579cc441dc9688ada9a65fbb",
+      "size": 96044,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-CCTV",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-cctv.mp4",
+      "path": "artifacts/ember/cctv.mp4",
+      "mime_type": "video/mp4",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: cctv. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "video",
+        "caseTitle": "Operation Ember Transfer - Source Review",
+        "vehicle": "SYN-VEH-010",
+        "location": "Greater Noida Logistics Park",
+        "timestamp": "2026-08-18T14:30:00.000Z"
+      },
+      "sha256": "1f4137222a11b0a1b867fd4bae647931929e82b56e33292193df3b06f4b2ce28",
+      "size": 18198,
+      "rowCount": 0
+    },
+    {
+      "id": "EV-SYN-d19a0c50df-EMBER-DOSSIER",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "name": "ember-dossier.pdf",
+      "path": "artifacts/ember/dossier.pdf",
+      "mime_type": "application/pdf",
+      "created_at": "2026-08-30T03:30:00.000Z",
+      "description": "Fictional Stock transfer reconciliation: dossier. Source statements are reviewable claims, not findings of guilt.",
+      "asset": {
+        "kind": "dossier",
+        "caseTitle": "Operation Ember Transfer - Source Review",
+        "summary": "A fictional parts depot reports a mismatch between a stock-transfer sheet and receiving count. Partial deliveries and unit-conversion differences are plausible alternatives to diversion.",
+        "conflict": "The dispatch team counted sealed boxes. The recipient recorded individual units and noted one damaged seal without identifying an occupant.",
+        "nextStep": "Reconcile units and packaging, preserve the receiving sheet and seek independent seal observations.",
+        "caseId": "CASE-SYN-d19a0c50df-EMBER",
+        "lead": "Investigator Aditi Rao",
+        "recorded": "2026-08-30T03:30:00.000Z",
+        "sourceIds": [
+          "EV-SYN-d19a0c50df-EMBER-INTAKE",
+          "EV-SYN-d19a0c50df-EMBER-WITNESS-A",
+          "EV-SYN-d19a0c50df-EMBER-WITNESS-B",
+          "EV-SYN-d19a0c50df-EMBER-OBS"
+        ]
+      },
+      "sha256": "8f1113bfbe8269a85b589b0fde1f56f6b77db83994683ae05f73c36886e510c4",
+      "size": 64621,
+      "rowCount": 0
+    }
+  ],
+  "links": [
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-NIGHTFALL-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE"
+    },
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-NORTHBRIDGE-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-COPPER"
+    },
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-COPPER-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-RIVER"
+    },
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-RIVER-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD"
+    },
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-ORCHARD-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR"
+    },
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-MIRROR-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR"
+    },
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-HARBOR-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN"
+    },
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-LANTERN-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT"
+    },
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-SUMMIT-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-EMBER"
+    },
+    {
+      "evidence_id": "EV-SYN-d19a0c50df-EMBER-BRIDGE",
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL"
+    }
+  ],
+  "locations": [
+    {
+      "name": "Connaught Place",
+      "lat": 28.6315,
+      "lng": 77.2167
+    },
+    {
+      "name": "Gurugram Warehouse",
+      "lat": 28.4595,
+      "lng": 77.0266
+    },
+    {
+      "name": "Noida Sector 62",
+      "lat": 28.627,
+      "lng": 77.3723
+    },
+    {
+      "name": "Dwarka Sector 21",
+      "lat": 28.552,
+      "lng": 77.058
+    },
+    {
+      "name": "Nehru Place",
+      "lat": 28.549,
+      "lng": 77.251
+    },
+    {
+      "name": "Karol Bagh",
+      "lat": 28.651,
+      "lng": 77.19
+    },
+    {
+      "name": "Okhla Industrial Area",
+      "lat": 28.531,
+      "lng": 77.279
+    },
+    {
+      "name": "Faridabad Sector 15",
+      "lat": 28.398,
+      "lng": 77.321
+    },
+    {
+      "name": "Ghaziabad Depot",
+      "lat": 28.669,
+      "lng": 77.453
+    },
+    {
+      "name": "Greater Noida Logistics Park",
+      "lat": 28.474,
+      "lng": 77.504
+    },
+    {
+      "name": "Lajpat Nagar",
+      "lat": 28.568,
+      "lng": 77.244
+    },
+    {
+      "name": "Saket",
+      "lat": 28.524,
+      "lng": 77.206
+    },
+    {
+      "name": "Delhi Cantonment",
+      "lat": 28.597,
+      "lng": 77.136
+    },
+    {
+      "name": "Rohini Sector 18",
+      "lat": 28.738,
+      "lng": 77.137
+    },
+    {
+      "name": "Manesar Distribution Yard",
+      "lat": 28.354,
+      "lng": 76.939
+    }
+  ],
+  "expected": {
+    "cases": 10,
+    "evidence": 200,
+    "callRecords": 5000,
+    "financialRecords": 1500
+  },
+  "coverage": {
+    "people": 50,
+    "vehicles": 15,
+    "accounts": 20,
+    "organizations": 10,
+    "locations": 15,
+    "sourceObservations": 200
+  },
+  "demoQuestions": [
+    {
+      "case_id": "CASE-SYN-d19a0c50df-NIGHTFALL",
+      "questions": [
+        "What evidence mentions Raj Mehta?",
+        "Which sources mention Parth Mehra?",
+        "What are the unresolved alternatives in Operation Nightfall - Source Review?"
+      ]
+    },
+    {
+      "case_id": "CASE-SYN-d19a0c50df-NORTHBRIDGE",
+      "questions": [
+        "What evidence mentions Priya Nair?",
+        "Which sources mention Vikram Singh?",
+        "What are the unresolved alternatives in Operation Northbridge - Source Review?"
+      ]
+    },
+    {
+      "case_id": "CASE-SYN-d19a0c50df-COPPER",
+      "questions": [
+        "What evidence mentions Kunal Sethi?",
+        "Which sources mention Aarav Bedi?",
+        "What are the unresolved alternatives in Operation Copper Ledger - Source Review?"
+      ]
+    },
+    {
+      "case_id": "CASE-SYN-d19a0c50df-RIVER",
+      "questions": [
+        "What evidence mentions Tara Bhatia?",
+        "Which sources mention Rohan Das?",
+        "What are the unresolved alternatives in Operation River Signal - Source Review?"
+      ]
+    },
+    {
+      "case_id": "CASE-SYN-d19a0c50df-ORCHARD",
+      "questions": [
+        "What evidence mentions Riya Menon?",
+        "Which sources mention Anika Bose?",
+        "What are the unresolved alternatives in Operation Orchard Route - Source Review?"
+      ]
+    },
+    {
+      "case_id": "CASE-SYN-d19a0c50df-MIRROR",
+      "questions": [
+        "What evidence mentions Varun Nanda?",
+        "Which sources mention Aditya Sen?",
+        "What are the unresolved alternatives in Operation Mirror Exchange - Source Review?"
+      ]
+    },
+    {
+      "case_id": "CASE-SYN-d19a0c50df-HARBOR",
+      "questions": [
+        "What evidence mentions Kavya Iyer?",
+        "Which sources mention Naina Roy?",
+        "What are the unresolved alternatives in Operation Harbor Receipt - Source Review?"
+      ]
+    },
+    {
+      "case_id": "CASE-SYN-d19a0c50df-LANTERN",
+      "questions": [
+        "What evidence mentions Saira Ahmed?",
+        "Which sources mention Pooja Sood?",
+        "What are the unresolved alternatives in Operation Lantern Access - Source Review?"
+      ]
+    },
+    {
+      "case_id": "CASE-SYN-d19a0c50df-SUMMIT",
+      "questions": [
+        "What evidence mentions Anirudh Bansal?",
+        "Which sources mention Omar Siddiq?",
+        "What are the unresolved alternatives in Operation Summit Voucher - Source Review?"
+      ]
+    },
+    {
+      "case_id": "CASE-SYN-d19a0c50df-EMBER",
+      "questions": [
+        "What evidence mentions Lavanya Shah?",
+        "Which sources mention Ira Saxena?",
+        "What are the unresolved alternatives in Operation Ember Transfer - Source Review?"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+SYNTHETIC EVIDENCE — DECYPHER BY EPOCH
+Operation Northbridge — Dispatch Trail
+Source ID: SYN-1b5cb42bd2-NORTHBRIDGE-cross-case-review
+Recorded intake: 2026-09-23T04:30:00.000Z
+Subject: cross-case-review
+Named fictional participants: Vikram Singh, Neha Kapoor, Maya Sethi.
+Source locations: Gurugram Warehouse; Noida Sector 62.
+Call-detail exports contain 360 records; financial exports contain 90 transfers.
+Communications occur before the financial export events. Consult each CSV's timezone-bearing source timestamps.
+Review bridge: Vikram Singh and shared synthetic account codes occur in the Nightfall/Northbridge prelude datasets. This is a source mention, not proof of identity or guilt.
+Non-dialable SYN-prefixed phone codes are illustrative identifiers, not real subscriber numbers.
+No computer vision, transcription, blockchain confirmation or legal finding is asserted by this document.
+हिंदी सारांश: यह काल्पनिक स्रोत टिप्पणी है। मूल रिकॉर्ड, समय और साक्ष्य पहचान जाँचना आवश्यक है।
+Human review and corroboration are mandatory.

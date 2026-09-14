@@ -183,6 +183,7 @@ class ProcessingJob(Base):
     result: Mapped[dict[str, Any]] = mapped_column(JSON, default=dict)
     error: Mapped[str] = mapped_column(Text, default="")
     attempts: Mapped[int] = mapped_column(Integer, default=0)
+    lease_token: Mapped[str] = mapped_column(String(64), default="")
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now, onupdate=now)
 

@@ -1,0 +1,10 @@
+SYNTHETIC EVIDENCE - NOT AN OFFICIAL RECORD
+Operation Harbor Receipt - Source Review
+Case: CASE-SYN-d19a0c50df-HARBOR
+Source: CUSTODY
+Recorded: 2026-08-27T03:30:00.000Z
+Synthetic handover ledger
+
+Collected by Investigator Aditi Rao at 2026-08-27T03:30:00.000Z. Hashed at intake +1 second. Analyzed at +2 seconds. Fictional handover to Reviewer 7 at +10 minutes; reviewer returns to the same collecting custodian at +20 minutes. These are demo source statements, not recipient signatures.
+
+हिंदी सारांश: यह काल्पनिक स्रोत रिकॉर्ड है। विरोधी बयान, समय और वैकल्पिक स्पष्टीकरण की समीक्षा आवश्यक है।

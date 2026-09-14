@@ -11,6 +11,8 @@ test-results
 playwright-report
 output
 data/uploads
+data/demo/*/qa
+data/demo/*/previews
 tmp
 *.log
 decypher.db

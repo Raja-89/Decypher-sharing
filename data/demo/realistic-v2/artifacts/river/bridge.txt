@@ -1,0 +1,11 @@
+SYNTHETIC EVIDENCE - NOT AN OFFICIAL RECORD
+Operation River Signal - Source Review
+Case: CASE-SYN-d19a0c50df-RIVER
+Source: BRIDGE
+Recorded: 2026-08-24T03:30:00.000Z
+Cross-case source review
+
+Source names Rohan Das and account SYN-COPPER-02. Compare Operation Copper Ledger. A common name/account reference is a lead, not evidence of common control. Supporting sources: EV-SYN-d19a0c50df-RIVER-INVENTORY, EV-SYN-d19a0c50df-RIVER-OBS, EV-SYN-d19a0c50df-RIVER-FIN-1.
+Separate handover occurrence time from data-entry time and review the equipment serial inventory.
+
+हिंदी सारांश: यह काल्पनिक स्रोत रिकॉर्ड है। विरोधी बयान, समय और वैकल्पिक स्पष्टीकरण की समीक्षा आवश्यक है।

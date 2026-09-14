@@ -1,5 +1,7 @@
 # Full-mode browser judging and control audit — 13 September 2026
 
+The 14 September worker/case/custody repairs and expanded synthetic pack are newer than this recorded browser run. Their isolated backend tests pass; this document does not certify the repaired Docker images or a live expanded-pack flow. See `docs/IMPLEMENTATION_STATUS.md` and `docs/SYNTHETIC_DEMO_GUIDE.md` for the follow-up boundaries.
+
 ## Outcome
 
 The local prototype judging slice and the control groups below passed the final clean run: **14 full-stack browser tests** across desktop and mobile-sized Chromium. The separate showcase suite passed **6 tests**. This is local prototype validation, not production, forensic, accessibility or physical-device certification.

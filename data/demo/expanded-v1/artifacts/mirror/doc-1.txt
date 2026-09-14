@@ -1,0 +1,14 @@
+SYNTHETIC EVIDENCE — DECYPHER BY EPOCH
+Operation Mirror Exchange
+Source ID: SYN-1b5cb42bd2-MIRROR-intake-log
+Recorded intake: 2026-09-23T08:30:00.000Z
+Subject: intake-log
+Named fictional participants: Aarav Bedi, Zoya Khan, Maya Sethi.
+Source locations: Connaught Place; Noida Sector 62.
+Call-detail exports contain 280 records; financial exports contain 70 transfers.
+Communications occur before the financial export events. Consult each CSV's timezone-bearing source timestamps.
+Shared fictional participants in Copper/River/Mirror are leads for corroboration, not conclusions.
+Non-dialable SYN-prefixed phone codes are illustrative identifiers, not real subscriber numbers.
+No computer vision, transcription, blockchain confirmation or legal finding is asserted by this document.
+हिंदी सारांश: यह काल्पनिक स्रोत टिप्पणी है। मूल रिकॉर्ड, समय और साक्ष्य पहचान जाँचना आवश्यक है।
+Human review and corroboration are mandatory.

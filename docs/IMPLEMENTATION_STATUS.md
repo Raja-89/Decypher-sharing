@@ -1,6 +1,23 @@
 # Release checkpoint — 13 September 2026
 
+## Source follow-up — 14 September 2026
+
+- Implemented shared-evidence/missing-case consistency, inactive-login rejection, serialized custody transfers, safe unexpected JSON errors, fenced 15-second worker heartbeats, exact-key orphan cleanup, and durable graph reconciliation with saved-analysis reuse.
+- Added migration `0004_job_leases`; fresh/repeated and revision-0003 SQLite upgrades pass. Reset export cleanup/both-case mirroring and active-job refusal are tested only in disposable fixtures.
+- Added the opt-in, additive six-case/80-artifact synthetic bundle: 36 CSVs, 44 source notes, 2,000 calls and 500 transactions. ISO timestamps, hashes, schemas, seed determinism, citations, tampering/path rejection and repeat imports are validated; all CSV samples visually reviewed. See `docs/SYNTHETIC_DEMO_GUIDE.md`.
+- New backend suite: **29 passed, 3 external opt-in tests skipped**. Repair/bundle tests additionally passed **15 tests on temporary PostgreSQL schemas**; graph/storage were mocked/filesystem in that isolated check. The two subsequently added migration tests target SQLite.
+- Frontend follow-up: **8 unit tests passed**, TypeScript and production build passed with the compatible arm64 runtime. No frontend behavior was changed in this repair pass.
+- These are source-level repairs, not a new full live Docker/browser release checkpoint. No live expanded import, reset, Git push, main merge or cloud publication was performed. The prior dated live results below remain historical.
+
 ## Implemented
+
+### Detailed synthetic-data follow-up — 14 September 2026
+
+- Generated the separate, opt-in `realistic-v2` pack: ten connected fictional investigations, 200 source artifacts, 5,000 calls, 1,500 transactions, 200 authored observations, 50 people, 15 vehicles, 20 accounts, ten organizations and 15 public locations.
+- Added explicit fictional inventory/observation analysis, coordinate-backed source events, source-derived media metadata, matching fictional custody handovers and same-byte import hashing. Boundary-aware alias matching prevents larger transaction amounts from producing unrelated demo account entities.
+- Final offline import/read-model checks validate 200 artifact hashes, all citations, 11,700 relationships, 6,700 timeline events, 5,200 map events, 90 alerts, 20 bilingual HTML previews and 20 Copilot examples. All 80 CSV samples and ten source PDFs were visually inspected. See `docs/REALISTIC_SYNTHETIC_DATA.md`.
+- This pack was not loaded into the running demo, published, mirrored to the live Neo4j service or anchored on-chain. Credentials were not read or used. Large-case browser performance and actual operational report/registration history require a separate live release check.
+- Latest full backend regression: **31 passed, 3 external opt-ins skipped** in 164.59 seconds. The earlier PostgreSQL/frontend checks remain separately dated and do not certify a deployed rich pack.
 
 - Case-scoped routed investigation workspace, including empty newly created cases, shared cited evidence for Northbridge, URL filters and browser history.
 - Streamed SHA-256 intake/storage/download, incoming multipart body limits, content signatures, safe names/UUID IDs and duplicate cleanup.

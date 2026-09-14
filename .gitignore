@@ -14,6 +14,9 @@ test-results/
 .pytest_cache/
 playwright-report/
 output/
+data/demo/expanded-v1/qa/
+data/demo/realistic-v2/qa/
+data/demo/realistic-v2/previews/
 data/uploads/
 blockchain/artifacts/
 blockchain/cache/

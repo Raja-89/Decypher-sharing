@@ -2,7 +2,11 @@
 
 A fictional, investigator-controlled full-stack prototype. Operation Nightfall connects synthetic evidence, cryptographic identity, custody, a local blockchain registry, graph exploration and evidence-cited answers. This is not an official government service or a production forensic system.
 
+The 14 September backend repairs and separate six-case/80-artifact synthetic pack are documented in [the demo guide](docs/SYNTHETIC_DEMO_GUIDE.md). The pack is not loaded automatically and contains no invented blockchain confirmations. See [backend implementation](docs/BACKEND_IMPLEMENTATION.md) for technical details and dated validation boundaries.
+
 ## Local secure demonstration
+
+The newer [detailed synthetic pack](docs/REALISTIC_SYNTHETIC_DATA.md) includes ten connected fictional investigations, 200 mixed-format artifacts, 5,000 calls and 1,500 transactions. It is opt-in and does not change the running demo automatically.
 
 Requirements: Docker Desktop running with Docker Compose, and internet access for first-time image/package downloads.
 
@@ -23,6 +27,8 @@ Demo accounts use password `DemoAccess2026!`:
 Quick-fill accounts are available on the login screen. Open `/demo` for the guided sequence. Register evidence as forensics, supervisor or admin; the investigator role intentionally cannot anchor evidence.
 
 The API uses PostgreSQL, Alembic and JWTs. Evidence is hashed before MinIO storage. Only hash/identity metadata enters `EvidenceRegistry.sol`. The ethers bridge waits for a real Hardhat receipt. Queued analysis/report jobs are processed by the worker. Graph relationships include evidence IDs, timestamps and confidence. Neo4j is a mirror; PostgreSQL remains the source of truth.
+
+Detailed backend architecture, data model, API inventory, permissions, processing, validation and remaining limits: [Backend implementation](docs/BACKEND_IMPLEMENTATION.md).
 
 Admin reset reseeds the database/graph. It cannot erase blockchain history. For a fully fresh ephemeral blockchain, stop and recreate the Hardhat/deployment/bridge services. Never use this demo key material or passwords in production.
 

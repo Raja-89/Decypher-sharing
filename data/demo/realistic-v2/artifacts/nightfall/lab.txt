@@ -1,0 +1,11 @@
+SYNTHETIC EVIDENCE - NOT AN OFFICIAL RECORD
+Operation Nightfall - Source Review
+Case: CASE-SYN-d19a0c50df-NIGHTFALL
+Source: LAB
+Recorded: 2026-08-21T03:30:00.000Z
+Technical examination note
+
+Original source exports are preserved without alteration. Hashes are SHA-256 over exact bytes. Synthetic media captions/transcripts are supplied by the author; no OCR, vision or speech recognition is claimed. Byte integrity does not establish pre-intake truth.
+Review action: Preserve the original visitor ledger and obtain a second independent account before identifying an occupant.
+
+हिंदी सारांश: यह काल्पनिक स्रोत रिकॉर्ड है। विरोधी बयान, समय और वैकल्पिक स्पष्टीकरण की समीक्षा आवश्यक है।

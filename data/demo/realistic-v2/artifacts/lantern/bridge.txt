@@ -1,0 +1,11 @@
+SYNTHETIC EVIDENCE - NOT AN OFFICIAL RECORD
+Operation Lantern Access - Source Review
+Case: CASE-SYN-d19a0c50df-LANTERN
+Source: BRIDGE
+Recorded: 2026-08-28T03:30:00.000Z
+Cross-case source review
+
+Source names Pooja Sood and account SYN-HARBOR-02. Compare Operation Harbor Receipt. A common name/account reference is a lead, not evidence of common control. Supporting sources: EV-SYN-d19a0c50df-LANTERN-INVENTORY, EV-SYN-d19a0c50df-LANTERN-OBS, EV-SYN-d19a0c50df-LANTERN-FIN-1.
+Obtain the roster revision and preserve original access exports without inferring identity from proximity.
+
+हिंदी सारांश: यह काल्पनिक स्रोत रिकॉर्ड है। विरोधी बयान, समय और वैकल्पिक स्पष्टीकरण की समीक्षा आवश्यक है।

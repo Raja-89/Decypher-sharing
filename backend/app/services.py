@@ -164,6 +164,11 @@ class GraphService:
 
     def sync_case(self, db: Session, case_id: str, strict=False) -> bool:
         from .snapshot import snapshot
+        if db.get_bind().dialect.name == "postgresql":
+            # Serialize mirror replacement per case and read after the lock.
+            # A late retry always writes the latest committed snapshot.
+            db.scalar(select(Case).where(Case.id == case_id).with_for_update())
+            db.expire_all()
         data=snapshot(db,case_id)
         def write(tx):
             tx.run("MATCH (n:Entity {caseId: $caseId}) DETACH DELETE n",caseId=case_id).consume()
@@ -212,13 +217,14 @@ def analyze_evidence(db: Session, evidence: Evidence, raw: bytes) -> EvidenceAna
     matched = []
     for entity_id, name, entity_type, aliases in DEMO_ENTITY_RULES:
         terms = [name, *aliases]
-        if any(term.lower() in text.lower() for term in terms):
+        mentions=[term for term in terms if re.search(r"(?<!\w)"+re.escape(term)+r"(?!\w)",text,re.IGNORECASE)]
+        if mentions:
             entity = db.get(Entity, entity_id)
             if not entity:
                 entity = Entity(id=entity_id, canonical_name=name, type=entity_type, aliases=aliases, properties={})
                 db.add(entity)
             if not db.scalar(select(EvidenceEntity).where(EvidenceEntity.evidence_id == evidence.id, EvidenceEntity.entity_id == entity_id)):
-                excerpt_match = next((term for term in terms if term.lower() in text.lower()), name)
+                excerpt_match = mentions[0]
                 db.add(EvidenceEntity(evidence_id=evidence.id, entity_id=entity_id, confidence=0.94, source_excerpt=excerpt_match))
             matched.append({"id": entity_id, "name": name, "type": entity_type, "confidence": 0.94})
 

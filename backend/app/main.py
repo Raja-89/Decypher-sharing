@@ -1,4 +1,5 @@
 import io
+import logging
 from datetime import datetime, timezone
 from uuid import uuid4
 
@@ -11,10 +12,12 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from .ingest import hash_file, safe_filename, validate_content
 from .upload_limits import UploadLimitMiddleware
-from .snapshot import snapshot
+from .snapshot import snapshot, case_evidence_query
 from .report_html import build_report_html
+from .jobs import JobHeartbeat, begin_cleanup, finish_cleanup, release_cleanup
 
 from .config import settings
 from .database import Base, SessionLocal, engine, get_db
@@ -34,10 +37,12 @@ from .services import (
 )
 
 
+log = logging.getLogger(__name__)
+allowed_origins = [settings.frontend_url, "http://localhost:5173", "http://localhost:8443", "http://127.0.0.1:8443"]
 app = FastAPI(title=settings.app_name, version="2.0.0", description="Evidence-first investigation prototype API")
 app.add_middleware(UploadLimitMiddleware)
 
-@app.exception_handler(HTTPException)
+@app.exception_handler(StarletteHTTPException)
 async def http_error(_request,exc):
     detail=exc.detail if isinstance(exc.detail,dict) else {"code":f"http_{exc.status_code}","message":str(exc.detail)}
     return JSONResponse(status_code=exc.status_code,content={"error":detail,"detail":detail},headers=exc.headers)
@@ -46,9 +51,19 @@ async def http_error(_request,exc):
 async def validation_error(_request,exc):
     detail={"code":"validation_error","message":"Invalid request fields.","fields":[{"field":".".join(str(p) for p in e["loc"]),"message":e["msg"]} for e in exc.errors()]}
     return JSONResponse(status_code=422,content={"error":detail,"detail":detail})
+
+@app.exception_handler(Exception)
+async def unexpected_error(request, exc):
+    log.error("Unhandled API exception", exc_info=exc)
+    detail = {"code": "internal_error", "message": "An unexpected error occurred. Please retry or contact the demo administrator."}
+    headers = {}
+    origin = request.headers.get("origin")
+    if origin in allowed_origins:
+        headers = {"Access-Control-Allow-Origin": origin, "Access-Control-Allow-Credentials": "true", "Vary": "Origin"}
+    return JSONResponse(status_code=500, content={"error": detail, "detail": detail}, headers=headers)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_url, "http://localhost:5173", "http://localhost:8443", "http://127.0.0.1:8443"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -66,6 +81,16 @@ def startup():
 
 def audit(db: Session, user_id: str, action: str, target: str, metadata: dict | None = None):
     db.add(AuditLog(user_id=user_id, action=action, target=target, metadata_json=metadata or {}))
+
+def require_case(db, case_id):
+    case = db.get(Case, case_id)
+    if not case:
+        raise HTTPException(404, detail={"code": "case_not_found", "message": "Case was not found."})
+    return case
+
+def read_case(db, case_id):
+    require_case(db, case_id)
+    return snapshot(db, case_id)
 
 
 def case_payload(db: Session, case: Case) -> dict:
@@ -108,7 +133,7 @@ def ready(db: Session = Depends(get_db)):
 @app.post("/api/v1/auth/login", response_model=TokenPair)
 def login(body: LoginRequest, db: Session = Depends(get_db)):
     user = db.scalar(select(User).where(User.email == body.email.lower()))
-    if not user or not verify_password(body.password, user.password_hash):
+    if not user or not user.is_active or not verify_password(body.password, user.password_hash):
         raise HTTPException(status_code=401, detail={"code": "invalid_credentials", "message": "Email or password is incorrect."})
     access, _, _ = create_token(user)
     refresh, jti, expires = create_token(user, "refresh")
@@ -172,26 +197,26 @@ def create_case(body: CaseCreate, user: User = Depends(require_roles("investigat
 
 @app.get("/api/v1/cases/{case_id}")
 def get_case(case_id: str, user: User = Depends(current_user), db: Session = Depends(get_db)):
-    case = db.get(Case, case_id)
-    if not case: raise HTTPException(404, detail={"code":"case_not_found","message":"Case was not found."})
+    case = require_case(db, case_id)
     return case_payload(db, case)
 
 @app.get("/api/v1/cases/{case_id}/snapshot")
 def case_snapshot(case_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
-    try: return snapshot(db,case_id)
-    except KeyError: raise HTTPException(404,detail="Case was not found.")
+    return read_case(db, case_id)
 
 @app.get("/api/v1/cases/{case_id}/report-preview")
 def report_preview(case_id:str,locale:str="en",user:User=Depends(current_user),db:Session=Depends(get_db)):
     if locale not in ("en","hi"): raise HTTPException(422,detail="Supported locales: en, hi.")
-    try: return {"html":build_report_html(db,case_id,locale)}
-    except KeyError: raise HTTPException(404,detail="Case was not found.")
+    require_case(db, case_id)
+    return {"html":build_report_html(db,case_id,locale)}
 
 
 @app.get("/api/v1/evidence", response_model=list[EvidenceOut])
 def list_evidence(case_id: str | None = None, user: User = Depends(current_user), db: Session = Depends(get_db)):
     query = select(Evidence).order_by(Evidence.created_at.desc())
-    if case_id: query = query.where(Evidence.case_id == case_id)
+    if case_id:
+        require_case(db, case_id)
+        query = case_evidence_query(case_id).order_by(Evidence.created_at.desc())
     return list(db.scalars(query))
 
 
@@ -209,17 +234,22 @@ def upload_evidence(case_id: str = Form(...), description: str = Form(""), file:
     evidence_id = f"EV-{uuid4().hex}"
     filename = safe_filename(file.filename)
     key = f"raw/case/{case_id}/{evidence_id}/original/{filename}"
-    storage.put_file(key,file.file,size,mime)
     kind = "video" if mime.startswith("video/") else "audio" if mime.startswith("audio/") else "image" if mime.startswith("image/") else "data" if "csv" in mime else "document"
     evidence = Evidence(id=evidence_id, case_id=case_id, name=filename, description=description, type=kind, object_key=key, mime_type=mime, size=size, sha256=digest, status="hashed", registered_by=user.id, verification_token=new_verification_token())
-    db.add(evidence)
-    try: db.flush()
-    except IntegrityError as exc:
-        db.rollback(); storage.remove(key); raise HTTPException(409,detail="Identical evidence was concurrently uploaded.") from exc
-    db.add(CustodyEvent(evidence_id=evidence_id, event="COLLECTED", actor_to=user.name, location="Secure intake portal", notes="Evidence uploaded")); db.add(CustodyEvent(evidence_id=evidence_id, event="HASHED", actor_to=user.name, notes=f"SHA-256 {digest}")); audit(db, user.id, "EVIDENCE_UPLOADED", evidence_id, {"caseId":case_id,"sha256":digest})
-    try: db.commit()
-    except IntegrityError as exc:
-        db.rollback(); storage.remove(key); raise HTTPException(409,detail="Identical evidence was concurrently uploaded.") from exc
+    cleanup_id, token = begin_cleanup(db, [key])
+    try:
+        with JobHeartbeat(cleanup_id, token):
+            storage.put_file(key,file.file,size,mime)
+            db.add(evidence); db.flush()
+            db.add(CustodyEvent(evidence_id=evidence_id, event="COLLECTED", actor_to=user.name, location="Secure intake portal", notes="Evidence uploaded")); db.add(CustodyEvent(evidence_id=evidence_id, event="HASHED", actor_to=user.name, notes=f"SHA-256 {digest}")); audit(db, user.id, "EVIDENCE_UPLOADED", evidence_id, {"caseId":case_id,"sha256":digest})
+            finish_cleanup(db, cleanup_id, token)
+            db.commit()
+    except Exception as exc:
+        db.rollback()
+        release_cleanup(cleanup_id, token)
+        if isinstance(exc, IntegrityError):
+            raise HTTPException(409, detail="Identical evidence was concurrently uploaded.") from exc
+        raise
     db.refresh(evidence)
     return evidence
 
@@ -268,6 +298,8 @@ def register_evidence(evidence_id: str, user: User = Depends(require_roles("seni
 
 @app.get("/api/v1/evidence/{evidence_id}/blockchain")
 def blockchain_proof(evidence_id: str, user: User = Depends(current_user), db: Session = Depends(get_db)):
+    if not db.get(Evidence, evidence_id):
+        raise HTTPException(404, detail={"code": "evidence_not_found", "message": "Evidence was not found."})
     anchor = db.scalar(select(BlockchainAnchor).where(BlockchainAnchor.evidence_id == evidence_id))
     if not anchor: return {"status":"not_registered","message":"No blockchain anchor exists for this evidence."}
     live=blockchain.lookup(anchor.evidence_hash)
@@ -324,7 +356,13 @@ def public_verify(token: str, db: Session = Depends(get_db)):
 
 @app.post("/api/v1/evidence/{evidence_id}/custody")
 def add_custody(evidence_id: str, body: CustodyCreate, user: User = Depends(require_roles("senior","forensics","admin")), db: Session = Depends(get_db)):
-    if not db.get(Evidence,evidence_id): raise HTTPException(404,detail="Evidence was not found.")
+    # SQLite has no row-level FOR UPDATE: acquire its writer lock before reads.
+    # PostgreSQL serializes custody operations on the parent evidence row.
+    if db.get_bind().dialect.name == "sqlite":
+        db.connection().exec_driver_sql("BEGIN IMMEDIATE")
+    item = db.scalar(select(Evidence).where(Evidence.id == evidence_id).with_for_update().execution_options(populate_existing=True))
+    if not item: raise HTTPException(404,detail="Evidence was not found.")
+    body = body.model_copy(update={"actor_from": body.actor_from.strip(), "actor_to": body.actor_to.strip()})
     latest=db.scalar(select(CustodyEvent).where(CustodyEvent.evidence_id==evidence_id,CustodyEvent.event.in_(["COLLECTED","TRANSFERRED","RECEIVED","SEALED","RELEASED"])).order_by(CustodyEvent.timestamp.desc(),CustodyEvent.id.desc()).limit(1))
     allowed={"TRANSFERRED":{"RECEIVED"},"RELEASED":{"RECEIVED"},"SEALED":{"TRANSFERRED","RELEASED","REVIEWED"}}
     if latest and latest.event in allowed and body.event not in allowed[latest.event]: raise HTTPException(409,detail="Invalid custody transition; receive transferred evidence before another operation.")
@@ -347,17 +385,13 @@ def retry_job(job_id:str,user:User=Depends(require_roles("senior","forensics","a
     row=db.scalar(select(ProcessingJob).where(ProcessingJob.id==job_id).with_for_update())
     if not row: raise HTTPException(404,detail="Job was not found.")
     if row.status!="failed" or row.attempts>=3: raise HTTPException(409,detail="Only failed jobs below three attempts can be retried.")
-    row.status="queued"; row.error=""; row.progress=0; audit(db,user.id,"JOB_RETRIED",row.id); db.commit()
+    row.status="queued"; row.error=""; row.progress=0; row.lease_token=""; audit(db,user.id,"JOB_RETRIED",row.id); db.commit()
     return {"jobId":row.id,"status":row.status}
 
 
 def graph_payload(db: Session, case_id: str):
-    if not db.get(Case,case_id): raise HTTPException(404,detail="Case was not found.")
-    rels=list(db.scalars(select(Relationship).where(Relationship.case_id==case_id)))
-    linked=list(db.execute(select(EvidenceEntity.entity_id,EvidenceEntity.evidence_id).join(Evidence,Evidence.id==EvidenceEntity.evidence_id).where(Evidence.case_id==case_id)))
-    ids={i for r in rels for i in (r.source_id,r.target_id)}|{a[0] for a in linked}; entities=list(db.scalars(select(Entity).where(Entity.id.in_(ids))))
-    evidence_counts={entity.id:len({a[1] for a in linked if a[0]==entity.id}|{ev for r in rels if entity.id in (r.source_id,r.target_id) for ev in r.evidence_ids}) for entity in entities}
-    return {"nodes":[{"id":e.id,"label":e.canonical_name,"labelHi":e.canonical_name_hi,"type":e.type,"properties":e.properties,"evidenceCount":evidence_counts[e.id]} for e in entities],"edges":[{"id":r.id,"source":r.source_id,"target":r.target_id,"type":r.type,"confidence":r.confidence,"evidenceIds":r.evidence_ids,"timestamp":r.timestamp} for r in rels]}
+    data = read_case(db, case_id)
+    return {"nodes": [{**node, "evidenceCount": len(node["evidenceIds"])} for node in data["nodes"]], "edges": data["edges"]}
 
 
 @app.get("/api/v1/cases/{case_id}/graph")
@@ -366,12 +400,12 @@ def case_graph(case_id:str,user:User=Depends(current_user),db:Session=Depends(ge
 
 @app.get("/api/v1/cases/{case_id}/timeline")
 def case_timeline(case_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
-    return [{"id":e.id,"timestamp":e.timestamp,"type":e.type,"title":e.title,"titleHi":e.title_hi,"description":e.description,"entityIds":e.entity_ids,"evidenceIds":e.evidence_ids,"location":e.location,"confidence":e.confidence} for e in db.scalars(select(TimelineEvent).where(TimelineEvent.case_id==case_id).order_by(TimelineEvent.timestamp))]
+    return read_case(db, case_id)["timeline"]
 
 
 @app.get("/api/v1/cases/{case_id}/map")
 def case_map(case_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
-    return [{"eventId":e.id,"title":e.title,"timestamp":e.timestamp,"location":e.location,"entityIds":e.entity_ids,"evidenceIds":e.evidence_ids} for e in db.scalars(select(TimelineEvent).where(TimelineEvent.case_id==case_id)) if e.location]
+    return [{"eventId": e["id"], "title": e["title"], "timestamp": e["timestamp"], "location": e["location"], "entityIds": e["entityIds"], "evidenceIds": e["evidenceIds"]} for e in read_case(db, case_id)["timeline"] if e["location"]]
 
 
 @app.get("/api/v1/cases/{case_id}/network")
@@ -384,8 +418,7 @@ def network(case_id:str,user:User=Depends(current_user),db:Session=Depends(get_d
 
 @app.get("/api/v1/cases/{case_id}/related")
 def related(case_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
-    try: current=snapshot(db,case_id)
-    except KeyError: raise HTTPException(404,detail="Case was not found.")
+    current = read_case(db, case_id)
     ids={n["id"] for n in current["nodes"]}; results=[]
     for case in db.scalars(select(Case).where(Case.id!=case_id)):
         other=snapshot(db,case.id); shared=ids & {n["id"] for n in other["nodes"]}
@@ -395,19 +428,19 @@ def related(case_id:str,user:User=Depends(current_user),db:Session=Depends(get_d
 
 @app.post("/api/v1/copilot/query")
 def copilot(body:CopilotQuery,user:User=Depends(current_user),db:Session=Depends(get_db)):
-    if not db.get(Case,body.case_id): raise HTTPException(404,detail="Case was not found.")
+    require_case(db, body.case_id)
     answer=copilot_answer(db,body.case_id,body.question,body.locale); audit(db,user.id,"COPILOT_QUERY",body.case_id,{"citations":answer["citations"]}); db.commit(); return answer
 
 
 @app.get("/api/v1/cases/{case_id}/reports")
 def reports(case_id:str,user:User=Depends(current_user),db:Session=Depends(get_db)):
+    require_case(db, case_id)
     return [{"id":r.id,"caseId":r.case_id,"locale":r.locale,"createdAt":r.created_at} for r in db.scalars(select(Report).where(Report.case_id==case_id).order_by(Report.created_at.desc()))]
 
 
 @app.post("/api/v1/cases/{case_id}/reports",status_code=202)
 def generate_report(case_id:str,body:ReportRequest,user:User=Depends(require_roles("investigator","senior","admin")),db:Session=Depends(get_db)):
-    case=db.get(Case,case_id)
-    if not case: raise HTTPException(404,detail="Case was not found.")
+    case=require_case(db,case_id)
     job=ProcessingJob(id=f"JOB-{uuid4().hex}",kind="report",target_id=case_id,status="queued",progress=0,result={"locale":body.locale,"createdBy":user.id})
     db.add(job); audit(db,user.id,"REPORT_QUEUED",case_id,{"jobId":job.id}); db.commit()
     return {"jobId":job.id,"status":job.status}
@@ -429,7 +462,12 @@ def saved_report_preview(report_id:str,user:User=Depends(current_user),db:Sessio
 
 @app.post("/api/v1/admin/reset-demo")
 def reset(user:User=Depends(require_roles("admin")),db:Session=Depends(get_db)):
-    graph_service.reset(); reset_demo(db); graph_service.sync_case(db,CASE_ID); audit(db,user.id,"DEMO_RESET",CASE_ID); db.commit(); return {"message":"Demo data reset.","caseId":CASE_ID}
+    if db.scalar(select(ProcessingJob.id).where(ProcessingJob.status.in_(("queued", "running"))).limit(1)):
+        raise HTTPException(409, detail={"code": "processing_active", "message": "Let queued/running jobs finish before resetting the demo."})
+    graph_service.reset(); reset_demo(db)
+    for case_id in (CASE_ID, "CASE-X007"):
+        graph_service.sync_case(db, case_id)
+    audit(db,user.id,"DEMO_RESET",CASE_ID); db.commit(); return {"message":"Demo data reset.","caseId":CASE_ID}
 
 
 @app.get("/api/v1/audit")
