@@ -1,6 +1,8 @@
 import {api,appMode,ApiEvidence,authorizedFetch} from "./api";
+import {isValidationCase} from "./demoPresentation";
 export interface CaseNode {id:string;label:string;labelHi?:string;type:string;properties:Record<string,unknown>;evidenceIds:string[]}
-export interface CaseEdge {id:string;source:string;target:string;type:string;confidence:number;evidenceIds:string[];timestamp:string}
+export interface OCRCitation {evidenceId:string;pageId:string;pageNumber:number;extractionRevision:number;method:string}
+export interface CaseEdge {id:string;source:string;target:string;type:string;confidence:number;evidenceIds:string[];timestamp:string;citationDetails?:OCRCitation[]}
 export interface CaseEvent {id:string;timestamp:string;type:string;title:string;titleHi?:string;description:string;entityIds:string[];evidenceIds:string[];confidence:number;location?:{name:string;lat:number;lng:number}}
 export interface CaseSnapshot {
   case:{id:string;title:string;title_hi?:string;description:string;description_hi?:string;priority:string;lead_investigator:string};
@@ -17,8 +19,11 @@ export async function loadSnapshot(id:string):Promise<CaseSnapshot> {
   const response=await fetch(`/demo/${id==="CASE-X007"?"northbridge":"nightfall"}-snapshot.json`);
   if(!response.ok)throw new Error("Demo story could not be loaded.");return response.json();
 }
-export async function loadCases() {
-  if(appMode==="full")return api.listCases();
+export async function loadCases(includeValidation = false) {
+  if(appMode==="full") {
+    const cases = await api.listCases();
+    return includeValidation ? cases : cases.filter(c => !isValidationCase(c));
+  }
   return Promise.all(["CASE-2026-017","CASE-X007"].map(async id=>(await loadSnapshot(id)).case));
 }
 export async function downloadProtected(url:string,name:string) {

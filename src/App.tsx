@@ -48,7 +48,8 @@ function pageForPath(path: string) {
 }
 
 function Protected({ authenticated, children }: { authenticated: boolean; children: React.ReactNode }) {
-  return authenticated ? children : <Navigate to="/login" replace state={{ reason: "protected" }} />;
+  const location=useLocation();
+  return authenticated ? children : <Navigate to="/login" replace state={{ reason: "protected", from:location.pathname+location.search }} />;
 }
 
 export default function App() {
@@ -80,7 +81,8 @@ export default function App() {
   const handleLogin = (role: Role) => {
     setIsLoggedIn(true); setUserRole(role);
     if (appMode === "showcase") localStorage.setItem("decypher.showcase.auth", "1");
-    routerNavigate("/dashboard");
+    const from=location.state?.from;
+    routerNavigate(typeof from==="string"&&/^\/(evidence|cases|dashboard|graph|timeline|map|network|reports)(\/|\?|$)/.test(from)?from:"/dashboard");
   };
   const handleLogout = async () => { try{await logout();}finally{clearSession();localStorage.removeItem("decypher.showcase.auth");setIsLoggedIn(false);routerNavigate("/");} };
   const currentPage = useMemo(() => pageForPath(location.pathname), [location.pathname]);
@@ -97,6 +99,7 @@ export default function App() {
           <Route path="/login" element={<Login onLogin={handleLogin} onNavigate={navigate} />} />
           {["capabilities","how-it-works","security","about","terms","privacy"].map(page=><Route key={page} path={`/${page}`} element={<PublicPortal page={page} onNavigate={navigate}/>}/>)}
           <Route path="/verify/:token" element={<VerifyPage onNavigate={navigate} />} />
+          <Route path="/verify" element={<VerifyPage onNavigate={navigate} />} />
           <Route path="/dashboard" element={guard(<CaseRegistry onNavigate={navigate} />)} />
           <Route path="/cases" element={guard(<CaseRegistry onNavigate={navigate} />)} />
           <Route path="/cases/:caseId" element={guard(<CaseWorkspace mode="case-detail" onNavigate={navigate} />)} />

@@ -1,25 +1,476 @@
-import {useEffect,useRef,useState} from "react";
-import {useParams} from "react-router-dom";
-import {api,ApiEvidence,appMode,authorizedFetch,currentSession,waitForJob} from "../lib/api";
-import {demoPaths,downloadProtected,loadSnapshot} from "../lib/caseData";
-import {useCase} from "../context/CaseContext";
-import {useLocale} from "../context/LocaleContext";
-export default function EvidenceRecord({onNavigate}:{onNavigate:(page:string,param?:string)=>void}) {
-  const {evidenceId=""}=useParams();const {caseId}=useCase();const {locale}=useLocale();const L=(en:string,hi:string)=>locale==="hi"?hi:en;
-  const [item,setItem]=useState<ApiEvidence|null>(null);const [error,setError]=useState("");const [notice,setNotice]=useState("");const [busy,setBusy]=useState(false);const [preview,setPreview]=useState("");const [qr,setQr]=useState("");const [revision,setRevision]=useState(0);
-  const [custody,setCustody]=useState({event:"TRANSFERRED",actor_from:"",actor_to:"",location:"",notes:""});const compare=useRef<HTMLInputElement>(null);
-  const canAnchor=appMode==="full"&&["senior","forensics","admin"].includes(currentSession()?.role);
-  useEffect(()=>{let active=true;const urls:string[]=[];setItem(null);setError("");
-    async function load(){try{let record:ApiEvidence;if(appMode==="full")record=await api.getEvidence(evidenceId);else{const data=await loadSnapshot(caseId);const found=data.evidence.find(e=>e.id===evidenceId);if(!found)throw new Error(L("Evidence not found in this case.","इस केस में साक्ष्य नहीं मिला।"));record={...found,custody:data.custody.filter(c=>c.evidenceId===evidenceId),blockchain:null};}
-      if(!active)return;setItem(record);const last=record.custody?.filter(c=>["COLLECTED","TRANSFERRED","RECEIVED","SEALED","RELEASED"].includes(c.event)).at(-1);setCustody(form=>({...form,actor_from:last?.to||""}));
-      if(appMode==="full"){for(const [url,setter] of [[api.fileUrl(evidenceId),setPreview],[api.qrUrl(evidenceId),setQr]] as const){const response=await authorizedFetch(url);const objectUrl=URL.createObjectURL(await response.blob());urls.push(objectUrl);if(active)setter(objectUrl);}}
-      else{setPreview(demoPaths[evidenceId]);setQr(`/demo/nightfall-${evidenceId.toLowerCase()}-qr.png`);}
-    }catch(e){if(active)setError(e instanceof Error?e.message:String(e));}}
-    load();return()=>{active=false;urls.forEach(url=>URL.revokeObjectURL(url));};
-  },[evidenceId,caseId,revision,locale]);
-  async function run(kind:string,file?:File){setBusy(true);setNotice("");try{if(kind==="register"){const result=await api.registerEvidence(evidenceId);setNotice(`${L("Receipt confirmed","रसीद की पुष्टि हुई")}: ${result.transactionHash}`);}else if(kind==="analyze"){const job=await api.analyzeEvidence(evidenceId);const result=await waitForJob(job.jobId,status=>setNotice(`${L("Analysis job","विश्लेषण कार्य")}: ${status} · ${job.jobId}`));setNotice(L(result.summary,"साक्ष्य-समर्थित विश्लेषण पूरा हुआ। स्रोत विवरण नीचे देखें।"));}else{const result=await api.verifyEvidence(evidenceId,file);setNotice(`${L("Integrity result","अखंडता परिणाम")}: ${result.status}\nSHA-256 ${result.currentHash}\n${L("Live contract match","लाइव अनुबंध मेल")}: ${result.blockchainMatch}`);}setRevision(n=>n+1);}catch(e){setNotice(e instanceof Error?e.message:String(e));}finally{setBusy(false);}}
-  async function transfer(e:React.FormEvent){e.preventDefault();setBusy(true);try{await api.custody(evidenceId,custody);setRevision(n=>n+1);setNotice(L("Custody event recorded.","अभिरक्षा क्रिया दर्ज हुई।"));}catch(e){setNotice(e instanceof Error?e.message:String(e));}finally{setBusy(false);}}
-  async function download(){try{await downloadProtected(appMode==="full"?api.fileUrl(evidenceId):demoPaths[evidenceId],item?.name||evidenceId);}catch(e){setNotice(String(e));}}
-  const required=L("Local secure service required","स्थानीय सुरक्षित सेवा आवश्यक");
-  return <div className="min-h-screen bg-[var(--color-base-bg)]"><header className="bg-[var(--color-primary)] text-white p-6"><div className="max-w-[1200px] mx-auto"><button className="text-sm underline" onClick={()=>onNavigate("evidence")}>{L("← Evidence library","← साक्ष्य सूची")}</button><p className="text-xs font-mono text-white/70 mt-4">{evidenceId}</p><h1 className="text-3xl !text-white mt-2">{item?.name||L("Evidence record","साक्ष्य रिकॉर्ड")}</h1></div></header><main className="max-w-[1200px] mx-auto p-6 space-y-5">{notice&&<pre role="status" className="gov-panel p-4 whitespace-pre-wrap break-all text-sm">{notice}</pre>}{error?<div role="alert" className="gov-panel p-6">{error}<button className="btn-premium-outline ml-3" onClick={()=>setRevision(n=>n+1)}>{L("Retry","पुनः प्रयास")}</button></div>:!item?<p role="status">{L("Loading evidence…","साक्ष्य लोड हो रहा है…")}</p>:<div className="grid lg:grid-cols-[1fr_360px] gap-5"><section className="space-y-5"><div className="gov-panel p-3 bg-[var(--color-surface-2)] min-h-[250px] grid place-items-center">{item.mime_type.startsWith("image/")?<img alt={item.name} src={preview} className="w-full max-h-[550px] object-contain"/>:item.mime_type.startsWith("video/")?<video src={preview} controls className="w-full"/>:item.mime_type.startsWith("audio/")?<audio src={preview} controls className="w-full"/>:item.mime_type==="application/pdf"?<div className="w-full"><iframe title={L("PDF evidence preview","PDF साक्ष्य पूर्वावलोकन")} src={preview} className="w-full h-[550px]"/><p className="p-3 text-xs">{L("If the embedded viewer is unavailable, download the source below.","पूर्वावलोकन न दिखे तो नीचे मूल फ़ाइल डाउनलोड करें।")}</p></div>:<p>{L("Structured/text source: download to inspect original bytes.","संरचित / पाठ स्रोत: मूल फ़ाइल देखने के लिए डाउनलोड करें।")}</p>}</div><button className="btn-premium-outline" onClick={download}>{L("Download original evidence","मूल साक्ष्य डाउनलोड करें")}</button><section className="gov-panel p-5"><h2 className="text-xl">{L("Analysis • original source findings","विश्लेषण • मूल स्रोत विवरण")}</h2>{item.analysis?.length?item.analysis.map((a,i)=><div className="py-3" key={i}><p>{L(String(a.summary),"विश्लेषण परिणाम नीचे मूल स्रोत रूप में उपलब्ध है।")}</p><pre className="font-mono text-xs mt-3 whitespace-pre-wrap break-all">{JSON.stringify(a.result,null,2)}</pre></div>):<p className="text-sm mt-3">{appMode==="full"?L("No analysis yet. Run the deterministic analyzer.","अभी विश्लेषण नहीं हुआ। नियत विश्लेषक चलाएँ।"):L("Curated synthetic findings are available in the graph and timeline. No AI recognition is claimed.","काल्पनिक विवरण ग्राफ़ और घटनाक्रम में है। AI पहचान का दावा नहीं है।")}</p>}</section><section className="gov-panel p-5"><h2 className="text-xl">{L("Chain of custody","अभिरक्षा इतिहास")}</h2>{appMode!=="full"&&<p className="text-sm my-3">{L("Seeded demonstration history; not a real chain of custody.","प्रदर्शन का काल्पनिक इतिहास; वास्तविक अभिरक्षा नहीं।")}</p>}{item.custody?.map((c,i)=><article key={i} className="py-3 border-b border-[var(--color-border-subtle)]"><p className="font-mono text-xs">{c.timestamp} · {c.event}</p><p className="text-sm mt-2">{c.from} → {c.to} · {c.location}</p><p className="text-xs mt-1 break-all">{c.notes}</p></article>)}</section>{canAnchor&&<form onSubmit={transfer} className="gov-panel p-5 space-y-3"><h2>{L("Record custody transition","अभिरक्षा बदलाव दर्ज करें")}</h2><select aria-label={L("Custody event","अभिरक्षा क्रिया")} className="gov-input w-full" value={custody.event} onChange={e=>setCustody({...custody,event:e.target.value})}>{["TRANSFERRED","RECEIVED","REVIEWED","SEALED","RELEASED"].map(event=><option key={event}>{event}</option>)}</select>{[["actor_from","From custodian","पूर्व अभिरक्षक"],["actor_to","To custodian","नया अभिरक्षक"],["location","Location","स्थान"],["notes","Notes","टिप्पणी"]].map(([key,en,hi])=><label key={key} className="block text-sm">{L(en,hi)}<input required={key==="actor_to"} className="gov-input w-full mt-1" value={custody[key as keyof typeof custody]} onChange={e=>setCustody({...custody,[key]:e.target.value})}/></label>)}<button disabled={busy} className="btn-premium">{L("Save custody event","अभिरक्षा क्रिया सहेजें")}</button></form>}</section><aside className="space-y-5"><div className="gov-panel holographic-bg p-5 text-center"><h2 className="font-semibold mb-3">{L("Verification identity QR","सत्यापन पहचान QR")}</h2>{qr&&<img src={qr} alt={L("Evidence verification QR code","साक्ष्य सत्यापन QR")} className="w-44 h-44 mx-auto border-4 border-white"/>}<p className="text-xs mt-3">{L("Local demo QR targets localhost:8443. Hosted users can open the link.","स्थानीय डेमो QR localhost:8443 खोलता है। होस्टेड पेज पर लिंक खोलें।")}</p><button className="btn-premium-outline mt-3" onClick={()=>onNavigate("verify",item.verification_token)}>{L("Open verification","सत्यापन खोलें")}</button></div><section className="gov-panel p-5"><h2 className="font-semibold">{L("Cryptographic identity","क्रिप्टोग्राफ़िक पहचान")}</h2><p className="font-mono text-[11px] break-all my-3">SHA-256 {item.sha256}</p><button className="btn-premium-outline btn-sm" onClick={()=>navigator.clipboard.writeText(item.sha256).then(()=>setNotice(L("Hash copied.","हैश कॉपी हुआ।"))).catch(()=>setNotice(L("Clipboard unavailable.","क्लिपबोर्ड उपलब्ध नहीं।")))}>{L("Copy hash","हैश कॉपी करें")}</button><p className="text-xs mt-4">{L("Evidence state","साक्ष्य स्थिति")}: {item.status.toUpperCase()} · {L("Human review pending","मानव समीक्षा बाकी")}</p></section><section className="gov-panel p-5 space-y-3"><h2 className="font-semibold">{L("Blockchain and analysis","ब्लॉकचेन और विश्लेषण")}</h2><p className="text-xs break-all">{item.blockchain?`${L("Saved receipt; run Verify for a live check","सहेजी रसीद; लाइव जाँच के लिए सत्यापन करें")}: ${item.blockchain.transactionHash}`:L("No saved blockchain anchor.","कोई ब्लॉकचेन रसीद नहीं है।")}</p><button className="btn-premium w-full" disabled={busy||!canAnchor} title={!canAnchor?appMode!=="full"?required:L("Forensics, supervisor or admin role required","फॉरेंसिक, पर्यवेक्षक या एडमिन भूमिका आवश्यक"):undefined} onClick={()=>run("register")}>{L("Register on blockchain","ब्लॉकचेन पर दर्ज करें")}</button><button className="btn-premium-outline w-full" disabled={busy||appMode!=="full"} title={appMode!=="full"?required:undefined} onClick={()=>run("analyze")}>{L("Analyze evidence","साक्ष्य विश्लेषण")}</button><button className="btn-premium-outline w-full" disabled={busy||appMode!=="full"} title={appMode!=="full"?required:undefined} onClick={()=>run("verify")}>{L("Verify stored evidence","सहेजा साक्ष्य सत्यापित करें")}</button><input type="file" ref={compare} className="hidden" onChange={e=>{if(e.target.files?.[0])run("verify",e.target.files[0]);e.target.value="";}}/><button className="btn-premium-outline w-full" disabled={busy||appMode!=="full"} title={appMode!=="full"?required:undefined} onClick={()=>compare.current?.click()}>{L("Compare another file","दूसरी फ़ाइल से तुलना")}</button></section><button className="btn-premium-outline w-full" onClick={()=>onNavigate("graph")}>{L("Open case graph","केस ग्राफ़ खोलें")}</button></aside></div>}</main></div>;
+import { useEffect, useRef, useState } from "react"
+import { useParams } from "react-router-dom"
+import OCRReview from "../components/OCRReview"
+import {
+  api,
+  ApiEvidence,
+  appMode,
+  authorizedFetch,
+  currentSession,
+  waitForJob,
+} from "../lib/api"
+import { demoPaths, downloadProtected, loadSnapshot } from "../lib/caseData"
+import { useCase } from "../context/CaseContext"
+import { useLocale } from "../context/LocaleContext"
+export default function EvidenceRecord({
+  onNavigate,
+}: {
+  onNavigate: (page: string, param?: string) => void
+}) {
+  const { evidenceId = "" } = useParams()
+  const { caseId } = useCase()
+  const { locale } = useLocale()
+  const L = (en: string, hi: string) => (locale === "hi" ? hi : en)
+  const [item, setItem] = useState<ApiEvidence | null>(null)
+  const [error, setError] = useState("")
+  const [notice, setNotice] = useState("")
+  const [busy, setBusy] = useState(false)
+  const [preview, setPreview] = useState("")
+  const [qr, setQr] = useState("")
+  const [revision, setRevision] = useState(0)
+  const [custody, setCustody] = useState({
+    event: "TRANSFERRED",
+    actor_from: "",
+    actor_to: "",
+    location: "",
+    notes: "",
+  })
+  const compare = useRef<HTMLInputElement>(null)
+  const canAnchor =
+    appMode === "full" &&
+    ["senior", "forensics", "admin"].includes(currentSession()?.role)
+  useEffect(() => {
+    let active = true
+    const urls: string[] = []
+    setItem(null)
+    setError("")
+    async function load() {
+      try {
+        let record: ApiEvidence
+        if (appMode === "full") record = await api.getEvidence(evidenceId)
+        else {
+          const data = await loadSnapshot(caseId)
+          const found = data.evidence.find((e) => e.id === evidenceId)
+          if (!found)
+            throw new Error(
+              L("Evidence not found in this case.", "इस केस में साक्ष्य नहीं मिला।"),
+            )
+          record = {
+            ...found,
+            custody: data.custody.filter((c) => c.evidenceId === evidenceId),
+            blockchain: null,
+          }
+        }
+        if (!active) return
+        setItem(record)
+        const last = record.custody
+          ?.filter((c) =>
+            [
+              "COLLECTED",
+              "TRANSFERRED",
+              "RECEIVED",
+              "SEALED",
+              "RELEASED",
+            ].includes(c.event),
+          )
+          .at(-1)
+        setCustody((form) => ({ ...form, actor_from: last?.to || "" }))
+        if (appMode === "full") {
+          for (const [url, setter] of [
+            [api.fileUrl(evidenceId), setPreview],
+            [api.qrUrl(evidenceId), setQr],
+          ] as const) {
+            const response = await authorizedFetch(url)
+            const objectUrl = URL.createObjectURL(await response.blob())
+            urls.push(objectUrl)
+            if (active) setter(objectUrl)
+          }
+        } else {
+          setPreview(demoPaths[evidenceId])
+          setQr(`/demo/nightfall-${evidenceId.toLowerCase()}-qr.png`)
+        }
+      } catch (e) {
+        if (active) setError(e instanceof Error ? e.message : String(e))
+      }
+    }
+    load()
+    return () => {
+      active = false
+      urls.forEach((url) => URL.revokeObjectURL(url))
+    }
+  }, [evidenceId, caseId, revision, locale])
+  async function run(kind: string, file?: File) {
+    setBusy(true)
+    setNotice("")
+    try {
+      if (kind === "register") {
+        const result = await api.registerEvidence(evidenceId)
+        setNotice(
+          `${L("Receipt confirmed", "रसीद की पुष्टि हुई")}: ${result.transactionHash}`,
+        )
+      } else if (kind === "analyze") {
+        const job = await api.analyzeEvidence(evidenceId)
+        const result = await waitForJob(job.jobId, (status) =>
+          setNotice(
+            `${L("Analysis job", "विश्लेषण कार्य")}: ${status} · ${job.jobId}`,
+          ),
+        )
+        setNotice(
+          L(result.summary, "साक्ष्य-समर्थित विश्लेषण पूरा हुआ। स्रोत विवरण नीचे देखें।"),
+        )
+      } else {
+        const result = await api.verifyEvidence(evidenceId, file)
+        setNotice(
+          `${L("Integrity result", "अखंडता परिणाम")}: ${result.status}\nSHA-256 ${result.currentHash}\n${L("Live contract match", "लाइव अनुबंध मेल")}: ${result.blockchainMatch}`,
+        )
+      }
+      setRevision((n) => n + 1)
+    } catch (e) {
+      setNotice(e instanceof Error ? e.message : String(e))
+    } finally {
+      setBusy(false)
+    }
+  }
+  async function transfer(e: React.FormEvent) {
+    e.preventDefault()
+    setBusy(true)
+    try {
+      await api.custody(evidenceId, custody)
+      setRevision((n) => n + 1)
+      setNotice(L("Custody event recorded.", "अभिरक्षा क्रिया दर्ज हुई।"))
+    } catch (e) {
+      setNotice(e instanceof Error ? e.message : String(e))
+    } finally {
+      setBusy(false)
+    }
+  }
+  async function download() {
+    try {
+      await downloadProtected(
+        appMode === "full" ? api.fileUrl(evidenceId) : demoPaths[evidenceId],
+        item?.name || evidenceId,
+      )
+    } catch (e) {
+      setNotice(String(e))
+    }
+  }
+  const required = L("Local secure service required", "स्थानीय सुरक्षित सेवा आवश्यक")
+  return (
+    <div className="min-h-screen bg-[var(--color-base-bg)]">
+      <header className="bg-[var(--color-primary)] text-white p-6">
+        <div className="max-w-[1200px] mx-auto">
+          <button
+            className="text-sm underline"
+            onClick={() => onNavigate("evidence")}
+          >
+            {L("← Evidence library", "← साक्ष्य सूची")}
+          </button>
+          <p className="text-xs font-mono text-white/70 mt-4">{evidenceId}</p>
+          <h1 className="text-3xl !text-white mt-2">
+            {item?.name || L("Evidence record", "साक्ष्य रिकॉर्ड")}
+          </h1>
+        </div>
+      </header>
+      <main className="max-w-[1200px] mx-auto p-6 space-y-5">
+        {notice && (
+          <pre
+            role="status"
+            className="gov-panel p-4 whitespace-pre-wrap break-all text-sm"
+          >
+            {notice}
+          </pre>
+        )}
+        {error ? (
+          <div role="alert" className="gov-panel p-6">
+            {error}
+            <button
+              className="btn-premium-outline ml-3"
+              onClick={() => setRevision((n) => n + 1)}
+            >
+              {L("Retry", "पुनः प्रयास")}
+            </button>
+          </div>
+        ) : !item ? (
+          <p role="status">{L("Loading evidence…", "साक्ष्य लोड हो रहा है…")}</p>
+        ) : (
+          <div className="grid lg:grid-cols-[1fr_360px] gap-5">
+            <section className="space-y-5">
+              <div className="gov-panel p-3 bg-[var(--color-surface-2)] min-h-[250px] grid place-items-center">
+                {item.mime_type.startsWith("image/") ? (
+                  <img
+                    alt={item.name}
+                    src={preview}
+                    className="w-full max-h-[550px] object-contain"
+                  />
+                ) : item.mime_type.startsWith("video/") ? (
+                  <video src={preview} controls className="w-full" />
+                ) : item.mime_type.startsWith("audio/") ? (
+                  <audio src={preview} controls className="w-full" />
+                ) : item.mime_type === "application/pdf" ? (
+                  <div className="w-full">
+                    <iframe
+                      title={L("PDF evidence preview", "PDF साक्ष्य पूर्वावलोकन")}
+                      src={preview}
+                      className="w-full h-[550px]"
+                    />
+                    <p className="p-3 text-xs">
+                      {L(
+                        "If the embedded viewer is unavailable, download the source below.",
+                        "पूर्वावलोकन न दिखे तो नीचे मूल फ़ाइल डाउनलोड करें।",
+                      )}
+                    </p>
+                  </div>
+                ) : (
+                  <p>
+                    {L(
+                      "Structured/text source: download to inspect original bytes.",
+                      "संरचित / पाठ स्रोत: मूल फ़ाइल देखने के लिए डाउनलोड करें।",
+                    )}
+                  </p>
+                )}
+              </div>
+              <button className="btn-premium-outline" onClick={download}>
+                {L("Download original evidence", "मूल साक्ष्य डाउनलोड करें")}
+              </button>
+              <section className="gov-panel p-5">
+                <h2 className="text-xl">
+                  {L(
+                    "Analysis • original source findings",
+                    "विश्लेषण • मूल स्रोत विवरण",
+                  )}
+                </h2>
+                {item.analysis?.length ? (
+                  item.analysis.map((a, i) => (
+                    <div className="py-3" key={i}>
+                      <p>
+                        {L(
+                          String(a.summary),
+                          "विश्लेषण परिणाम नीचे मूल स्रोत रूप में उपलब्ध है।",
+                        )}
+                      </p>
+                      <pre className="font-mono text-xs mt-3 whitespace-pre-wrap break-all">
+                        {JSON.stringify(a.result, null, 2)}
+                      </pre>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-sm mt-3">
+                    {appMode === "full"
+                      ? L(
+                          "No analysis yet. Run the deterministic analyzer.",
+                          "अभी विश्लेषण नहीं हुआ। नियत विश्लेषक चलाएँ।",
+                        )
+                      : L(
+                          "Curated synthetic findings are available in the graph and timeline. No AI recognition is claimed.",
+                          "काल्पनिक विवरण ग्राफ़ और घटनाक्रम में है। AI पहचान का दावा नहीं है।",
+                        )}
+                  </p>
+                )}
+              </section>
+              <section className="gov-panel p-5">
+                <h2 className="text-xl">
+                  {L("Chain of custody", "अभिरक्षा इतिहास")}
+                </h2>
+                {appMode !== "full" && (
+                  <p className="text-sm my-3">
+                    {L(
+                      "Seeded demonstration history; not a real chain of custody.",
+                      "प्रदर्शन का काल्पनिक इतिहास; वास्तविक अभिरक्षा नहीं।",
+                    )}
+                  </p>
+                )}
+                {item.custody?.map((c, i) => (
+                  <article
+                    key={i}
+                    className="py-3 border-b border-[var(--color-border-subtle)]"
+                  >
+                    <p className="font-mono text-xs">
+                      {c.timestamp} · {c.event}
+                    </p>
+                    <p className="text-sm mt-2">
+                      {c.from} → {c.to} · {c.location}
+                    </p>
+                    <p className="text-xs mt-1 break-all">{c.notes}</p>
+                  </article>
+                ))}
+              </section>
+              {canAnchor && (
+                <form onSubmit={transfer} className="gov-panel p-5 space-y-3">
+                  <h2>
+                    {L("Record custody transition", "अभिरक्षा बदलाव दर्ज करें")}
+                  </h2>
+                  <select
+                    aria-label={L("Custody event", "अभिरक्षा क्रिया")}
+                    className="gov-input w-full"
+                    value={custody.event}
+                    onChange={(e) =>
+                      setCustody({ ...custody, event: e.target.value })
+                    }
+                  >
+                    {[
+                      "TRANSFERRED",
+                      "RECEIVED",
+                      "REVIEWED",
+                      "SEALED",
+                      "RELEASED",
+                    ].map((event) => (
+                      <option key={event}>{event}</option>
+                    ))}
+                  </select>
+                  {[
+                    ["actor_from", "From custodian", "पूर्व अभिरक्षक"],
+                    ["actor_to", "To custodian", "नया अभिरक्षक"],
+                    ["location", "Location", "स्थान"],
+                    ["notes", "Notes", "टिप्पणी"],
+                  ].map(([key, en, hi]) => (
+                    <label key={key} className="block text-sm">
+                      {L(en, hi)}
+                      <input
+                        required={key === "actor_to"}
+                        className="gov-input w-full mt-1"
+                        value={custody[(key as keyof typeof custody)]}
+                        onChange={(e) =>
+                          setCustody({ ...custody, [key]: e.target.value })
+                        }
+                      />
+                    </label>
+                  ))}
+                  <button disabled={busy} className="btn-premium">
+                    {L("Save custody event", "अभिरक्षा क्रिया सहेजें")}
+                  </button>
+                </form>
+              )}
+            </section>
+            <aside className="space-y-5">
+              {(item.mime_type === "application/pdf" ||
+                item.mime_type.startsWith("image/")) && (
+                <OCRReview key={item.id} evidenceId={item.id} />
+              )}
+              <div className="gov-panel holographic-bg p-5 text-center">
+                <h2 className="font-semibold mb-3">
+                  {L("Verification identity QR", "सत्यापन पहचान QR")}
+                </h2>
+                {qr && (
+                  <img
+                    src={qr}
+                    alt={L("Evidence verification QR code", "साक्ष्य सत्यापन QR")}
+                    className="w-44 h-44 mx-auto border-4 border-white"
+                  />
+                )}
+                <p className="text-xs mt-3">
+                  {L(
+                    "Local demo QR targets localhost:8443. Hosted users can open the link.",
+                    "स्थानीय डेमो QR localhost:8443 खोलता है। होस्टेड पेज पर लिंक खोलें।",
+                  )}
+                </p>
+                <button
+                  className="btn-premium-outline mt-3"
+                  onClick={() => onNavigate("verify", item.verification_token)}
+                >
+                  {L("Open verification", "सत्यापन खोलें")}
+                </button>
+              </div>
+              <section className="gov-panel p-5">
+                <h2 className="font-semibold">
+                  {L("Cryptographic identity", "क्रिप्टोग्राफ़िक पहचान")}
+                </h2>
+                <p className="font-mono text-[11px] break-all my-3">
+                  SHA-256 {item.sha256}
+                </p>
+                <button
+                  className="btn-premium-outline btn-sm"
+                  onClick={() =>
+                    navigator.clipboard
+                      .writeText(item.sha256)
+                      .then(() => setNotice(L("Hash copied.", "हैश कॉपी हुआ।")))
+                      .catch(() =>
+                        setNotice(
+                          L("Clipboard unavailable.", "क्लिपबोर्ड उपलब्ध नहीं।"),
+                        ),
+                      )
+                  }
+                >
+                  {L("Copy hash", "हैश कॉपी करें")}
+                </button>
+                <p className="text-xs mt-4">
+                  {L("Evidence state", "साक्ष्य स्थिति")}:{" "}
+                  {item.status.toUpperCase()} ·{" "}
+                  {L("Human review pending", "मानव समीक्षा बाकी")}
+                </p>
+              </section>
+              <section className="gov-panel p-5 space-y-3">
+                <h2 className="font-semibold">
+                  {L("Blockchain and analysis", "ब्लॉकचेन और विश्लेषण")}
+                </h2>
+                <p className="text-xs break-all">
+                  {item.blockchain
+                    ? `${L("Saved receipt; run Verify for a live check", "सहेजी रसीद; लाइव जाँच के लिए सत्यापन करें")}: ${item.blockchain.transactionHash}`
+                    : L(
+                        "No saved blockchain anchor.",
+                        "कोई ब्लॉकचेन रसीद नहीं है।",
+                      )}
+                </p>
+                <button
+                  className="btn-premium w-full"
+                  disabled={busy || !canAnchor}
+                  title={
+                    !canAnchor
+                      ? appMode !== "full"
+                        ? required
+                        : L(
+                            "Forensics, supervisor or admin role required",
+                            "फॉरेंसिक, पर्यवेक्षक या एडमिन भूमिका आवश्यक",
+                          )
+                      : undefined
+                  }
+                  onClick={() => run("register")}
+                >
+                  {L("Register on blockchain", "ब्लॉकचेन पर दर्ज करें")}
+                </button>
+                <button
+                  className="btn-premium-outline w-full"
+                  disabled={busy || appMode !== "full"}
+                  title={appMode !== "full" ? required : undefined}
+                  onClick={() => run("analyze")}
+                >
+                  {L("Analyze evidence", "साक्ष्य विश्लेषण")}
+                </button>
+                <button
+                  className="btn-premium-outline w-full"
+                  disabled={busy || appMode !== "full"}
+                  title={appMode !== "full" ? required : undefined}
+                  onClick={() => run("verify")}
+                >
+                  {L("Verify stored evidence", "सहेजा साक्ष्य सत्यापित करें")}
+                </button>
+                <input
+                  type="file"
+                  ref={compare}
+                  className="hidden"
+                  onChange={(e) => {
+                    if (e.target.files?.[0]) run("verify", e.target.files[0])
+                    e.target.value = ""
+                  }}
+                />
+                <button
+                  className="btn-premium-outline w-full"
+                  disabled={busy || appMode !== "full"}
+                  title={appMode !== "full" ? required : undefined}
+                  onClick={() => compare.current?.click()}
+                >
+                  {L("Compare another file", "दूसरी फ़ाइल से तुलना")}
+                </button>
+              </section>
+              <button
+                className="btn-premium-outline w-full"
+                onClick={() => onNavigate("graph")}
+              >
+                {L("Open case graph", "केस ग्राफ़ खोलें")}
+              </button>
+            </aside>
+          </div>
+        )}
+      </main>
+    </div>
+  )
 }

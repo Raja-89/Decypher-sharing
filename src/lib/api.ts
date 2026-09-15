@@ -114,7 +114,12 @@ export const api = {
   network: (caseId: string) => request<any>(`/cases/${caseId}/network`),
   copilot: (caseId: string, question: string, locale: string) => request<any>("/copilot/query", { method: "POST", body: JSON.stringify({ case_id: caseId, question, locale }) }),
   generateReport: (caseId: string, locale: string) => request<any>(`/cases/${caseId}/reports`, { method: "POST", body: JSON.stringify({ locale }) }),
-  job: (id: string) => request<any>(`/jobs/${id}`),
+  job: (id: string, signal?:AbortSignal) => request<any>(`/jobs/${id}`,{signal}),
+  submitScan: (caseId:string,requestKey:string,pages:Array<{evidence_id:string;transform:unknown}>) => request<any>("/scans",{method:"POST",body:JSON.stringify({case_id:caseId,request_key:requestKey,pages})}),
+  queueOCR: (id:string) => request<any>(`/evidence/${id}/ocr`,{method:"POST"}),
+  scanCorners: (id:string) => request<any>(`/evidence/${id}/scan-corners`),
+  getOCR: (id:string) => request<any>(`/evidence/${id}/ocr`),
+  correctOCR: (pageId:string,revision:number,text:string,reason:string) => request<any>(`/ocr/pages/${pageId}/corrections`,{method:"POST",body:JSON.stringify({expected_revision:revision,text,reason})}),
   publicVerify: async (token: string) => {
     const response = await fetch(`${apiBase}/verify/${encodeURIComponent(token)}`); if (!response.ok) throw new Error("Evidence identity was not found."); return response.json();
   },
@@ -123,13 +128,19 @@ export const api = {
   qrUrl: (id: string) => `${apiBase}/evidence/${id}/qr`,
 };
 
-export async function waitForJob(id: string, onProgress?: (status: string) => void) {
-  const deadline = Date.now() + 120_000;
+export async function waitForJob(id: string, onProgress?: (status: string) => void, signal?:AbortSignal) {
+  const deadline = Date.now() + 660_000;
   while (Date.now() < deadline) {
-    const job = await api.job(id); onProgress?.(job.status);
+    signal?.throwIfAborted();
+    const job = await api.job(id,signal); onProgress?.(job.status);
     if (job.status === "succeeded") return job.result;
     if (job.status === "failed") throw new Error(job.error || "Processing failed.");
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise<void>((resolve,reject) => {
+      const abort=()=>{clearTimeout(timer);reject(signal?.reason||new DOMException("Polling stopped","AbortError"));};
+      const timer=setTimeout(()=>{signal?.removeEventListener("abort",abort);resolve();},1000);
+      signal?.addEventListener("abort",abort,{once:true});
+      if(signal?.aborted)abort();
+    });
   }
   throw new Error(`Job ${id} is still pending. Check that the processing worker is running.`);
 }
